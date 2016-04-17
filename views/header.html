@@ -3,6 +3,35 @@
 <head>
 	<meta charset = "utf-8">
 	<title><%= title %></title>
-	<link href = "../public/stylesheets/css/bootstrap.min.css" rel = "sytlesheet" media = "screen">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href = "/stylesheet/css/bootstrap.min.css" rel = "stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href = "/stylesheet/header.css" rel = "stylesheet">
+	<link href = "/stylesheet/main.css" rel = "stylesheet">
 </head>
-<body screen_capture_injected = "true">
+<header>
+		<div class = "logo">
+			<a href = "/">
+				<img src = "images/logo.jpg" alt = "logo" id = "logo">
+			</a>
+		</div>
+
+		<div class = "phone-message-wrapper-test">
+			<div class = "phone-message">
+				如遇到任何问题，请联系：
+				<div class = "phone-number">
+					<i class = "flag"></i>
+					miao-miao-miao
+				</div>
+			</div>
+		</div>
+
+		<div class = "sign">
+			<a href = "user/u_login" > Sign in</a>
+			<a href = "user/u_signup" > Sign up</a>
+			<a href = "hotel/h_login"> Hotel sign in</a>
+			<a href = "hotel/h_signup"> Hotel sign up</a>
+			<a href = "admin/a_login"> Admin sign in</a>
+		</div>
+	</header>
+<body >

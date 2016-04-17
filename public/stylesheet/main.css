@@ -1,0 +1,97 @@
+.sometext {
+	display: block;
+    top: 130px;
+    width: 940px;
+    position: absolute;
+    padding-top: 0;
+    margin-left: -470px;
+    color: #ffffff;
+    left:40%;
+    font-size: 40px;
+    font-family: Arial;
+    font-weight: bold;
+    text-align: left;
+}
+
+.sometext p1{
+	font-size: 50px;
+}
+
+.sometext p2{
+	font-size: 80px;
+}
+
+#mainpicture {
+	display: inline;
+	background-size :cover;
+	width : 100% ;
+	height : auto ;
+	margin-top : 10px;
+}
+
+name {
+	font-size: 20px;
+    border-color: #3D71C1;
+    font-weight: normal;
+    background-color: white;
+    padding: 8px;
+    padding-right: 100px;
+    padding-left: 10px;
+    color: #458EE2;
+    display: inline;
+    opacity: .7;
+    padding-bottom: 75px;
+}
+form {
+	margin-top: 10px;
+}
+
+#main_form {
+    margin-top: 70px;
+}
+
+input {
+	display: inline;
+    margin: 6px;
+    font-size: 14px;
+    padding: 5px;
+    opacity: .7;
+    margin-left: 6px;
+    background: white;
+    margin-top: 0px;
+}
+
+#hotel_name {
+	width: 180px;
+}
+
+#arrival {
+
+}
+
+#leave {
+
+}
+
+#city {
+
+}
+button {
+	font-size: 20px;
+    opacity: .7;
+    color: #458EE2;
+    background: rgba(8, 113, 171, 0.01);
+    padding: 3px;
+    margin-left: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+}
+
+button:hover {
+	background-color:#A8DAEA;
+}
+
+#dip {
+	padding-right: 210px;
+}

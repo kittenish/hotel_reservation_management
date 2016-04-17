@@ -1,0 +1,49 @@
+.logo {
+	display: inline-block;
+}
+#logo {
+    display: inline-block;
+    margin-top: 12px;
+    position: relative;
+    left: auto;
+    top: auto;
+    vertical-align: top;
+    width: 50px;
+    margin-left: 30px;
+}
+
+.phone-message-wrapper-test {
+	position: absolute;
+	top:20px;
+	left: 90px;
+	color: #1426CE;
+}
+
+.flag {
+	width: 24px;
+    height: 18px;
+    margin-right: 6px;
+    vertical-align: text-top;
+    background-image: url(/images/logo.jpg);
+}
+
+.sign {
+	float: right;
+	margin-top: 5px;
+	padding: 15px;
+	font-weight: bold;
+	color: #1426CE;
+}
+
+.sign a {
+	padding-right: 20px;
+}
+
+#signin {
+	padding-right: 0px;
+}
+
+.sign :hover ,#signin:hover{
+	font-weight: bolder;
+	color: #2AC5DA;
+}
