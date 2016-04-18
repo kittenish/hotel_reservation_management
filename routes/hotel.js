@@ -80,7 +80,8 @@ hotel_routes.post('/h_signup', function(req, res) {
       city = req.body['city'],
       price = req.body['price'],
       status = 1,
-      name = req.body['name']; 
+      name = req.body['name'];
+      img = req.body['image']; 
       console.log(req.body);
 
    if(password!=password_c)
@@ -109,7 +110,7 @@ hotel_routes.post('/h_signup', function(req, res) {
         return;
       }
 
-    api.hotel_signup(hotelid, password, tel, name, email, addr, city, status, price);
+    api.hotel_signup(hotelid, password, tel, name, email, addr, city, status, price, img);
     res.locals.success = 'Signup successfully !  <a class="btn btn-link" href="/hotel/h_login" role="button"> Sign in </a>' ;
     res.render('hotel/h_signup', {title : "Sign up for together"});
     return; 
