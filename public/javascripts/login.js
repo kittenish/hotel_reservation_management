@@ -1,5 +1,6 @@
-$(function() {
-	$("#submit_login").on("click", function() {
-		$("#password").val($.md5($("#password").val()))
-	})
-});
+$(document).ready(function(){
+  $("#btn1").click(function(){
+  	console.log("cdscascac");
+  	$('#test').html('<p>ajajajjjj</p>');
+  })
+})

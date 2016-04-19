@@ -57,7 +57,7 @@ user_routes.post('/u_login',function(req, res){
             req.session.username = results[0].customer_name;
             req.session.usertype = "user";
             console.log(req.session);
-            res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !"});
+            res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !",username:req.session.username});
         }
 });
 });
@@ -113,7 +113,10 @@ user_routes.get('/u_backend', function(req, res) {
     {
         res.redirect('/', {title : "Together"});
     }
-    res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !"});
+    res.render('user/u_backend' , 
+    {title : "Hi " + " !", username: req.session.username}
+    );
+    console.log(req.session);
 });
 
 module.exports = user_routes;
