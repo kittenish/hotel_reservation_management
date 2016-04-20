@@ -98,6 +98,13 @@ button:hover {
     display: inline-block;
     padding-right: 150px;
     font-size: 180%;
-    font-family: Arial;
+    font-family: 'Open Sans', sans-serif;
     color: #2AC5DA;
 }
+
+.myprofileinfo{
+    padding-left: 100px;
+    font-size: large;
+    margin: 50px;
+}
+                                                

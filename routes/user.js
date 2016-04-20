@@ -2,6 +2,8 @@ var express = require('express');
 var user_routes = express.Router();
 //var auth = require('../midlewares/auth.js');
 var api = require('../api');
+var qs = require('querystring');
+var url = require('url');
 
 user_routes.get('/u_login', function(req, res, next){
     if (req.session.err) {
@@ -113,9 +115,26 @@ user_routes.get('/u_backend', function(req, res) {
     {
         res.redirect('/', {title : "Together"});
     }
-    res.render('user/u_backend' , 
-    {title : "Hi " + " !", username: req.session.username}
-    );
+    else if(qs.parse(url.parse(req.url).query).search_type == "customer") {
+        api.user_find(req.session.userid, function (err, results) {        
+
+        if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });
+
+    }
+    else if (qs.parse(url.parse(req.url).query).search_type == "home"){
+        res.render('user/u_backend' , 
+        {title : "Welcome to Together", username: req.session.username});
+
+    }
     console.log(req.session);
 });
 
