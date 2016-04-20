@@ -1,6 +1,12 @@
 var express = require('express');
 var hotel_routes = express.Router();
 var api = require('../api');
+var qs = require('querystring');
+var formidable = require('formidable');
+var url = require('url');
+var fs = require('fs');
+var multer  = require('multer');
+var upload = multer({ dest: 'public/upload/' });
 
 hotel_routes.get('/h_login', function(req, res, next){
     if (req.session.err) {
@@ -61,16 +67,16 @@ hotel_routes.post('/h_login',function(req, res){
             req.session.hotelname = results[0].hotel_name;
             req.session.usertype = "hotel";
             console.log(req.session);
-            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname + " !"});
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname,username : req.session.hotelname});
         }
 });
 });
 
-hotel_routes.get('/h_signup', function(req, res) {
+hotel_routes.get('/h_signup',  function(req, res) {
     res.render('hotel/h_signup', {title : "Sign up for together"});
 });
 
-hotel_routes.post('/h_signup', function(req, res) {
+hotel_routes.post('/h_signup', upload.single('image'),function(req, res) {
   var hotelid = req.body['id'],
       password = req.body['password'],
       password_c = req.body['password_confirm'],
@@ -81,8 +87,9 @@ hotel_routes.post('/h_signup', function(req, res) {
       price = req.body['price'],
       status = 1,
       name = req.body['name'];
-      img = req.body['image']; 
+      //img = req.body['image']; 
       console.log(req.body);
+      console.log(req.file);
 
    if(password!=password_c)
     {
@@ -109,8 +116,9 @@ hotel_routes.post('/h_signup', function(req, res) {
         //console.log("22");
         return;
       }
+      
 
-    api.hotel_signup(hotelid, password, tel, name, email, addr, city, status, price, img);
+    api.hotel_signup(hotelid, password, tel, name, email, addr, city, status, price, req.file.filename);
     res.locals.success = 'Signup successfully !  <a class="btn btn-link" href="/hotel/h_login" role="button"> Sign in </a>' ;
     res.render('hotel/h_signup', {title : "Sign up for together"});
     return; 
@@ -122,7 +130,21 @@ hotel_routes.get('/h_backend', function(req, res) {
     {
         res.redirect('/', {title : "Together"});
     }
-    res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname + " !"});
+    else if(qs.parse(url.parse(req.url).query).search_type == "hotel") {
+        api.hotel_find(req.session.hotelid, function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_login', {title : "Welcome to together"});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+    else 
+    res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
 });
 
 module.exports = hotel_routes;

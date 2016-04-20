@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var fs = require('fs');
 
 
 var routes = require('./routes/index');
@@ -21,6 +22,7 @@ app.engine('html',require('ejs').renderFile);
 app.set('view engine','html');
 
 //app.use(favicon());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true

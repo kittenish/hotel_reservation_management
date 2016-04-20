@@ -5,14 +5,18 @@
 	<title><%= title %></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href = "/stylesheet/css/bootstrap.min.css" rel = "stylesheet">
+	<script src = "/javascripts/jquery.min.js"></script>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link href = "/stylesheet/header.css" rel = "stylesheet">
 	<link href = "/stylesheet/main.css" rel = "stylesheet">
-	
+	<script src = "/javascripts/hotel_backend.js"></script>
+	<script src = "/javascripts/logout.js"></script>
+	<script src = "/stylesheet/js/bootstrap.min.js"></script>
+
 </head>
 <header>
 		<div class = "logo">
-			<a href = "/hotel/h_backend">
+			<a href = "/user/u_backend">
 				<img src = "../images/logo.jpg" alt = "logo" id = "logo">
 			</a>
 		</div>
@@ -26,6 +30,18 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<div class = "sign">
+			<p id = "welcome">ヽ(=^･ω･^=)丿 Welcome <%= username %></p>
+			<a href = "/">
+			<button type="button" class="btn btn-default" id = "logout" >
+  			<span class="glyphicon glyphicon-log-out" ></span>
+			</button>
+		</a>
 
+		</div>
+		
+		
 	</header>
-
+<body >
