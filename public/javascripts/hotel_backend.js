@@ -38,5 +38,55 @@ $(document).ready(function(){
   		});
   	});
 
+    $("#hotel_room").click(function(){
+    //alert("sdq");
+      //$("#myprofile").css("background-color","#D6D6FF");
+      //$("#myhome").css("background-color","#ffffff");
+      var s = {
+        search_type : "hotel_room_type"
+      };
+      $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){  
+                msg = JSON.parse(msg);
+                console.log(msg);
+                  
+                    $("#page-inner").html('');
+                    //$("#page-inner").append("<h3 class = 'r_type_r col-sm-12' >Room Information </h3>");
+                    var i = 0;
+                while(i < msg.length){
+                    //console.log("------------");
+                    //console.log(msg.length);
+                    $("#page-inner").append("<div class = 'col-sm-6 room_info'>"+
+                      "<div class = 'r_type_r title'>"+msg[i].room_type_name +"</div>"+
+                      "<div class = 'r_type '>Room Type Id :    "+msg[i].room_type_id+
+                      "</div><div class = 'r_type '>Room Type : "+msg[i].room_type_name+
+                      "</div><div class = 'r_type '>Room Standard : "+msg[i].room_standard+
+                      "</div><div class = 'r_type '>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type '>Total Room Number : "+msg[i].room_num+
+                      "</div><div class = 'r_type '>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type '>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type '>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type '>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type '>Room Photo : </div>"+
+                      "<div><img class = 'r_type  r_type_img ' src = "+"'../upload/" + msg[i].room_img + 
+                      "'></div></div>");
+
+                  $(".r_type").css("margin","10px");
+                  $('.r_type').css("margin-left","80px");
+                  $('.r_type_r').css("margin-left","20px");
+                  $('.r_type_r').css("padding","30px");
+                  $('.title').css("font-size","25px");
+                  $('.r_type_img').css("width","350px");
+                  //$('.room_info').css("display", "inline-block");
+                  i += 1;
+                }
+            }
+      });
+    });
+
 	
 	});

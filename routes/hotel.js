@@ -143,6 +143,19 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+    else if(qs.parse(url.parse(req.url).query).search_type == "hotel_room_type") {
+        api.hotel_room_type(req.session.hotelid, function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
     else 
     res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
 });
@@ -160,15 +173,15 @@ hotel_routes.get('/add_room', function(req,res){
 
 hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
     var room_type_id = req.body.room_type_id;
-    var room_price = req.body.room_price;
-    var room_num = req.body.room_num;
-    var room_info = req.body.room_info;
-    var room_area = req.body.room_area;
-    var room_bed = req.body.room_bed;
-    var room_type = req.body.room_type;
-    var room_standard = req.body.room_standard;
-    var room_wifi = req.body.room_wifi;
-    var room_cigarette = req.body.room_cigarette;
+    var price = req.body.room_price;
+    var num = req.body.room_num;
+    var info = req.body.room_info;
+    var area = req.body.room_area;
+    var bed = req.body.room_bed;
+    var type = req.body.room_type;
+    var standard = req.body.room_standard;
+    var wifi = req.body.room_wifi;
+    var cigarette = req.body.room_cigarette;
 
     api.room_type_find(room_type_id, function (err, results) {        
              //console.log(results.length===0);
@@ -187,7 +200,7 @@ hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
       }
       
 
-    //api.add_room(hotelid, password, tel, name, email, addr, city, status, price, req.file.filename);
+    api.add_room(room_type_id, price, num, info, area, bed, type, standard, wifi, cigarette, req.session.hotelid, req.file.filename);
     res.locals.success = 'Add Room Successfully ! ' ;
      res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
     return; 
@@ -196,6 +209,19 @@ hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
     console.log(req.body);
     console.log(req.file);
 });
+
+
+hotel_routes.get('/h_room', function(req,res){
+    if(req.session.usertype != "hotel")
+    {
+        res.redirect('/', {title : "Together"});
+    }
+    
+    else 
+    res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+}
+    );
+
 
 
 module.exports = hotel_routes;
