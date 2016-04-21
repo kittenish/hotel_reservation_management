@@ -1,0 +1,27 @@
+<% include h_header_login.html%>
+
+<link href="/stylesheet/user_main.css" rel="stylesheet">
+<body>
+    
+        <% include h_side.html %>
+        <div id="page-wrapper" >
+            <div id="page-inner">
+
+            	</div>
+        </div>
+<script src = "/javascripts/user_main.js"></script>
+    <script>
+        
+        $('#main-menu').metisMenu();
+
+        $(window).bind("load resize", function () {
+            if ($(this).width() < 768) {
+                $('div.sidebar-collapse').addClass('collapse')
+            } else {
+                $('div.sidebar-collapse').removeClass('collapse')
+            }
+        });
+        
+    </script>
+    
+<% include ../footer.html %>

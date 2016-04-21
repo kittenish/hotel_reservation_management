@@ -130,6 +130,21 @@ user_routes.get('/u_backend', function(req, res) {
   });
 
     }
+    else if(qs.parse(url.parse(req.url).query).search_type == "customer_findhotel") {
+        api.hotel_all_room_type(function (err, results) {        
+
+        if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });
+
+    }
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
         res.render('user/u_backend' , 
         {title : "Welcome to Together", username: req.session.username});

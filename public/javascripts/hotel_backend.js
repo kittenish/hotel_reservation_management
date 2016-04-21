@@ -34,6 +34,7 @@ $(document).ready(function(){
                 	$('.h_profile_h').css("margin-left","20px");
                 	$('.h_profile_h').css("padding","30px");
                   $('.h_profile_img').css("width","500px");
+                  $('#page-inner').css("height","1000px");
             }
   		});
   	});
@@ -81,6 +82,7 @@ $(document).ready(function(){
                   $('.r_type_r').css("padding","30px");
                   $('.title').css("font-size","25px");
                   $('.r_type_img').css("width","350px");
+                  $('#page-inner').css("height","1600px");
                   //$('.room_info').css("display", "inline-block");
                   i += 1;
                 }

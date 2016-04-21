@@ -47,4 +47,78 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	$("#mybooking").click(function(){
+		var s = {
+  			search_type : "customer_findhotel"
+  		};
+		$.ajax({
+			type : "get",
+			url : "u_backend",
+			dataType : "text",
+			data : s,
+			success:function(msg){
+				msg = JSON.parse(msg);
+				$("#page-inner").html('');
+				var i = 0;
+				console.log(msg[0].room_img);
+				while(i< msg.length){
+					if(i % 2 == 0){
+					$("#page-inner").append("<div class = 'col-sm-12 room_info color_grey'>"+
+                   	  
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      "</div><div class = 'r_type col-sm-4'>Room Standard : "+msg[i].room_standard+
+                      "</div><div class = 'r_type col-sm-4'>Room Price : "+msg[i].room_price+
+                      
+                      "</div><div class = 'r_type col-sm-4'>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-4'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-4'>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-4'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div>"+
+                      "<button class = 'col-offset-8 room_type_b btn btn-success' >BOOK NOW</button>"+
+                      "</div>");
+				}
+					else {
+						$("#page-inner").append("<div class = 'col-sm-12 room_info color_white'>"+
+                   	  
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      "</div><div class = 'r_type col-sm-4'>Room Standard : "+msg[i].room_standard+
+                      "</div><div class = 'r_type col-sm-4'>Room Price : "+msg[i].room_price+
+                      
+                      "</div><div class = 'r_type col-sm-4'>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-4'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-4'>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-4'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div>"+
+                      "<button class = 'col-offset-8 room_type_b btn btn-success' >BOOK NOW</button>"+
+                      "</div>");
+					}
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.room_info').css("padding","10px");
+                  $('.room_type_b').css("margin-left","250px");
+                  $('.room_type_b').css("margin-top","20px");
+                  $('.room_type_b').css("background-color", "#2173E4");
+                  	$('.color_grey').css("background-color", "#F3F3F3");
+                  	
+                  	
+                  	$('.color_white').css("background-color", "#ffffff");
+                  
+                  //$('#page-inner').css("height","1600px");
+					i += 1;
+				}
+			}
+		});
+	});
+
 });

@@ -29,10 +29,11 @@
 
 .sign {
 	float: right;
-	margin-top: 5px;
+	margin-top: 8px;
 	padding: 15px;
 	font-weight: bold;
 	color: #1426CE;
+	font-size: 16px;
 }
 
 .sign a {
