@@ -20,7 +20,10 @@ $(document).ready(function(){
                     $("#page-inner").html('');
                     
                     $("#page-inner").append("<h3 class = 'u_profile_h'>Detail Information </h3>");
-                    $("#page-inner").append("<p class = 'u_profile'>My_id :    "+msg[0].customer_id+"</p><p class = 'u_profile'>My_name : "+msg[0].customer_name+"</p><p class = 'u_profile'>My_tel : "+msg[0].customer_tel+"</p><p class = 'u_profile'>My_emai : "+msg[0].customer_email+"</p>");
+                    $("#page-inner").append("<p class = 'u_profile'>My_id :    "+msg[0].customer_id+
+                    	"</p><p class = 'u_profile'>My_name : "+msg[0].customer_name+
+                    	"</p><p class = 'u_profile'>My_tel : "+msg[0].customer_tel+
+                    	"</p><p class = 'u_profile'>My_emai : "+msg[0].customer_email+"</p>");
                 	$(".u_profile").css("font-size","large");
                 	$(".u_profile").css("margin","10px");
                 	$('.u_profile').css("margin-left","200px");

@@ -1,0 +1,152 @@
+<% include h_header_login.html%>
+<link href="/stylesheet/user_main.css" rel="stylesheet">
+<body>
+    
+     <% include h_side.html %>
+         <div id="page-wrapper" >
+         	<div id="page-inner">
+         		<% if (locals.success) { %> 
+          <div id="alt_sucess" class="alert alert-success"> 
+            <%- success %> 
+          </div> 
+       <% } %> 
+
+      <% if (locals.error) { %> 
+        <div id="alt_warning" class="alert alert-warning"> 
+          <%= error %> 
+        </div> 
+      <% } %> 
+   <form class="form-horizontal" role="form" method="post" action="add_room" enctype="multipart/form-data" style="
+    padding: 20px;
+">
+  <h3>Add Room</h3>
+  <br>
+  
+  <div class="form-group">
+    <label for="room_type_id" class="col-sm-3 control-label">Room Type Id *</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" name="room_type_id" placeholder="room type id" required>
+      <p class="help-block">Room type id is recommended to be hotel_id_type_id.</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="room_price" class="col-sm-3 control-label">Room Price *</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="room_price" placeholder="roomprice" required>
+      <p class="help-block">Integer is recommended.</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Total Number Of Rooms *</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="room_num" placeholder="total room number" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Room Number *</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" name="room_info" placeholder="room number" required>
+       <p class="help-block">Please input room numbers as : 0102/1214/1602 etc.</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Room Area *</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="room_area" placeholder="room area" required>
+      <p class="help-block">Integer is recommended.</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Room Bed Number *</label>
+    <div class="col-sm-6">
+      <input type="number" class="form-control" name="room_bed" placeholder="room bed number" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-sm-3 control-label">Image Of The Room </label>
+    <div class="col-sm-6">
+      <input type="file" class="form-control" name="room_image" placeholder="room image">
+    </div>
+  </div>
+
+  <div class="form-group">
+  <label for="room_type" class ="col-sm-3 control-label">Room Type *</label>
+  <div class="col-sm-6">
+      <select class="form-control" name="room_type" required>
+         <option>Single Room</option>
+         <option>Twin Room</option>
+         <option>King Size &AMP; Queen Size Room</option>
+         <option>Triple Room</option>
+         <option>Suite Room</option>
+      </select>
+     </div>
+ </div>
+
+ <div class="form-group">
+  <label for="room_standard" class="col-sm-3 control-label">Room Standard *</label>
+  <div class="col-sm-6">
+      <select class="form-control" name="room_standard" required>
+         <option>Economic Room</option>
+         <option>Standard Room</option> 
+         <option>Superior Room</option>
+         <option>Business Room</option>
+         <option>Deluxe Room</option> 
+      </select>
+     </div>
+ </div>
+
+  <div class="form-group">
+  <label for="room_wifi" class="col-sm-3 control-label">Room Wifi *</label>
+  <div class="col-sm-6">
+      <select class="form-control" name="room_wifi" required>
+         <option>Yes</option>
+         <option>No</option>    
+      </select>
+     </div>
+ </div>
+
+ <div class="form-group">
+  <label for="room_cigarette" class="col-sm-3 control-label">Room Cigarette *</label>
+  <div class="col-sm-6">
+      <select class="form-control" name="room_cigarette" required>
+         <option>Forbidden</option>
+         <option>Not Frobidden</option>    
+      </select>
+     </div>
+ </div>
+
+  
+  
+
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-6">
+      <button type="submit" class="btn btn-success" id="hotel_signup">Add Room Now </button>
+    </div>
+  </div>
+
+            </div>
+        </div>
+<script src = "/javascripts/user_main.js"></script>
+    <script>
+        
+        $('#main-menu').metisMenu();
+
+        $(window).bind("load resize", function () {
+            if ($(this).width() < 768) {
+                $('div.sidebar-collapse').addClass('collapse')
+            } else {
+                $('div.sidebar-collapse').removeClass('collapse')
+            }
+        });
+        //$('#roominfo').children('ul').addClass('collapse');
+        //$('#roominfo').not('.active').has('ul').children('ul').addClass('collapse');
+        //$("#hotel_room").toggleClass('active').children('ul').collapse('true');
+    </script>
+    
+<% include ../footer.html %>
