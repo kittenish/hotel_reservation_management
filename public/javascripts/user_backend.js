@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	//$("#myhome").css("background-color","#D6D6FF");
   	var inhome = $("#page-inner").html();
+  	var search_item = $('#search_item').html();
   	$("#myprofile").click(function(){
   	//alert("sdq");
   		//$("#myprofile").css("background-color","#D6D6FF");
@@ -43,7 +44,7 @@ $(document).ready(function(){
 			dataType : "text",
 			data : s,
 			success:function(){
-				$("#page-inner").html(inhome);
+				$("#page-inner").html("<% include ../../u_home.html %>");
 			}
 		});
 	});
@@ -59,9 +60,10 @@ $(document).ready(function(){
 			data : s,
 			success:function(msg){
 				msg = JSON.parse(msg);
-				$("#page-inner").html('');
+				$("#page-inner").html(search_item);
 				var i = 0;
-				console.log(msg[0].room_img);
+				//console.log(msg[0].room_img);
+				//$("#page-inner").append(" <% include u_search.html %>");
 				while(i< msg.length){
 					if(i % 2 == 0){
 					$("#page-inner").append("<div class = 'col-sm-12 room_info color_grey'>"+
@@ -108,11 +110,9 @@ $(document).ready(function(){
                   $('.room_info').css("padding","10px");
                   $('.room_type_b').css("margin-left","250px");
                   $('.room_type_b').css("margin-top","20px");
-                  $('.room_type_b').css("background-color", "#2173E4");
-                  	$('.color_grey').css("background-color", "#F3F3F3");
-                  	
-                  	
-                  	$('.color_white').css("background-color", "#ffffff");
+                  $('.room_type_b').css("background-color", "#087CF3");
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
                   
                   //$('#page-inner').css("height","1600px");
 					i += 1;
@@ -120,5 +120,7 @@ $(document).ready(function(){
 			}
 		});
 	});
+
+	
 
 });

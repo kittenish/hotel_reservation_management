@@ -1,0 +1,75 @@
+<div class="container" id="search_item" style="
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    /* width: 1113px; */
+    width: 100%;
+">
+
+  <form class="form-inline" role="form" style="/* margin: 5px; */background: #F3F3F3;padding-top: 10px;padding-bottom: 10px;padding-left: 10px;" action = "u_search_hotel" method = "post">
+   
+    <div class="form-group">
+      <label for="Hotel Name">Hotel Name :</label>
+     <input type="text" class="form-control" id="s_hotel_name" placeholder="Enter hotel name" style="
+    width: 60%;
+">
+    </div>
+    
+    <div class="form-group">
+      <label for="check_in">Check-in :</label>
+      <input type="date" class="form-control" is = "s_check_in" >
+    </div>
+   
+    <div class="form-group">
+      <label for="check_out">Check-out :</label>
+      <input type="date" class="form-control" id = "s_check_out" >
+    </div>
+
+    <div class="" style="width: 250px;display : inline-block;margin-left: 10px;">
+      <label for="room price">Price : </label>
+      <input type="text"  id="s_room_price_min" style=" width: 70px;">
+      <label for="room price">&nbsp;to&nbsp;</label>
+      <input type="text"  id="s_room_price_max" style=" width: 70px;">
+   </div>
+
+    <div class="form-group " style="
+    margin-right: 100px;
+">
+    <label for="city">City &nbsp;:&nbsp;&nbsp;</label>
+        <select name="city" style=" margin-right: 30px;" id="s_city">
+         <option>All</option>
+         <option>Beijing</option>
+         <option>Shanghai</option>
+         <option>Changchun</option>    
+        </select>
+    </div>
+    
+  
+    <label>&nbsp;Wifi &nbsp;</label>
+    <label class="radio-inline">
+      <input type="radio" id="s_wifi_yes">Yes
+    </label>
+    <label class="radio-inline" style="
+    margin-right: 125px;
+">
+      <input type="radio" id="s_wifi_no">No
+    </label>
+      
+
+    <label>&nbsp;Cigarette &nbsp;</label>
+    <label class="radio-inline">
+      <input type="radio" id="s_cigarette_forbidden">Forbidden
+    </label>
+    <label class="radio-inline">
+      <input type="radio" id="s_cigarette_not">Not Frobidden
+    </label>
+
+    <button  type = "submit" id = "user__search_hotel" class="btn btn-default" style="
+    margin-left: 40px;
+    background: #087CF3;
+    color: white;
+    padding: 8px 15px 8px 15px;
+    font-weight: bolder;
+">Search</button>
+  </form>
+</div>

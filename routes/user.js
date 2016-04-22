@@ -111,6 +111,7 @@ user_routes.post('/u_signup', function(req, res) {
 });
 
 user_routes.get('/u_backend', function(req, res) {
+    //console.log("_______");
     if(req.session.usertype != "user")
     {
         res.redirect('/', {title : "Together"});
@@ -123,6 +124,7 @@ user_routes.get('/u_backend', function(req, res) {
             return;
         }
         else {
+            
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
@@ -138,6 +140,7 @@ user_routes.get('/u_backend', function(req, res) {
             return;
         }
         else {
+            
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
@@ -145,12 +148,24 @@ user_routes.get('/u_backend', function(req, res) {
   });
 
     }
+
+
+    
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
+        //res.locals.u_search = false;
         res.render('user/u_backend' , 
         {title : "Welcome to Together", username: req.session.username});
 
     }
-    console.log(req.session);
+    //console.log(req.session);
+});
+
+user_routes.get('/u_search_hotel', function(req, res) {
+    res.render('user/u_login', {title : "Sign up for together"});
+});
+
+user_routes.post('/u_search_hotel', function(req, res) {
+    res.render('user/u_search_hotel',{title : "Welcome to Together", username: req.session.username});
 });
 
 module.exports = user_routes;
