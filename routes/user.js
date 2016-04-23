@@ -166,6 +166,23 @@ user_routes.get('/u_backend', function(req, res) {
             );
     }
 
+    else if(qs.parse(url.parse(req.url).query).search_type == "make_order") {
+        var search = qs.parse(url.parse(req.url).query);
+        //console.log(search);
+        api.room_type_find (search.room_type, function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
 
     
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
