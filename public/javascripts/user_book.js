@@ -1,6 +1,9 @@
 $(document).ready(function(){
+
+	var a = $("#page-inner").html();
 	
 	$('button.col-offset-8.room_type_b.btn.btn-success').click(function(obj){
+
 		console.log(obj.currentTarget.id);
 		var id = obj.currentTarget.id;
 		var s = {
@@ -48,7 +51,7 @@ $(document).ready(function(){
     					"</div>"
 						);
 
-					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm'> Confirm Now </button>"+
+					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm' id = '"+msg[0].room_type_id+"'> Confirm Now </button>"+
 						"<button class = 'btn btn-info btn-large book_confirm_2'> See More </button>"
 						);
 
@@ -73,7 +76,51 @@ $(document).ready(function(){
                     $('.book_confirm_2').css("margin-left","80px");
                     $('.book_confirm_2').css("border-width","thick");
 
+                    $("#page-inner").append(" <script src = '/javascripts/user_book.js'></script>");
+
             }
   		});
+	});
+
+	$('button.btn.btn-info.btn-large.book_confirm_2').click(function(){
+		
+		$('#myhome').click();
+	});
+
+	$('button.btn.btn-info.btn-large.book_confirm').click(function(obj){
+		
+		var _arrival = $("#book_arrive").val(),
+			_leave = $("#book_leave").val(),
+			_roomtypeid = obj.currentTarget.id;
+		if(_arrival == '' || _leave == '')
+		{
+			alert("Please Confirm The time Of Your Reservation !");
+		}
+		else {
+		var s = {
+			search_type : "make_reser",
+			arrival : _arrival,
+			leave : _leave,
+			roomtypeid : _roomtypeid
+		};
+		//console.log(s);
+		$.ajax({
+			type : "get",
+  			url : "u_backend",
+  			dataType : "text",
+  			data : s,
+  			success: function(){ 
+  				;
+  			}
+		});
+		
+  		$("#page-inner").html('');
+ 		$("#page-inner").append(
+			"<h4 class='' style='margin-left: 20px;padding:30px;'>Your reservation has been saved .</h4>"+
+  			"<h4 class='' style='margin-left: 20px;padding:30px;'>All revisions are acceptable before payment.</h4>"+
+  			"<h4 class='' style='margin-left: 20px;padding:30px; color: #0606D0;'>Attention : Your reservation will not be confirmed until your pay for it .</h4>"
+  			);
+  		}
+	
 	});
 });

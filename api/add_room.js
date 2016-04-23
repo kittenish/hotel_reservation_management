@@ -28,7 +28,7 @@ module.exports = function(type_id, price, num, info, area, bed, type, standard, 
             //console.log(result[s]);
 
             var sql = 'insert into room_info(room_info_id, room_no, room_status, room_type_room_type_id) values(?, ?, ?, ?)';
-            var room = [hotel_id + type_id + result[s], result[s], 0, type_id];
+            var room = [hotel_id + type_id + result[s], result[s], "Empty", type_id];
             // 0 to respresent unoccupied
             connection.query(sql, room, function (err,result) {
                 if (err) {
