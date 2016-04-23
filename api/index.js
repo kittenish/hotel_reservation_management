@@ -29,6 +29,8 @@ var hotel_all_room_type = require('./hotel_all_room_type');
 var user_search_hotel = require('./user_search_hotel');
 var add_reservation = require('./add_reservation');
 var reservation_find_by_userid = require('./reservation_find_by_userid');
+var pay_reservation = require('./pay_reservation');
+var delete_reservation = require('./delete_reservation');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -43,3 +45,5 @@ exports.hotel_all_room_type = hotel_all_room_type;
 exports.user_search_hotel = user_search_hotel;
 exports.add_reservation = add_reservation;
 exports.reservation_find_by_userid = reservation_find_by_userid;
+exports.pay_reservation = pay_reservation;
+exports.delete_reservation = delete_reservation;
