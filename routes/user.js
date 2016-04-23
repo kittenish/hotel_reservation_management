@@ -132,7 +132,7 @@ user_routes.get('/u_backend', function(req, res) {
   });
 
     }
-    else if(qs.parse(url.parse(req.url).query).search_type == "customer_findhotel") {
+    /*else if(qs.parse(url.parse(req.url).query).search_type == "customer_findhotel") {
         api.hotel_all_room_type(function (err, results) {        
 
         if (err) {
@@ -147,6 +147,23 @@ user_routes.get('/u_backend', function(req, res) {
         }
   });
 
+    }*/
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "customer_search_hotel") {
+        var search = qs.parse(url.parse(req.url).query);
+        //console.log(search);
+        api.user_search_hotel(search, function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
     }
 
 
@@ -160,12 +177,5 @@ user_routes.get('/u_backend', function(req, res) {
     //console.log(req.session);
 });
 
-user_routes.get('/u_search_hotel', function(req, res) {
-    res.render('user/u_login', {title : "Sign up for together"});
-});
-
-user_routes.post('/u_search_hotel', function(req, res) {
-    res.render('user/u_search_hotel',{title : "Welcome to Together", username: req.session.username});
-});
 
 module.exports = user_routes;

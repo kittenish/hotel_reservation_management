@@ -1,61 +1,30 @@
 $(document).ready(function(){
-	//$("#myhome").css("background-color","#D6D6FF");
-  	var inhome = $("#page-inner").html();
-  	var search_item = $('#search_item').html();
-  	$("#myprofile").click(function(){
-  	//alert("sdq");
-  		//$("#myprofile").css("background-color","#D6D6FF");
-  		//$("#myhome").css("background-color","#ffffff");
+	$("#user__search_hotel").click(function(){
+
+  		var s_city = $("#s_city").val(),
+  			s_name = $("#s_hotel_name").val(),
+  			s_arrival = $("#s_check_in").val(),
+  			s_leave = $("#s_check_out").val(),
+  			s_price_min = $("#s_room_price_min").val(),
+  			s_price_max = $("#s_room_price_max").val(),
+  			s_wifi = $("#s_wifi").val(),
+  			
+  			s_ci = $("#s_cigarette").val();
+  			
+
   		var s = {
-  			search_type : "customer"
+  			search_type : "customer_search_hotel",
+  			city : s_city,
+  			hotelname : s_name,
+  			arrival: s_arrival,
+  			leave : s_leave,
+  			price_min : s_price_min,
+  			price_max : s_price_max,
+  			wifi : s_wifi,
+  			ci : s_ci,
+  			
   		};
-  		$.ajax({
-  			type : "get",
-  			url : "u_backend",
-  			dataType : "text",
-  			data : s,
-  			success: function(msg){  
-                msg = JSON.parse(msg);
-                console.log(msg);
-                	
-                    $("#page-inner").html('');
-                    
-                    $("#page-inner").append("<h3 class = 'u_profile_h'>Detail Information </h3>");
-                    $("#page-inner").append("<p class = 'u_profile'>My_id :    "+msg[0].customer_id+
-                    	"</p><p class = 'u_profile'>My_name : "+msg[0].customer_name+
-                    	"</p><p class = 'u_profile'>My_tel : "+msg[0].customer_tel+
-                    	"</p><p class = 'u_profile'>My_emai : "+msg[0].customer_email+"</p>");
-                	$(".u_profile").css("font-size","large");
-                	$(".u_profile").css("margin","10px");
-                	$('.u_profile').css("margin-left","200px");
-                	$('.u_profile_h').css("margin-left","20px");
-                	$('.u_profile_h').css("padding","30px");
-            }
-  		});
-  	});
-
-	$("#myhome").click(function(){
-		var s = {
-  			search_type : "home"
-  		};
-		$.ajax({
-			type : "get",
-			url : "u_backend",
-			dataType : "text",
-			data : s,
-			success:function(){
-				$("#page-inner").html(inhome);
-			}
-		});
-	});
-
-	
-
-
-	$("#mybooking").click(function(){
-		var s = {
-  			search_type : "customer_findhotel"
-  		};
+  		console.log(s);
 		$.ajax({
 			type : "get",
 			url : "u_backend",
@@ -123,7 +92,4 @@ $(document).ready(function(){
 			}
 		});
 	});
-
-	
-
 });

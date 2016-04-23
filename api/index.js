@@ -26,6 +26,7 @@ var add_room = require('./add_room');
 var room_type_find = require('./room_type_find');
 var hotel_room_type = require('./hotel_room_type');
 var hotel_all_room_type = require('./hotel_all_room_type');
+var user_search_hotel = require('./user_search_hotel');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -37,3 +38,4 @@ exports.add_room = add_room;
 exports.room_type_find = room_type_find;
 exports.hotel_room_type = hotel_room_type;
 exports.hotel_all_room_type = hotel_all_room_type;
+exports.user_search_hotel = user_search_hotel;
