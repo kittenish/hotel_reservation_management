@@ -130,6 +130,7 @@ hotel_routes.get('/h_backend', function(req, res) {
     {
         res.redirect('/', {title : "Together"});
     }
+    
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel") {
         api.hotel_find(req.session.hotelid, function (err, results) {        
 
@@ -143,6 +144,7 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+   
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel_room_type") {
         api.hotel_room_type(req.session.hotelid, function (err, results) {        
 
@@ -156,8 +158,51 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+    
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "processed_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Payed", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+
+     else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Confirmed", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "confirm_reser") {
+        //console.log("----------");
+
+        reserid = qs.parse(url.parse(req.url).query).reser_id;
+        
+        api.confirm_reservation(reserid);      
+
+  }
+    
+
+
     else 
-    res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+        res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
 });
 
 hotel_routes.get('/add_room', function(req,res){

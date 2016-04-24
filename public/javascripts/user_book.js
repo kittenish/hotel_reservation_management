@@ -94,7 +94,7 @@ $(document).ready(function(){
 			_roomtypeid = obj.currentTarget.id;
 		if(_arrival == '' || _leave == '')
 		{
-			alert("Please Confirm The time Of Your Reservation !");
+			alert("Please Confirm The Time of Your Reservation !");
 		}
 		else {
 		var s = {

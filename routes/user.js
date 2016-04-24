@@ -215,6 +215,22 @@ user_routes.get('/u_backend', function(req, res) {
             );
     }
 
+    else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_order") {
+        
+        api.reservation_find_by_userid (req.session.userid, 'Confirmed',function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
     else if(qs.parse(url.parse(req.url).query).search_type == "make_reser") {
         var search = qs.parse(url.parse(req.url).query);
         console.log(search);
