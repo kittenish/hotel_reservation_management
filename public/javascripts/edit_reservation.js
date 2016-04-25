@@ -49,4 +49,32 @@ $(document).ready(function(){
 		$("#myunpayed").click();
 	});
 
+	$('button.col-offset-8.btn.apply_refund').click(function(obj){
+		 var r=confirm("Are you sure to apply refund ?");
+    	if (r==false)
+    	{
+      		;
+    	}
+    	else
+    	{
+		console.log(obj.currentTarget.value);
+		var id = obj.currentTarget.value;
+
+		var s = {
+			search_type : "apply_refund",
+			reser_id : id
+		};
+		$.ajax({
+			type : "get",
+			url : "u_backend",
+			dataType : "text",
+			data : s,
+			success:function(){
+				;
+			}
+		});
+		$("#waiting_refund").click();
+	}
+	});
+
 });

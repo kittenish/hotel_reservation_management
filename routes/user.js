@@ -215,9 +215,43 @@ user_routes.get('/u_backend', function(req, res) {
             );
     }
 
+     else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund_order") {
+        
+        api.reservation_find_by_userid (req.session.userid, 'Applying Refund',function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
+    
+
     else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_order") {
         
         api.reservation_find_by_userid (req.session.userid, 'Confirmed',function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "refund_reservation") {
+        
+        api.reservation_find_by_userid (req.session.userid, 'Refund',function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
             return;
@@ -244,6 +278,11 @@ user_routes.get('/u_backend', function(req, res) {
      else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.pay_reservation(qs.parse(url.parse(req.url).query).reser_id);
+    }
+
+     else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund") {
+        console.log(qs.parse(url.parse(req.url).query).reser_id);
+        api.apply_refund_reservation(qs.parse(url.parse(req.url).query).reser_id);
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "delete_reservation") {

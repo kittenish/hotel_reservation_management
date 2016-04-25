@@ -219,6 +219,7 @@ $(document).ready(function(){
   });
 	
   $("#mypayed").click(function(){
+    
     var s = {
         search_type : "payed_order"
       };
@@ -303,10 +304,11 @@ $(document).ready(function(){
                   //$('#page-inner').css("height","1600px");
                   i += 1;
         }
-        //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+        $("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
 
       }
     });
+
   });
 
   $("#myconfirmed").click(function(){
@@ -371,6 +373,188 @@ $(document).ready(function(){
                       
                       "</div>"+
                       "<button class = 'col-offset-8  btn  apply_refund' value = '"+msg[i].reser_id+"'> APPLY REFUND </button>"+
+                      
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.room_info').css("padding","10px");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.apply_refund').css("margin-left","500px");
+              
+                  $('.apply_refund').css("margin-top","20px");
+                  $('.apply_refund').css("background-color", "#087CF3");
+                  $('.apply_refund').css("color", "#ffffff");
+                  //$('#page-inner').css("height","1600px");
+                  i += 1;
+        }
+        $("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+
+      }
+    });
+  });
+
+  $("#waiting_refund").click(function(){
+    var s = {
+        search_type : "apply_refund_order"
+      };
+    $.ajax({
+      type : "get",
+      url : "u_backend",
+      dataType : "text",
+      data : s,
+      success:function(msg){
+        //$("#page-inner").html(inhome);
+        //console.log(msg[0]);
+        msg = JSON.parse(msg);
+        $("#page-inner").html('');
+        var i = 0;
+        //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+
+        while(i< msg.length){
+
+         if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 room_info color_grey'>"+
+                      
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-8'>Reservation Id  :    "+msg[i].reser_id+
+                      "</div><div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
+                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
+                      "<br>"+
+                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      //"<button class = 'col-offset-8  btn  apply_refund' value = '"+msg[i].reser_id+"'> APPLY REFUND </button>"+
+                      
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 room_info color_white'>"+
+                      
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-8'>Reservation Id  :    "+msg[i].reser_id+
+                      "</div><div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
+                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
+                      "<br>"+
+                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      //"<button class = 'col-offset-8  btn  apply_refund' value = '"+msg[i].reser_id+"'> APPLY REFUND </button>"+
+                      
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.room_info').css("padding","10px");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.apply_refund').css("margin-left","500px");
+              
+                  $('.apply_refund').css("margin-top","20px");
+                  $('.apply_refund').css("background-color", "#087CF3");
+                  $('.apply_refund').css("color", "#ffffff");
+                  //$('#page-inner').css("height","1600px");
+                  i += 1;
+        }
+        //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+
+      }
+    });
+  });
+  
+  $("#has_refund").click(function(){
+    var s = {
+        search_type : "refund_reservation"
+      };
+    $.ajax({
+      type : "get",
+      url : "u_backend",
+      dataType : "text",
+      data : s,
+      success:function(msg){
+        //$("#page-inner").html(inhome);
+        //console.log(msg[0]);
+        msg = JSON.parse(msg);
+        $("#page-inner").html('');
+        var i = 0;
+        //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+
+        while(i< msg.length){
+
+         if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 room_info color_grey'>"+
+                      
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-8'>Reservation Id  :    "+msg[i].reser_id+
+                      "</div><div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
+                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
+                      "<br>"+
+                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      //"<button class = 'col-offset-8  btn  apply_refund' value = '"+msg[i].reser_id+"'> APPLY REFUND </button>"+
+                      
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 room_info color_white'>"+
+                      
+                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
+                      + msg[i].room_img + "'></div>"+
+                      "<div class = 'r_type col-sm-8'>Reservation Id  :    "+msg[i].reser_id+
+                      "</div><div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
+                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
+                      "<br>"+
+                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      //"<button class = 'col-offset-8  btn  apply_refund' value = '"+msg[i].reser_id+"'> APPLY REFUND </button>"+
                       
                       "</div>");
         
