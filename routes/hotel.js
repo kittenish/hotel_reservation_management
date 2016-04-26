@@ -174,6 +174,21 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+
+         else if(qs.parse(url.parse(req.url).query).search_type == "processed_check_out_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Check-in", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
         
 
         else if(qs.parse(url.parse(req.url).query).search_type == "processed_refund_reservation") {
@@ -225,6 +240,37 @@ hotel_routes.get('/h_backend', function(req, res) {
   });}
         
 
+     else if(qs.parse(url.parse(req.url).query).search_type == "check_in_ed_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Check-in", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "completed_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Complete", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+        
+
     else if(qs.parse(url.parse(req.url).query).search_type == "all_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "all", function (err, results) {        
@@ -246,6 +292,24 @@ hotel_routes.get('/h_backend', function(req, res) {
         reserid = qs.parse(url.parse(req.url).query).reser_id;
         
         api.confirm_reservation(reserid);      
+
+  }
+
+   else if(qs.parse(url.parse(req.url).query).search_type == "check-in_reser") {
+        //console.log("----------");
+
+        reserid = qs.parse(url.parse(req.url).query).reser_id;
+        
+        api.check_in_reservation(reserid);      
+
+  }
+
+   else if(qs.parse(url.parse(req.url).query).search_type == "check-out_reser") {
+        //console.log("----------");
+
+        reserid = qs.parse(url.parse(req.url).query).reser_id;
+        
+        api.check_out_reservation(reserid);      
 
   }
 

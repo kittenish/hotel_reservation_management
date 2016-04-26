@@ -249,6 +249,22 @@ user_routes.get('/u_backend', function(req, res) {
             );
     }
 
+     else if(qs.parse(url.parse(req.url).query).search_type == "completed_order") {
+        
+        api.reservation_find_by_userid (req.session.userid, 'Complete',function (err, results) {
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
     else if(qs.parse(url.parse(req.url).query).search_type == "refund_reservation") {
         
         api.reservation_find_by_userid (req.session.userid, 'Refund',function (err, results) {

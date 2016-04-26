@@ -270,6 +270,96 @@ $(document).ready(function(){
         }
       });
     });
+
+  $('#h_process_check-out').click(function(){
+        
+        var s = {
+          search_type : 'processed_check_out_reservation'
+        };
+
+        $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){
+
+            msg = JSON.parse(msg);
+            //console.log("--------");
+
+           $("#page-inner").html('');
+           var i = 0;
+           while(i<msg.length) {
+
+              if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      "<button class = 'col-offset-8  btn  btn-success bycheck-out' value = '"+msg[i].reser_id+"'> CHECK_OUT </button>"+
+                      //"<button class = 'col-offset-8  btn  reject byreject' value = '"+msg[i].reser_id+"'> REJECT </button>"+
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      "<button class = 'col-offset-8  btn btn-success bycheck-out' value = '"+msg[i].reser_id+"'> CHECK_OUT </button>"+
+                      //"<button class = 'col-offset-8  btn reject bycheck-out' value = '"+msg[i].reser_id+"'> REJECT </button>"+
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.reser_info').css("padding","10px");
+                  $('.reser_info').css("line-height","2");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.reject').css("background-color", "#087CF3");
+                  $('.reject').css("color", "#ffffff");
+                  $('.reject').css("margin-left", "20px");
+                  $('.reser_confirm').css("margin-left","0px");
+
+
+
+                  
+
+              i += 1;
+           }
+           $("#page-inner").append("<script src = '/javascripts/hotel_reser.js'></script>");
+
+        }
+      });
+    });
   
     $('#h_confirm').click(function(){
         
@@ -447,6 +537,182 @@ $('#h_refund').click(function(){
       });
     });
 
+  $('#h_checkin').click(function(){
+        
+        var s = {
+          search_type : 'check_in_ed_reservation'
+        };
+
+        $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){
+
+            msg = JSON.parse(msg);
+            //console.log("--------");
+
+           $("#page-inner").html('');
+           var i = 0;
+           while(i<msg.length) {
+
+              if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                     
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.reser_info').css("padding","10px");
+                  $('.reser_info').css("line-height","2");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.reject').css("background-color", "#087CF3");
+                  $('.reject').css("color", "#ffffff");
+                  $('.reject').css("margin-left", "20px");
+                  $('.reser_confirm').css("margin-left","0px");
+
+
+
+                  
+
+              i += 1;
+           }
+           //$("#page-inner").append("<script src = '/javascripts/hotel_reser.js'></script>");
+
+        }
+      });
+    });
+
+  $('#h_complete').click(function(){
+        
+        var s = {
+          search_type : 'completed_reservation'
+        };
+
+        $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){
+
+            msg = JSON.parse(msg);
+            //console.log("--------");
+
+           $("#page-inner").html('');
+           var i = 0;
+           while(i<msg.length) {
+
+              if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                     
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.reser_info').css("padding","10px");
+                  $('.reser_info').css("line-height","2");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.reject').css("background-color", "#087CF3");
+                  $('.reject').css("color", "#ffffff");
+                  $('.reject').css("margin-left", "20px");
+                  $('.reser_confirm').css("margin-left","0px");
+
+
+
+                  
+
+              i += 1;
+           }
+           //$("#page-inner").append("<script src = '/javascripts/hotel_reser.js'></script>");
+
+        }
+      });
+    });
+
   $('#h_all').click(function(){
         
         var s = {
@@ -534,6 +800,97 @@ $('#h_refund').click(function(){
         }
       });
     });
+
+  $('#h_process_check-in').click(function(){
+        
+        var s = {
+          search_type : 'confirmed_reservation'
+        };
+
+        $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){
+
+            msg = JSON.parse(msg);
+            //console.log("--------");
+
+           $("#page-inner").html('');
+           var i = 0;
+           while(i<msg.length) {
+
+              if(i % 2 == 0){
+          $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      "<button class = 'col-offset-8  btn btn-success reser_check-in' value = '"+msg[i].reser_id+"'> CHECK-IN </button>"+
+                      "<button class = 'col-offset-8  btn  reject bycheck-in' value = '"+msg[i].reser_id+"'> REFUND </button>"+
+                      "</div>");
+          }
+          else {
+            $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
+                      
+                      
+                      "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
+                      
+                      "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
+                      
+                      
+                      "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
+                      "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                      
+                      
+                      "</div>"+
+                      "<button class = 'col-offset-8  btn btn-success reser_check-in' value = '"+msg[i].reser_id+"'> CHECK-IN </button>"+
+                      "<button class = 'col-offset-8  btn  reject bycheck-in' value = '"+msg[i].reser_id+"'> REFUND </button>"+
+                      "</div>");
+        
+            }
+
+                  //$(".room_info").css("margin-bottom","10px");
+                  //$('.r_type').css("margin-left","80px");
+                  //$('.r_type_r').css("margin-left","20px");
+                  //$('.r_type_r').css("padding","30px");
+                  
+                  $('.reser_info').css("padding","10px");
+                  $('.reser_info').css("line-height","2");
+                  
+                  $('.color_white').css("background-color", "#F3F3F3");
+                  $('.color_grey').css("background-color", "#ffffff");
+
+                  $('.reject').css("background-color", "#087CF3");
+                  $('.reject').css("color", "#ffffff");
+                  $('.reject').css("margin-left", "20px");
+                  $('.reser_confirm').css("margin-left","0px");
+
+
+
+                  
+
+              i += 1;
+           }
+           $("#page-inner").append("<script src = '/javascripts/hotel_reser.js'></script>");
+
+        }
+      });
+    });
+
 
 	
 	});
