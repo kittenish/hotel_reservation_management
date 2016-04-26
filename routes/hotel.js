@@ -160,7 +160,7 @@ hotel_routes.get('/h_backend', function(req, res) {
   });}
     
 
-    else if(qs.parse(url.parse(req.url).query).search_type == "processed_reservation") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "processed_confirm_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "Payed", function (err, results) {        
 
@@ -174,10 +174,60 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+        
+
+        else if(qs.parse(url.parse(req.url).query).search_type == "processed_refund_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Applying Refund", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });
+        
+        
+    }
 
      else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "Confirmed", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "refunded_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "Refund", function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
+        
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "all_reservation") {
+        
+        api.reservation_find_by_hotelid(req.session.hotelid, "all", function (err, results) {        
 
         if (err) {
             res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
@@ -198,12 +248,23 @@ hotel_routes.get('/h_backend', function(req, res) {
         api.confirm_reservation(reserid);      
 
   }
+
+  else if(qs.parse(url.parse(req.url).query).search_type == "refund_reser") {
+        //console.log("----------");
+
+        reserid = qs.parse(url.parse(req.url).query).reser_id;
+        
+        api.refund_reservation(reserid);      
+
+  }
     
 
 
     else 
         res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
 });
+
+
 
 hotel_routes.get('/add_room', function(req,res){
     if(req.session.usertype != "hotel")

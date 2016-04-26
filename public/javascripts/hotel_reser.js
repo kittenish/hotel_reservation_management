@@ -19,8 +19,81 @@ $(document).ready (function(){
      
     });
   
-    $("#h_myorder").click();
+    $("#h_process_confirm").click();
     console.log("confirm finish");
+  
+  });
+
+	$('button.col-offset-8.btn.reject.byconfirm').click(function(obj){
+    
+    console.log(obj.currentTarget.value);
+    //console.log("sadsadsadaa");
+		var value = obj.currentTarget.value;
+		var s = {
+  			search_type : "refund_reser",
+  			reser_id : value
+  		};
+  	$.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success:function(){
+				;
+			}
+     
+    });
+  
+    $("#h_process_confirm").click();
+    console.log("refund finish");
+  
+  });
+
+	$('button.col-offset-8.btn.btn-success.byrefund').click(function(obj){
+    
+    console.log(obj.currentTarget.value);
+		var value = obj.currentTarget.value;
+		var s = {
+  			search_type : "refund_reser",
+  			reser_id : value
+  		};
+  	$.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success:function(){
+				;
+			}
+     
+    });
+  
+    $("#h_process_refund").click();
+    console.log("refund finish");
+  
+  });
+	
+	$('button.col-offset-8.btn.reject.byreject').click(function(obj){
+    
+    console.log(obj.currentTarget.value);
+		var value = obj.currentTarget.value;
+		var s = {
+  			search_type : "confirm_reser",
+  			reser_id : value
+  		};
+  	$.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success:function(){
+				;
+			}
+     
+    });
+  
+    $("#h_process_refund").click();
+    console.log("reject finish");
   
   });
 
