@@ -37,6 +37,9 @@ var apply_refund_reservation = require('./apply_refund_reservation');
 var refund_reservation = require('./refund_reservation');
 var check_in_reservation = require('./check_in_reservation');
 var check_out_reservation = require('./check_out_reservation');
+var user_edit_profile = require('./user_edit_profile');
+var hotel_edit_profile = require('./hotel_edit_profile');
+var admin_login = require('./admin_login');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -59,4 +62,7 @@ exports.apply_refund_reservation = apply_refund_reservation;
 exports.refund_reservation = refund_reservation;
 exports.check_in_reservation = check_in_reservation;
 exports.check_out_reservation = check_out_reservation;
+exports.user_edit_profile = user_edit_profile;
+exports.hotel_edit_profile = hotel_edit_profile;
+exports.admin_login = admin_login;
 

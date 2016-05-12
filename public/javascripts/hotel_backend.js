@@ -1,5 +1,67 @@
 $(document).ready(function(){
 	//$("#myhome").css("background-color","#D6D6FF");
+
+  var msg=[];
+    var self=this;
+
+  window.scroll(0,0);
+
+   window.edit_profile = function(){
+
+    window.scroll(0,0);
+      //alert("saaaa");
+      console.log(self.msg[0].hotel_id);
+      $("#page-inner").html('');
+      $("#page-inner").append("<h3 class = 'u_profile_h'>Edit Profile </h3>");
+      $("#page-inner").append("<p class = 'u_profile u_id' >My_id :    "+self.msg[0].hotel_id+"</p>");
+      $("#page-inner").append("<form class='form-horizontal col-offset-8 col-sm-10' role='form' method='post' action = 'u_edit_profile' >"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label for='Password' class='col-sm-2 control-label'>Password *</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='password' class='form-control' id='password' name = 'password' value = '"+self.msg[0].hotel_password+"' required>"+
+      "<p class='help-block'>Password should be less than 15 characters</p>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Confirm your password *</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='password' class='form-control' id='password_confirm' name = 'password_confirm' value = '"+self.msg[0].hotel_password+"' required>"+
+      "<p class='help-block'>Please Confirm Password</p>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Tel</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='number' class='form-control' id='tel' name = 'tel' value = '"+self.msg[0].hotel_tel+"'>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Email</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='email' class='form-control' id='email' name = 'email' value = '"+self.msg[0].hotel_email+"'>"+
+    "</div>"+
+  "</div>"+
+
+"</form>"+
+"<button class = 'btn btn-info col-sm-offset-3' "+
+                      "style = 'margin-top: 20px; type = 'submit' >SAVE PROFILE</button>"
+);
+                    
+
+                  //$(".u_profile").css("font-size","large");
+$(".u_profile").css("margin","10px");
+$('.u_profile').css("margin-left","100px");
+                  $('.u_profile_h').css("margin-left","20px");
+                  $('.u_profile_h').css("padding","30px");
+                  $('.u_id').css("margin-left","150px");
+      $("#page-inner").append("<script src = '/javascripts/hotel_edit_profile.js'></script>");
+
+    }
+
   	$("#myprofile").click(function(){
   	//alert("sdq");
   		//$("#myprofile").css("background-color","#D6D6FF");
@@ -15,6 +77,7 @@ $(document).ready(function(){
   			success: function(msg){  
                 msg = JSON.parse(msg);
                 console.log(msg);
+                self.msg=msg;
                 	
                     $("#page-inner").html('');
                     
@@ -28,6 +91,9 @@ $(document).ready(function(){
                       "</p><p class = 'h_profile'>Hotel Email : "+msg[0].hotel_email+
                       "</p><p class = 'h_profile'>Hotel Photo : </p>"+
                       "<img class = 'h_profile  h_profile_img' src = "+"'../upload/" + msg[0].hotel_img + "'>");
+                    $("#page-inner").append("<button class='btn btn-info col-sm-offset-3' style='margin-top: 40px;"+
+                      "margin-left: 400px;padding: 10px 20px 10px 20px;' onclick='edit_profile()'"+
+                      ">EDIT PROFILE</button>");
                 	$(".h_profile").css("font-size","large");
                 	$(".h_profile").css("margin","10px");
                 	$('.h_profile').css("margin-left","200px");
@@ -54,6 +120,7 @@ $(document).ready(function(){
         success: function(msg){  
                 msg = JSON.parse(msg);
                 console.log(msg);
+                self.msg=msg;
                   
                     $("#page-inner").html('');
                     //$("#page-inner").append("<h3 class = 'r_type_r col-sm-12' >Room Information </h3>");
@@ -105,6 +172,7 @@ $(document).ready(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -195,6 +263,7 @@ $(document).ready(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -285,6 +354,7 @@ $(document).ready(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -375,6 +445,7 @@ $(document).ready(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -463,6 +534,7 @@ $('#h_refund').click(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -551,6 +623,7 @@ $('#h_refund').click(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -639,6 +712,7 @@ $('#h_refund').click(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -727,6 +801,7 @@ $('#h_refund').click(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');
@@ -815,6 +890,7 @@ $('#h_refund').click(function(){
         success: function(msg){
 
             msg = JSON.parse(msg);
+            self.msg=msg;
             //console.log("--------");
 
            $("#page-inner").html('');

@@ -1,5 +1,7 @@
 $(document).ready(function(){
-	console.log("finifh");
+
+	window.scroll(0,0);
+	//console.log("finifh");
 
 	$('button.col-offset-8.reser_type_b_.btn.btn-success.pay').click(function(obj){
 		//console.log("pay");
@@ -73,7 +75,7 @@ $(document).ready(function(){
 				;
 			}
 		});
-		$("#waiting_refund").click();
+		$("button.col-offset-8.btn.apply_refund").click();
 	}
 	});
 

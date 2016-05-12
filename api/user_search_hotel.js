@@ -64,7 +64,7 @@ module.exports = function (search, callback) {
             }
 
             connection.release();
-            console.log(result);
+            //console.log(result);
             
             //connection.release();
             callback(err,result);                     

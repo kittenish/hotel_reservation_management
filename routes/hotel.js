@@ -392,6 +392,24 @@ hotel_routes.get('/h_room', function(req,res){
 }
     );
 
+hotel_routes.get('/h_edit_profile', function(req, res) {
+
+if(req.session.usertype != "hotel")
+    {
+        res.redirect('/', {title : "Together"});
+    }
+else {
+    var info = qs.parse(url.parse(req.url).query);
+  var hotelid = req.session.hotelid,
+      password = info.password,
+      tel = info.tel, 
+      email = info.email;
+      console.log(info);
+
+      api.hotel_edit_profile(hotelid, password, tel, email);
+}
+    });
+
 
 
 module.exports = hotel_routes;

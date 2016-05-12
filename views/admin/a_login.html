@@ -1,0 +1,40 @@
+<% include a_header.html %>
+<body >
+<% if (locals.success) { %> 
+  <br>
+          <div id="alt_sucess" class="alert alert-success" style = "margin-top:60px"> 
+            <%- success %> 
+          </div> 
+       <% } %> 
+
+      <% if (locals.error) { %> 
+      <br>
+        <div id="alt_warning" class="alert alert-warning" style = "margin-top:60px"> 
+          <%= error %> 
+        </div> 
+      <% } %> 
+
+<div class="container push-footer-to-position" style = "margin-top:60px">
+<form class="form-horizontal col-offset-8 col-sm-8" role="form" method="post" action = "a_login">
+  <h2 >Login in for together</h2>
+  <br><br>
+  <div class="form-group">
+    <label for="Username" class="col-sm-2 control-label">Administrator Id *</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="adminid" placeholder=" Enter admin id" name = "adminid" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Password" class="col-sm-2 control-label">Password *</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name = "password" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-success" id = "submit_login">SIGN IN</button>
+    </div>
+  </div>
+</form>
+</div>
+<% include ../footer.html %>

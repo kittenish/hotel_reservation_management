@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  window.scroll(0,0);
+
 	var a = $("#page-inner").html();
 	
 	$('button.col-offset-8.room_type_b.btn.btn-success').click(function(obj){
@@ -120,6 +122,7 @@ $(document).ready(function(){
   			"<h4 class='' style='margin-left: 20px;padding:30px;'>All revisions are acceptable before payment.</h4>"+
   			"<h4 class='' style='margin-left: 20px;padding:30px; color: #0606D0;'>Attention : Your reservation will not be confirmed until your pay for it .</h4>"
   			);
+    window.scroll(0,0);
   		}
 	
 	});

@@ -1,3 +1,8 @@
+.push-footer-to-position
+{
+	min-height: calc(100vh - 266px);
+}
+
 header {
 	background: white;
     opacity: 0.9;

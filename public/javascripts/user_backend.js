@@ -1,7 +1,91 @@
 $(document).ready(function(){
 	//$("#myhome").css("background-color","#D6D6FF");
+    var msg=[];
+    var self=this;
+    var totalPages = 0;
   	var inhome = $("#page-inner").html();
   	var search_item = $('#search_item').html();
+    window.unpayed_selectPage=function(page){
+      currentPage=page;
+      console.log(page);
+      renderPages(page,6);
+  }
+  
+  window.scroll(0,0);
+
+  function renderPages(start,count){
+    
+    //1 Clear list
+    
+    //2 append new items to the list
+    console.log("what");
+    $("#page-inner").html('');
+    unpayed_information(start,self.msg,count);
+  }
+
+    window.scroll(0,0);
+
+    window.edit_profile = function(){
+      //alert("saaaa");
+      console.log(self.msg[0].customer_id);
+      $("#page-inner").html('');
+      $("#page-inner").append("<h3 class = 'u_profile_h'>Edit Profile </h3>");
+      $("#page-inner").append("<p class = 'u_profile u_id' >My_id :    "+self.msg[0].customer_id+"</p>");
+      $("#page-inner").append("<form class='form-horizontal col-offset-8 col-sm-10' role='form' method='post' action = 'u_edit_profile' >"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label for='Password' class='col-sm-2 control-label'>Password *</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='password' class='form-control' id='password' name = 'password' value = '"+self.msg[0].customer_password+"' required>"+
+      "<p class='help-block'>Password should be less than 15 characters</p>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Confirm your password *</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='password' class='form-control' id='password_confirm' name = 'password_confirm' value = '"+self.msg[0].customer_password+"' required>"+
+      "<p class='help-block'>Please Confirm Password</p>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label class='col-sm-2 control-label'>Real Name In English *</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='text' class='form-control' id='name' name = 'name' value = '"+self.msg[0].customer_name+"' required>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Tel</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='number' class='form-control' id='tel' name = 'tel' value = '"+self.msg[0].customer_tel+"'>"+
+    "</div>"+
+  "</div>"+
+  
+  "<div class='form-group u_profile'>"+
+    "<label  class='col-sm-2 control-label'>Email</label>"+
+    "<div class='col-sm-10'>"+
+      "<input type='email' class='form-control' id='email' name = 'email' value = '"+self.msg[0].customer_email+"'>"+
+    "</div>"+
+  "</div>"+
+
+"</form>"+
+"<button class = 'btn btn-info col-sm-offset-3' "+
+                      "style = 'margin-top: 20px; type = 'submit' >SAVE PROFILE</button>"
+);
+                    
+
+                  //$(".u_profile").css("font-size","large");
+$(".u_profile").css("margin","10px");
+$('.u_profile').css("margin-left","100px");
+                  $('.u_profile_h').css("margin-left","20px");
+                  $('.u_profile_h').css("padding","30px");
+                  $('.u_id').css("margin-left","150px");
+      $("#page-inner").append("<script src = '/javascripts/edit_profile.js'></script>");
+
+    }
+
   	$("#myprofile").click(function(){
   	//alert("sdq");
   		//$("#myprofile").css("background-color","#D6D6FF");
@@ -16,20 +100,25 @@ $(document).ready(function(){
   			data : s,
   			success: function(msg){  
                 msg = JSON.parse(msg);
-                console.log(msg);
+                //console.log(msg);
+                self.msg=msg;
                 	
                     $("#page-inner").html('');
                     
                     $("#page-inner").append("<h3 class = 'u_profile_h'>Detail Information </h3>");
-                    $("#page-inner").append("<p class = 'u_profile'>My_id :    "+msg[0].customer_id+
-                    	"</p><p class = 'u_profile'>My_name : "+msg[0].customer_name+
-                    	"</p><p class = 'u_profile'>My_tel : "+msg[0].customer_tel+
-                    	"</p><p class = 'u_profile'>My_emai : "+msg[0].customer_email+"</p>");
+                    $("#page-inner").append("<p class = 'u_profile'>My ID :    "+msg[0].customer_id+
+                    	"</p><p class = 'u_profile'>My Name : "+msg[0].customer_name+
+                    	"</p><p class = 'u_profile'>My Tel : "+msg[0].customer_tel+
+                    	"</p><p class = 'u_profile'>My Email : "+msg[0].customer_email+"</p>");
+                    $("#page-inner").append("<button class = 'btn btn-info col-sm-offset-3' "+
+                      "style = 'margin-top: 20px;' onclick = 'edit_profile()' >EDIT PROFILE</button>");
                 	$(".u_profile").css("font-size","large");
                 	$(".u_profile").css("margin","10px");
                 	$('.u_profile').css("margin-left","200px");
                 	$('.u_profile_h').css("margin-left","20px");
                 	$('.u_profile_h').css("padding","30px");
+
+                  
             }
   		});
   	});
@@ -45,6 +134,7 @@ $(document).ready(function(){
 			data : s,
 			success:function(){
 				$("#page-inner").html(inhome);
+        window.scroll(0,0);
 			}
 		});
 	});
@@ -63,6 +153,7 @@ $(document).ready(function(){
 			data : s,
 			success:function(msg){
 				msg = JSON.parse(msg);
+        self.msg=msg;
 				$("#page-inner").html(search_item);
 				var i = 0;
 				//console.log(msg[0].room_img);
@@ -120,10 +211,10 @@ $(document).ready(function(){
                   //$('#page-inner').css("height","1600px");
 					i += 1;
 				}
+        
 			}
 		});
 	});
-
 
   $("#myunpayed").click(function(){
     var s = {
@@ -138,13 +229,20 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.totalPages = msg.length/6;
+        self.msg=msg;
         $("#page-inner").html('');
-        var i = 0;
-        //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+        unpayed_information(0,self.msg,6);
+                
+      }
+    });
+  });
 
-        while(i< msg.length){
 
-         if(i % 2 == 0){
+function unpayed_information(page, msg, count){
+  var i = 0;
+  for(i = page * count ; i < count + page * count && i < msg.length; i++){
+    if(i % 2 == 0){
           $("#page-inner").append("<div class = 'col-sm-12 room_info color_grey'>"+
                       
                       "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
@@ -193,13 +291,8 @@ $(document).ready(function(){
                       "</div>");
         
             }
-
-                  //$(".room_info").css("margin-bottom","10px");
-                  //$('.r_type').css("margin-left","80px");
-                  //$('.r_type_r').css("margin-left","20px");
-                  //$('.r_type_r').css("padding","30px");
-                  
-                  $('.room_info').css("padding","10px");
+          }
+          $('.room_info').css("padding","10px");
                   $('.reser_type_b_').css("margin-left","500px");
                   $('.reser_type_b').css("margin-left","20px");
                   $('.reser_type_b').css("margin-top","20px");
@@ -211,12 +304,21 @@ $(document).ready(function(){
                   
                   //$('#page-inner').css("height","1600px");
                   i += 1;
-        }
+        
         $("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
+        builder="";
+        var page = 0;
+        //$("#page-inner").append("<div style = 'margin-left: 300px;'>");
+        for(page=0;page<self.totalPages;page++){
+          pages = page + 1;
+          builder+="<button style = 'font-size: medium; padding: 2px 5px 2px 5px;"+
+          "margin-top: 20px;' onclick='unpayed_selectPage("+page+")'>"+pages+"</button>";
+        }
+        $("#page-inner").append("<div style = 'text-align: center;'>"+builder+"</div>");
 
-      }
-    });
-  });
+        
+    }
+
 	
   $("#mypayed").click(function(){
     
@@ -232,6 +334,8 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.msg=msg;
+        self.totalPages = msg.length/6;
         $("#page-inner").html('');
         var i = 0;
         //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
@@ -305,7 +409,7 @@ $(document).ready(function(){
                   i += 1;
         }
         $("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
-
+        
       }
     });
 
@@ -324,6 +428,7 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.msg=msg;
         $("#page-inner").html('');
         var i = 0;
         //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
@@ -415,6 +520,7 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.msg=msg;
         $("#page-inner").html('');
         var i = 0;
         //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
@@ -506,6 +612,7 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.msg=msg;
         $("#page-inner").html('');
         var i = 0;
         //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");
@@ -597,6 +704,7 @@ $(document).ready(function(){
         //$("#page-inner").html(inhome);
         //console.log(msg[0]);
         msg = JSON.parse(msg);
+        self.msg=msg;
         $("#page-inner").html('');
         var i = 0;
         //$("#page-inner").append("<script src = '/javascripts/edit_reservation.js'></script>");

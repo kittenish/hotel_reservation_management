@@ -1,17 +1,17 @@
-<div id = "search_item">
-<div class="container" id="search_item_in" style="
+<div class="container" id="search_item" style="
     margin-left: 0px;
     padding-left: 0px;
     padding-right: 0px;
     /* width: 1113px; */
     width: 100%;
+    margin-top: 80px;
 ">
 
-  <div class="form-inline" role="form" style="/* margin: 5px; */background: #F3F3F3;padding-top: 10px;padding-bottom: 10px;padding-left: 10px;" >
+  <div class="form-inline" role="form" style="/* margin: 5px; */background: #F3F3F3;padding-top: 10px;padding-bottom: 10px;padding-left: 70px;" >
    
     <div class="form-group">
       <label for="Hotel Name">Hotel Name :</label>
-     <input type="text" class="form-control" id="s_hotel_name" placeholder="Enter hotel name" style="
+     <input type="text" class="form-control" id="s_hotel_name" name = "hotel_name" placeholder="Enter hotel name" style="
     width: 60%;
 ">
     </div>
@@ -37,11 +37,11 @@
     margin-right: 105px;
 ">
     <label for="city">City &nbsp;:&nbsp;&nbsp;</label>
-        <select name="city" style=" margin-right: 30px;" id="s_city">
-         <option>All</option>
-         <option>Beijing</option>
-         <option>Shanghai</option>
-         <option>Changchun</option>    
+        <select name="city" style=" margin-right: 30px;" id="s_city" value = "All">
+         <option value = "All">All</option>
+         <option value = "Beijing">Beijing</option>
+         <option value = "Shanghai">Shanghai</option>
+         <option value = "Changchun">Changchun</option>    
         </select>
     </div>
 
@@ -65,15 +65,14 @@
         </select>
     </div>
 
-    <button  type = "button"  id = "user__search_hotel" class="btn btn-default " style="
-    margin-left: 40px;
+    <button  type = "button"  id = "search_hotel" class="btn btn-default " style="
+    margin-left: 70px;
     background: #087CF3;
     color: white;
     padding: 8px 15px 8px 15px;
     font-weight: bolder;
 ">Search</button>
-<script src = "/javascripts/user_search_hotel.js"></script>
+<script src = "/javascripts/search_hotel.js"></script>
   </div>
-</div>
 </div>
 

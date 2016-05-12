@@ -6,6 +6,7 @@ var qs = require('querystring');
 var url = require('url');
 
 user_routes.get('/u_login', function(req, res, next){
+    //console.log("lllll");
     if (req.session.err) {
         var msg = req.session.err;
       console.log(req.session);
@@ -58,7 +59,7 @@ user_routes.post('/u_login',function(req, res){
             req.session.userid = username;
             req.session.username = results[0].customer_name;
             req.session.usertype = "user";
-            console.log(req.session);
+            //console.log(req.session);
             res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !",username:req.session.username});
         }
 });
@@ -184,6 +185,7 @@ user_routes.get('/u_backend', function(req, res) {
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "unpayed_order") {
+        //console.log("unpayed_order");
         
         api.reservation_find_by_userid (req.session.userid, 'Unpayed',function (err, results) {
             if (err) {
@@ -314,7 +316,27 @@ user_routes.get('/u_backend', function(req, res) {
 
     }
     //console.log(req.session);
+
 });
+
+user_routes.get('/u_edit_profile', function(req, res) {
+
+if(req.session.usertype != "user")
+    {
+        res.redirect('/', {title : "Together"});
+    }
+else {
+    var info = qs.parse(url.parse(req.url).query);
+  var userid = req.session.userid,
+      password = info.password,
+      tel = info.tel, 
+      email = info.email,
+      name = info.name; 
+      console.log(info);
+
+      api.user_edit_profile(userid, password, tel, email, name);
+}
+    });
 
 
 module.exports = user_routes;

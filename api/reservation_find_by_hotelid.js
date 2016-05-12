@@ -5,11 +5,11 @@ module.exports = function (hotelid, status, callback) {
 
         var sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+
-            ' and hotel_hotel_id = ? and reser_status = ?';
+            ' and hotel_hotel_id = ? and reser_status = ? order by reser_begin';
         if(status == "all")
             sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+
-            ' and hotel_hotel_id = ? ';
+            ' and hotel_hotel_id = ? order by reser_begin';
         else if(status == 'Confirmed')
             sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+
@@ -30,7 +30,7 @@ module.exports = function (hotelid, status, callback) {
             //console.log(ans);
             
             //connection.release();
-            console.log(result);
+            //console.log(result);
             callback(err,result);                     
         });
         });        
