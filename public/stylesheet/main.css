@@ -1,3 +1,6 @@
+.body{
+        font-family: 'Open Sans', sans-serif;
+}
 .sometext {
 	display: block;
     top: 130px;
@@ -7,7 +10,7 @@
     color: #ffffff;
     left:40%;
     font-size: 40px;
-    font-family: Arial;
+    /*font-family: Arial;*/
     font-weight: bold;
     text-align: left;
 }
@@ -33,13 +36,13 @@ name {
     border-color: #3D71C1;
     font-weight: normal;
     background-color: white;
-    padding: 8px;
-    padding-right: 90px;
-    padding-left: 10px;
+    padding: 15px;
+    padding-right: 64px;
+    padding-left: 5px;
     color: #458EE2;
     display: inline;
     opacity: .7;
-    padding-bottom: 75px;
+    padding-bottom: 80px;
 }
 
 
@@ -75,7 +78,7 @@ input {
 
 }
 button {
-	font-size: 20px;
+	font-size: 23px;
     opacity: .7;
     color: #458EE2;
     background: rgba(8, 113, 171, 0.01);
@@ -84,6 +87,7 @@ button {
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
+    border:0px;
 }
 
 button:hover {
@@ -100,6 +104,7 @@ button:hover {
     font-size: 180%;
     font-family: 'Open Sans', sans-serif;
     color: #2AC5DA;
+    
 }
 
 .myprofileinfo{

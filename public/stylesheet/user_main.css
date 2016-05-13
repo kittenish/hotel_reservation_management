@@ -3,6 +3,7 @@
     =============================================*/
 body {
     font-family: 'Open Sans', sans-serif;
+        background: #f6f6f6;
 }
 
 /*MAIN WRAPPER DIV*/
@@ -13,7 +14,7 @@ body {
 }
 /*MAIN PAGE DIV*/
 #page-wrapper {
-    padding: 15px 15px;
+    padding: 0px 10px;
     min-height: 600px;
     background:#F3F3F3;
    
@@ -21,7 +22,7 @@ body {
 /*THE CONTENT PORTION DIV*/
 #page-inner {
     width:100%;
-    margin:10px 20px 10px 0px;
+    /*margin:10px 20px 10px 0px;*/
     background-color:#fff!important;
     padding:10px;
     height:1200px;
@@ -99,6 +100,7 @@ color:#000;
 	left:40px;
 }
 .navbar-side {
+    position: fixed;
 	border:none;
 	background-color: #f3f3f3;
 	
@@ -116,7 +118,7 @@ color:#000;
  @media(min-width:768px) {
      #page-wrapper{
                margin: 20px 0 0 260px;
-        padding: 15px 30px;
+        /*padding: 15px 30px;*/
         min-height: 1000px;
 		
     }
@@ -124,7 +126,7 @@ color:#000;
 	
     .navbar-side {
         z-index: 1;
-        position: absolute;
+        /*position: absolute;*/
         width: 260px;
     }
      

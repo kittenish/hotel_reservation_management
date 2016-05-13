@@ -108,12 +108,14 @@ $(document).ready(function(req, res){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                      "</div><div class = 'r_type col-sm-3'>Room Price : "+msg[i].room_price+
+                     
                       
-                      "</div><div class = 'r_type col-sm-6 '>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-3'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-6 '>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-3'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3 '>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-3 '>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
+                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 600;'>"+msg[i].room_price+"/day"+
                       "</div>"+
                       "<button class = 'col-offset-8 room_type_b btn btn-success' onclick = 'booknow()' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
                       "</div>");
@@ -129,12 +131,14 @@ $(document).ready(function(req, res){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                      "</div><div class = 'r_type col-sm-3'>Room Price : "+msg[i].room_price+
+                     
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-3'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-6'>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-3'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3'>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-3'>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
+                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 600;'>"+msg[i].room_price+"/day"+
                       "</div>"+
                       "<button class = 'col-offset-8 room_type_b btn btn-success' onclick = 'booknow()' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
                       "</div>");
@@ -149,7 +153,7 @@ $(document).ready(function(req, res){
                   //$('.room_info').css("margin","20px");
                   //$('.room_info').css("margin-left","50px");
                   //$('.room_info').css("margin-right","50px");
-                  $('.room_type_b').css("margin-left","250px");
+                  //$('.room_type_b').css("margin-left","250px");
                   $('.room_type_b').css("margin-top","20px");
                   $('.room_type_b').css("background-color", "#087CF3");
                   $('.color_white').css("background-color", "#F3F3F3");

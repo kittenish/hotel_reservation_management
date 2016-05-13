@@ -75,7 +75,7 @@ $(document).ready(function(){
 				;
 			}
 		});
-		$("button.col-offset-8.btn.apply_refund").click();
+		$("#mypayed").click();
 	}
 	});
 

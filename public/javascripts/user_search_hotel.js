@@ -14,11 +14,7 @@ $(document).ready(function(){
   window.scroll(0,0);
 
   function renderPages(start,count){
-    
-    //1 Clear list
-    
-    //2 append new items to the list
-
+  
     $("#page-inner").html(search_item_in);
     $("#page-inner").append(" <script src = '/javascripts/user_book.js'></script>");
     search_information(start,self.msg,count);
@@ -63,7 +59,7 @@ $(document).ready(function(){
         self.totalPages = msg.length/6;
 				$("#page-inner").html(search_item);
 				//var i = 0;
-				console.log(msg);
+				//console.log(msg);
 				$("#page-inner").append(" <script src = '/javascripts/user_book.js'></script>");
         //var totalPages= msg.length / 6;
         search_information(0,self.msg,6);
@@ -87,13 +83,17 @@ $(document).ready(function(){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                      "</div><div class = 'r_type col-sm-3'>Room Price : "+msg[i].room_price+
+                     
                       
-                      "</div><div class = 'r_type col-sm-6 '>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-3'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-6 '>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-3'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3 '>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-3 '>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
+                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 900;'>"+msg[i].room_price+"/day"+
+                      
                       "</div>"+
+                      
                       "<button class = 'col-offset-8 room_type_b btn btn-success' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
                       "</div>");
         }
@@ -108,12 +108,14 @@ $(document).ready(function(){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                      "</div><div class = 'r_type col-sm-3'>Room Price : "+msg[i].room_price+
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-3'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-6'>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-3'>Room Cigarette : "+msg[i].room_cigarette+
+                      
+                      "</div><div class = 'r_type col-sm-3'>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type col-sm-3'>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
+                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 900;'>"+msg[i].room_price+"/day"+
                       "</div>"+
                       "<button class = 'col-offset-8 room_type_b btn btn-success' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
                       "</div>");
@@ -125,7 +127,7 @@ $(document).ready(function(){
                   //$('.r_type_r').css("padding","30px");
                   
                   $('.room_info').css("padding","10px");
-                  $('.room_type_b').css("margin-left","250px");
+                  //$('.room_type_b').css("margin-left","300px");
                   $('.room_type_b').css("margin-top","20px");
                   $('.room_type_b').css("background-color", "#087CF3");
                   $('.color_white').css("background-color", "#F3F3F3");

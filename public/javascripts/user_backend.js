@@ -23,7 +23,7 @@ $(document).ready(function(){
     unpayed_information(start,self.msg,count);
   }
 
-    window.scroll(0,0);
+    
 
     window.edit_profile = function(){
       //alert("saaaa");
@@ -134,7 +134,7 @@ $('.u_profile').css("margin-left","100px");
 			data : s,
 			success:function(){
 				$("#page-inner").html(inhome);
-        window.scroll(0,0);
+        
 			}
 		});
 	});
