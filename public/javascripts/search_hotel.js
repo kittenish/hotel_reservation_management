@@ -28,7 +28,7 @@ $(document).ready(function(req, res){
   window.selectPage=function(page){
       currentPage=page;
       console.log(page);
-      renderPages(page,6);
+      renderPages(page,8);
   }
 
   window.scroll(0,0);
@@ -39,7 +39,7 @@ $(document).ready(function(req, res){
     
     //2 append new items to the list
     $("#search-content").html("");
-    search_information(start,self.msg);
+    search_information(start,self.msg,count);
   }
 
   window.booknow = function(){
@@ -54,10 +54,8 @@ $(document).ready(function(req, res){
   			s_arrival = $("#s_check_in").val(),
   			s_leave = $("#s_check_out").val(),
   			s_price_min = $("#s_room_price_min").val(),
-  			s_price_max = $("#s_room_price_max").val(),
-  			s_wifi = $("#s_wifi").val(),
+  			s_price_max = $("#s_room_price_max").val();
   			
-  			s_ci = $("#s_cigarette").val();
   			
 
   		var s = {
@@ -67,12 +65,10 @@ $(document).ready(function(req, res){
   			arrival: s_arrival,
   			leave : s_leave,
   			price_min : s_price_min,
-  			price_max : s_price_max,
-  			wifi : s_wifi,
-  			ci : s_ci,
-  			
+  			price_max : s_price_max
   		};
-  		console.log(s);
+
+  		//console.log(s);
   		
   		$.ajax({
 			type : "get",
@@ -81,12 +77,13 @@ $(document).ready(function(req, res){
 			data : s,
 			success:function(msg){
 				msg = JSON.parse(msg);
+        console.log(msg);
 				//msg = JSON.parse(msg);
         		self.msg = msg;
         		self.totalPages = msg.length/8;
 				$("#search-content").html("");
         //var totalPages= msg.length / 6;
-        		search_information(0,self.msg);
+        		search_information(0,self.msg,8);
 
 				
 			}
@@ -94,54 +91,42 @@ $(document).ready(function(req, res){
 
 	});
 
-	function search_information(page, msg){
+	function search_information(page, msg, count){
   		var i = 0;
-  		for(i = page * 8 ; i < 8 + page * 8 && i < msg.length; i++){
+  		for(i = page * count ; i < count + page * count && i < msg.length; i++){
           if(i % 2 == 0){
           $("#search-content").append("<div class = 'col-sm-12 room_info color_grey'>"+
-                      
-                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
-                      + msg[i].room_img + "'></div>"+
-                      "<div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
-                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
-                      "<br>"+
-                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
-                      
-                      "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                     
-                      
-                      "</div><div class = 'r_type col-sm-3 '>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-3 '>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
-                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
-                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 600;'>"+msg[i].room_price+"/day"+
-                      "</div>"+
-                      "<button class = 'col-offset-8 room_type_b btn btn-success' onclick = 'booknow()' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
-                      "</div>");
+            "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 180px;' src = "+"'../upload/" 
+            + msg[i].hotel_img + "'></div>"+
+            "<div class = 'r_type col-sm-9 hotel_name'>Hotel Name :    "+msg[i].hotel_name+
+            "</div><div class = 'r_type col-sm-9'>Hotel Addr :    "+msg[i].hotel_addr+
+           
+            "</div><div class = 'r_type col-sm-9'>Hotel City :    "+msg[i].hotel_city+
+            "</div><div class = 'r_type col-sm-3'>Hotel Tel : "+msg[i].hotel_tel+
+            "</div><div class = 'r_type col-sm-2' style = 'font-size: 30px;    color: #F9480B;    padding-top: 20px;'"+
+            ">"+msg[i].hotel_price+"/day"+
+            "</div>"+
+            "<button class = 'col-offset-3 hotel_b btn btn-info btn-lg' id = '"+msg[i].hotel_id+"'>MORE INFO</button>"+
+            "</div>");
         }
-          else {
-            $("#search-content").append("<div class = 'col-sm-12 room_info color_white'>"+
-                      
-                      "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 150px;' src = "+"'../upload/" 
-                      + msg[i].room_img + "'></div>"+
-                      "<div class = 'r_type col-sm-3'>Hotel Name :    "+msg[i].hotel_name+
-                      "</div><div class = 'r_type col-sm-6'>Hotel Addr :    "+msg[i].hotel_addr+" "+msg[i].hotel_city+
-                      "<br>"+
-                      "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
-                      
-                      "</div><div class = 'r_type col-sm-6'>Room Standard : "+msg[i].room_standard+
-                     
-                      
-                      "</div><div class = 'r_type col-sm-3'>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type col-sm-6'>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type col-sm-3'>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type col-sm-6'>Room Cigarette : "+msg[i].room_cigarette+
-                      "</div><div class = 'r_type col-sm-3' style = ' font-size: 30px;"+
-                        "margin-top: 20px;margin-left: 275px;color: #FE3E07;font-weight: 600;'>"+msg[i].room_price+"/day"+
-                      "</div>"+
-                      "<button class = 'col-offset-8 room_type_b btn btn-success' onclick = 'booknow()' id = '"+msg[i].room_type_id+"'>BOOK NOW</button>"+
-                      "</div>");
+      
+        else {
+          
+          $("#search-content").append("<div class = 'col-sm-12 room_info color_white'>"+
+            "<div><img class = 'r_type  r_type_img col-sm-3' style = 'height: 180px;' src = "+"'../upload/" 
+            + msg[i].hotel_img + "'></div>"+
+            "<div class = 'r_type col-sm-9 hotel_name'>Hotel Name :    "+msg[i].hotel_name+
+            "</div><div class = 'r_type col-sm-9'>Hotel Addr :    "+msg[i].hotel_addr+
+            
+            "</div><div class = 'r_type col-sm-9'>Hotel City :    "+msg[i].hotel_city+
+            "</div><div class = 'r_type col-sm-3'>Hotel Tel : "+msg[i].hotel_tel+
+            "</div><div class = 'r_type col-sm-2' style = 'font-size: 30px;    color: #F9480B;    padding-top: 20px;'"+
+            ">"+msg[i].hotel_price+"/day"+
+            "</div>"+
+            "<button class = 'col-offset-3 hotel_b btn btn-info btn-lg' id = '"+msg[i].hotel_id+"'>MORE INFO</button>"+
+            "</div>");
+          }
+         
           }
 
                   //$(".room_info").css("margin-bottom","10px");
@@ -150,10 +135,12 @@ $(document).ready(function(req, res){
                   //$('.r_type_r').css("padding","30px");
                   
                   $('.room_info').css("padding","10px");
-                  //$('.room_info').css("margin","20px");
-                  //$('.room_info').css("margin-left","50px");
-                  //$('.room_info').css("margin-right","50px");
-                  //$('.room_type_b').css("margin-left","250px");
+                  $('.room_info').css("font-size","16px");
+                  $('.hotel_name').css("margin-top","5px");
+                  $('.hotel_name').css("margin-bottom","15px");
+                  $('.hotel_name').css("font-size","20px");
+                  $('.hotel_b').css("margin-top","20px");
+                  $('.hotel_b').css("margin-left","50px");
                   $('.room_type_b').css("margin-top","20px");
                   $('.room_type_b').css("background-color", "#087CF3");
                   $('.color_white').css("background-color", "#F3F3F3");
@@ -161,7 +148,7 @@ $(document).ready(function(req, res){
                   
                   //$('#page-inner').css("height","1600px");
           //i += 1;
-        }
+        
         builder="";
         var page = 0;
         //$("#page-inner").append("<div style = 'margin-left: 300px;'>");

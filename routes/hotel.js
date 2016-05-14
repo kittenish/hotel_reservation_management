@@ -158,6 +158,21 @@ hotel_routes.get('/h_backend', function(req, res) {
             res.end();
         }
   });}
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "room_status") {
+        
+        api.hotel_room_status(req.session.hotelid, function (err, results) {        
+
+        if (err) {
+            res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+            return;
+        }
+        else {
+            var strJson = JSON.stringify(results);
+            res.write(strJson);
+            res.end();
+        }
+  });}
     
 
     else if(qs.parse(url.parse(req.url).query).search_type == "processed_confirm_reservation") {

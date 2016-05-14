@@ -1,12 +1,10 @@
 $(document).ready(function(){
 
   window.scroll(0,0);
-
-	var a = $("#page-inner").html();
 	
 	$('button.col-offset-8.room_type_b.btn.btn-success').click(function(obj){
 
-		console.log(obj.currentTarget.id);
+		//console.log(obj.currentTarget.id);
 		var id = obj.currentTarget.id;
 		var s = {
   			search_type : "make_order",
@@ -19,7 +17,7 @@ $(document).ready(function(){
   			data : s,
   			success: function(msg){  
                 msg = JSON.parse(msg);
-                console.log(msg);
+                //console.log(msg);
                 	$("#page-inner").html('');
                     
                     $("#page-inner").append("<h3 class='' style='margin-left: 20px;padding:30px;'>Confirm Your Reservation </h3>");
@@ -53,8 +51,8 @@ $(document).ready(function(){
     					"</div>"
 						);
 
-					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm' id = '"+msg[0].room_type_id+"'> Confirm Now </button>"+
-						"<button class = 'btn btn-info btn-large book_confirm_2'> See More </button>"
+					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm'  id = '"+msg[0].room_type_id+"'> Confirm Now </button>"+
+						"<button class = 'btn btn-info btn-large book_confirm_2' > See More </button>"
 						);
 
 					$(".book_info").css("font-size","large");
@@ -84,9 +82,13 @@ $(document).ready(function(){
   		});
 	});
 
+
 	$('button.btn.btn-info.btn-large.book_confirm_2').click(function(){
 		
 		$('#myhome').click();
+     //$("#user__search_hotel").click();
+    //var back = self.back;
+    //$('#page-inner').html(back);
 	});
 
 	$('button.btn.btn-info.btn-large.book_confirm').click(function(obj){
@@ -122,7 +124,7 @@ $(document).ready(function(){
   			"<h4 class='' style='margin-left: 20px;padding:30px;'>All revisions are acceptable before payment.</h4>"+
   			"<h4 class='' style='margin-left: 20px;padding:30px; color: #0606D0;'>Attention : Your reservation will not be confirmed until your pay for it .</h4>"
   			);
-    window.scroll(0,0);
+    
   		}
 	
 	});

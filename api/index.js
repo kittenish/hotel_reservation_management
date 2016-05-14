@@ -40,6 +40,7 @@ var check_out_reservation = require('./check_out_reservation');
 var user_edit_profile = require('./user_edit_profile');
 var hotel_edit_profile = require('./hotel_edit_profile');
 var admin_login = require('./admin_login');
+var hotel_room_status = require('./hotel_room_status');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -65,4 +66,5 @@ exports.check_out_reservation = check_out_reservation;
 exports.user_edit_profile = user_edit_profile;
 exports.hotel_edit_profile = hotel_edit_profile;
 exports.admin_login = admin_login;
+exports.hotel_room_status = hotel_room_status;
 

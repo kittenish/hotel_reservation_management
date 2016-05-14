@@ -3,19 +3,22 @@ var pool = require('./index').pool;
 module.exports = function (hotelid, callback) {
 		pool.getConnection(function(err, connection){
 
-        var sql = 'select * from room_type join hotel where hotel_hotel_id = ? and hotel_id = hotel_hotel_id';
+
+        var sql = 'select room_no, room_status, room_type_name from room_info join room_type '+
+        'where room_type_id = room_type_room_type_id and hotel_id = ? order by room_no';
         //console.log(connection);
         connection.query(sql, [hotelid],function (err, result) {
             if (err) {
-                console.log("Hotel_find Error: " + err.message);
+                console.log("Hotel_room_status Error: " + err.message);
                 return;
             }
 
             connection.release();
-            console.log(result);
+           // console.log(result);
             
             //connection.release();
-            callback(err,result);                     
+            callback(err,result);  
+                          
         });
         });        
     };

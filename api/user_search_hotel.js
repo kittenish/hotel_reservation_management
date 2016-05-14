@@ -5,24 +5,13 @@ module.exports = function (search, callback) {
         console.log(search);
         search_value = [];
         var search_city = "?",
-            search_wifi = "?",
-            search_ci = "?",
             search_hotelname = "?";
         
         if(search.city == "All")
             search_city = "hotel_city";
         else
             search_value.push(search.city);
-        
-        if(search.wifi == "All")
-            search_wifi = "room_wifi";
-        else 
-            search_value.push(search.wifi);
-        
-        if(search.ci == "All")
-            search_ci = "room_cigarette"; 
-        else 
-            search_value.push(search.ci);
+    
         
         if(search.hotelname == '')
             search_hotelname = "hotel_name";
@@ -48,12 +37,10 @@ module.exports = function (search, callback) {
             search_value.push(i);
         }
 
-        var sql = 'select * from(room_type natural join hotel)'+
-            'where hotel_hotel_id = hotel_id and hotel_city ='+search_city+
-            ' and room_wifi ='+search_wifi+
-            ' and room_cigarette ='+search_ci+
+        var sql = 'select * from hotel '+
+            ' where hotel_id = hotel_id and hotel_city ='+search_city+
             ' and hotel_name = '+search_hotelname+
-            ' and room_price >= ? and room_price <= ?'+
+            ' and hotel_price >= ? and hotel_price <= ?'+
             ';';
         
         //console.log(search.city);
