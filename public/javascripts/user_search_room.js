@@ -26,6 +26,7 @@ window.return_button = function(){
               
         success:function(msg){
                     msg = JSON.parse(msg);
+                    self.msg = msg;
                     $("#page-inner").html('');
                     $("#page-inner").append("<div class = 'col-sm-6' style = 'display: inline-block;'><h1 style = 'margin-left:20px;margin-top:30px;'>"+msg[0].hotel_name+"</h1>"+
                     

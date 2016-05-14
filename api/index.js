@@ -41,6 +41,9 @@ var user_edit_profile = require('./user_edit_profile');
 var hotel_edit_profile = require('./hotel_edit_profile');
 var admin_login = require('./admin_login');
 var hotel_room_status = require('./hotel_room_status');
+var check_date = require('./check_date');
+var reservation_find_by_reserid = require('./reservation_find_by_reserid');
+var empty_room_find_by_roomtypeid = require('./empty_room_find_by_roomtypeid');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -67,4 +70,7 @@ exports.user_edit_profile = user_edit_profile;
 exports.hotel_edit_profile = hotel_edit_profile;
 exports.admin_login = admin_login;
 exports.hotel_room_status = hotel_room_status;
+exports.check_date = check_date;
+exports.reservation_find_by_reserid = reservation_find_by_reserid;
+exports.empty_room_find_by_roomtypeid = empty_room_find_by_roomtypeid;
 

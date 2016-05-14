@@ -42,14 +42,18 @@ $(document).ready(function(){
                       msg[0].room_img + "'></div></div></div>"
                     	);
 					$("#page-inner").append("<div class='book_info'>"+
-      					"<label for='check_in'>Check-in : &nbsp;&nbsp;</label>"+
+      					"<label for='check_in'>Check-in : &nbsp;&nbsp;&nbsp;&nbsp;</label>"+
       					"<input type='date'  id = 'book_arrive' required>"+
     					"</div>"+
     					"<div class=' book_info'>"+
-      					"<label for='check_in'>Check-out : </label>"+
+      					"<label for='check_in'>Check-out : &nbsp;</label>"+
       					"<input type='date'  id = 'book_leave' required>"+
     					"</div>"
 						);
+          $("#page-inner").append("<div class = 'book_info'>Room Num: <input type = 'text' id = 'room_number'></div>");
+           $("#page-inner").append("<div class = 'book_info'>Other Mates:<input type = 'text' id = 'other_mates'></div>");
+           $("#page-inner").append("<p style = 'margin-left: 200px;'>Please fill in ID numbers of your and your mates.</p>");
+           $("#page-inner").append("<p style = 'margin-left: 200px;'>Make sure to be no:ID/', eg: 1:1000000/2:1200000 etc </p>")
 
 					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm'  id = '"+msg[0].room_type_id+"'> Confirm Now </button>"+
 						"<button class = 'btn btn-info btn-large book_confirm_2' > See More </button>"
@@ -95,17 +99,37 @@ $(document).ready(function(){
 		
 		var _arrival = $("#book_arrive").val(),
 			_leave = $("#book_leave").val(),
+      _num = $("#room_number").val(),
+      _other_mates = $("#other_mates").val(),
 			_roomtypeid = obj.currentTarget.id;
+      var i = 0;
+      var result_1 = 0,result_2 = 0;
+      while(_other_mates[i])
+      {
+        if(_other_mates[i] == ':')
+          result_1++;
+        if(_other_mates[i] == '/')
+          result_2++;
+        i++;
+      }
+      //console.log("result", result);
+
 		if(_arrival == '' || _leave == '')
 		{
 			alert("Please Confirm The Time of Your Reservation !");
 		}
+    else if(result_1 != _num  || (result_2 != _num - 1 ))
+    {
+        alert("Please fullfill your ID numbers!");
+    }
 		else {
 		var s = {
 			search_type : "make_reser",
 			arrival : _arrival,
 			leave : _leave,
-			roomtypeid : _roomtypeid
+			roomtypeid : _roomtypeid,
+      num : _num,
+      other_mates : _other_mates
 		};
 		//console.log(s);
 		$.ajax({
@@ -113,17 +137,24 @@ $(document).ready(function(){
   			url : "u_backend",
   			dataType : "text",
   			data : s,
-  			success: function(){ 
-  				;
+  			success: function(msg){
+          console.log(msg == "1");
+        if(msg == "0"){
+  				$("#page-inner").html('');
+    $("#page-inner").append(
+      "<h4 class='' style='margin-left: 20px;padding:30px;'>Your reservation has been saved .</h4>"+
+        "<h4 class='' style='margin-left: 20px;padding:30px;'>All revisions are acceptable before payment.</h4>"+
+        "<h4 class='' style='margin-left: 20px;padding:30px; color: #0606D0;'>Attention : Your reservation will not be confirmed until your pay for it .</h4>"
+        );
+    window.scroll(0,0);}
+    else 
+    {
+      alert("Sorry only"+msg+" rooms left! What about others?");
+    }
   			}
 		});
 		
-  		$("#page-inner").html('');
- 		$("#page-inner").append(
-			"<h4 class='' style='margin-left: 20px;padding:30px;'>Your reservation has been saved .</h4>"+
-  			"<h4 class='' style='margin-left: 20px;padding:30px;'>All revisions are acceptable before payment.</h4>"+
-  			"<h4 class='' style='margin-left: 20px;padding:30px; color: #0606D0;'>Attention : Your reservation will not be confirmed until your pay for it .</h4>"
-  			);
+  		
     
   		}
 	

@@ -237,9 +237,10 @@ $(document).ready(function(){
       if(i % 2 == 0){
         
         $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+ 
-          "<div class = 'r_type col-sm-4'>Room No  :    "+msg[i].room_no+
-          "</div><div class = 'r_type col-sm-4'>Room Status :    "+msg[i].room_status+
+          "<div class = 'r_type col-sm-2'>Room No  :    "+msg[i].room_no+
+          "</div><div class = 'r_type col-sm-2'>Room Status :    "+msg[i].room_status+
           "</div><div class = 'r_type col-sm-4'>Room Type : "+msg[i].room_type_name+
+          "</div><div class = 'r_type col-sm-4'>Room Customer : "+msg[i].room_customer+
           "</div>"+
           "</div>");
       }
@@ -247,9 +248,10 @@ $(document).ready(function(){
       else {
         
         $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
-           "<div class = 'r_type col-sm-4'>Room No  :    "+msg[i].room_no+
-          "</div><div class = 'r_type col-sm-4'>Room Status :    "+msg[i].room_status+
+           "<div class = 'r_type col-sm-2'>Room No  :    "+msg[i].room_no+
+          "</div><div class = 'r_type col-sm-2'>Room Status :    "+msg[i].room_status+
           "</div><div class = 'r_type col-sm-4'>Room Type : "+msg[i].room_type_name+
+          "</div><div class = 'r_type col-sm-4'>Room Customer : "+msg[i].room_customer+
           "</div>"+
           "</div>");
             
@@ -290,7 +292,7 @@ $(document).ready(function(){
         $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+ 
           "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
           "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-          "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+          "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
           "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
           "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
           "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -303,7 +305,7 @@ $(document).ready(function(){
         $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
           "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
           "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-          "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+          "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
           "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
           "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
           "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -454,7 +456,7 @@ $(document).ready(function(){
                   $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+    
                     "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+                     
                     "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+                   
-                    "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                    "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                     "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -469,7 +471,7 @@ $(document).ready(function(){
                 $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
                   "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+      
                   "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+   
-                  "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                  "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                   "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -532,7 +534,7 @@ $(document).ready(function(){
                 $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
                     "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                     "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                    "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                    "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                     "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -545,7 +547,7 @@ $(document).ready(function(){
                 $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
                     "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                     "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                    "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                    "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                     "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -603,7 +605,7 @@ $(document).ready(function(){
                   $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
                     "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                     "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                    "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                    "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                     "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -618,7 +620,7 @@ $(document).ready(function(){
                   $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
                     "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                     "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                    "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                    "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                     "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+                
@@ -674,7 +676,7 @@ $(document).ready(function(){
                 $("#page-inner").append("<div class = 'col-sm-12 reser_info color_grey'>"+
                   "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                   "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                  "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                  "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                   "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
@@ -689,7 +691,7 @@ $(document).ready(function(){
                 $("#page-inner").append("<div class = 'col-sm-12 reser_info color_white'>"+
                   "<div class = 'r_type col-sm-5'>Reservation Id  :    "+msg[i].reser_id+
                   "</div><div class = 'r_type col-sm-7'>Room Type :    "+msg[i].room_type_name+
-                  "</div><div class = 'r_type col-sm-5'>Room Price : "+msg[i].room_price+
+                  "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                   "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+

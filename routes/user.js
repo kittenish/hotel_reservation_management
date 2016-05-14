@@ -306,8 +306,35 @@ user_routes.get('/u_backend', function(req, res) {
         var arrival = search.arrival,
             leave = search.leave,
             roomtypeid = search.roomtypeid,
+            num = search.num,
+            other_mates = search.other_mates,
             userid = req.session.userid;
-        api.add_reservation(arrival, leave, roomtypeid, userid);
+        api.check_date(arrival, leave, roomtypeid, function(err,results){
+            if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+        }
+            
+            else {
+                console.log(results);
+                if(results >= search.num)
+                {
+                    api.add_reservation(arrival, leave, roomtypeid, userid, num, other_mates);
+                    res.write("0");
+                    res.end();
+                }
+                else 
+                {
+                    res.write(results.toString());
+                    res.end();
+                }
+                return;
+            }
+        
+        });
+        //console.log("dsad");
+        //console.log(value);
+        
     }
 
      else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
@@ -328,6 +355,7 @@ user_routes.get('/u_backend', function(req, res) {
     
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
         //res.locals.u_search = false;
+        //console.log("ohem");
         res.render('user/u_backend' , 
         {title : "Welcome to Together", username: req.session.username});
 
@@ -354,6 +382,20 @@ else {
       api.user_edit_profile(userid, password, tel, email, name);
 }
     });
+user_routes.post('/search', function(req, res){
+    if(req.session.usertype != "user")
+    {
+        res.redirect('/', {title : "Together"});
+    }
+    res.render('user/u_search_hotel', {title : "Welcome to Together", username: req.session.username});
+});
 
+user_routes.get('/search', function(req, res){
+    if(req.session.usertype != "user")
+    {
+        res.redirect('/', {title : "Together"});
+    }
+    res.render('user/u_backend', {title : "Welcome to Together", username: req.session.username});
+});
 
 module.exports = user_routes;

@@ -35,6 +35,25 @@ router.get('/search',function(req, res){
         }
             );
 	}
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "search_room") 
+    {
+        var search = qs.parse(url.parse(req.url).query);
+        //console.log("xxx");
+        api.hotel_room_type(search.hotel_id, function (err, results) {
+            if (err) {
+            res.render('search', {title : "Together"});
+            return;
+            }
+            else {
+                var strJson = JSON.stringify(results);
+                res.write(strJson);
+                res.end();
+            }
+        }
+            );
+    }
+
     else
 		res.render('search',{title : "Together"});
 });

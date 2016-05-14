@@ -48,7 +48,7 @@ $(document).ready(function(req, res){
 	}
 
 	$("#search_hotel").click(function(){
-		console.log("sas");
+		//console.log("sas");
 		var s_city = $("#s_city").val(),
   			s_name = $("#s_hotel_name").val(),
   			s_arrival = $("#s_check_in").val(),
@@ -77,7 +77,7 @@ $(document).ready(function(req, res){
 			data : s,
 			success:function(msg){
 				msg = JSON.parse(msg);
-        console.log(msg);
+        //console.log(msg);
 				//msg = JSON.parse(msg);
         		self.msg = msg;
         		self.totalPages = msg.length/8;
@@ -129,10 +129,7 @@ $(document).ready(function(req, res){
          
           }
 
-                  //$(".room_info").css("margin-bottom","10px");
-                  //$('.r_type').css("margin-left","80px");
-                  //$('.r_type_r').css("margin-left","20px");
-                  //$('.r_type_r').css("padding","30px");
+                
                   
                   $('.room_info').css("padding","10px");
                   $('.room_info').css("font-size","16px");
@@ -146,9 +143,6 @@ $(document).ready(function(req, res){
                   $('.color_white').css("background-color", "#F3F3F3");
                   $('.color_grey').css("background-color", "#ffffff");
                   
-                  //$('#page-inner').css("height","1600px");
-          //i += 1;
-        
         builder="";
         var page = 0;
         //$("#page-inner").append("<div style = 'margin-left: 300px;'>");
@@ -158,7 +152,7 @@ $(document).ready(function(req, res){
             "margin-top: 20px;' onclick='selectPage("+page+")'>"+pages+"</button>";
         }
         $("#search-content").append("<div style = 'text-align: center;'>"+builder+"</div>");
-        //$("#page-inner").append("</div>");
+        $("#search-content").append("<script src = '/javascripts/search_room.js'></script>");
       };
 
 

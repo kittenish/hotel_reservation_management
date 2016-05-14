@@ -135,6 +135,7 @@ $('.u_profile').css("margin-left","100px");
 			success:function(){
 				$("#page-inner").html(inhome);
         
+        
 			}
 		});
 	});

@@ -315,7 +315,34 @@ hotel_routes.get('/h_backend', function(req, res) {
 
         reserid = qs.parse(url.parse(req.url).query).reser_id;
         
-        api.check_in_reservation(reserid);      
+        //api.check_in_reservation(reserid); 
+        api.reservation_find_by_reserid(reserid, function(err, results){
+            if (err) {
+                res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+                return;
+            }
+            else 
+            {
+                var reservation = JSON.stringify(results);
+                reservation = JSON.parse(reservation);
+                console.log(reservation[0].room_type_room_type_id);
+                api.empty_room_find_by_roomtypeid(reservation[0].room_type_room_type_id, function(err, results){
+                    if (err) {
+                        res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+                        return;
+                    }
+                    else {
+                        var room_info = JSON.stringify(results);
+                        room_info = JSON.parse(room_info);
+                        console.log(room_info);
+                        api.check_in_reservation(reservation[0], room_info, req.session.hotelid);
+                        
+                    }
+                });
+
+            }
+
+        });     
 
   }
 

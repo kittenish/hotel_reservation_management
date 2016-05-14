@@ -1,13 +1,14 @@
 var pool = require('./index').pool;
 
-module.exports = function (hotelid, callback) {
+module.exports = function (reserid, callback) {
 		pool.getConnection(function(err, connection){
 
-        var sql = 'select * from room_type join hotel where hotel_hotel_id = ? and hotel_id = hotel_hotel_id';
+        var sql = 'select * from reservation where reser_id = ?';
+            
         //console.log(connection);
-        connection.query(sql, [hotelid],function (err, result) {
+        connection.query(sql, [reserid],function (err, result) {
             if (err) {
-                console.log("Hotel_find Error: " + err.message);
+                console.log("roomtype_find_by_reserid Error: " + err.message);
                 return;
             }
 
