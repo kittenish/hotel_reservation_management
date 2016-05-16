@@ -340,16 +340,19 @@ user_routes.get('/u_backend', function(req, res) {
      else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.pay_reservation(qs.parse(url.parse(req.url).query).reser_id);
+        res.end();
     }
 
      else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.apply_refund_reservation(qs.parse(url.parse(req.url).query).reser_id);
+        res.end();
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "delete_reservation") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.delete_reservation(qs.parse(url.parse(req.url).query).reser_id);
+        res.end();
     }
 
     
@@ -369,6 +372,7 @@ user_routes.get('/u_edit_profile', function(req, res) {
 if(req.session.usertype != "user")
     {
         res.redirect('/', {title : "Together"});
+        res.end();
     }
 else {
     var info = qs.parse(url.parse(req.url).query);
@@ -380,8 +384,10 @@ else {
       console.log(info);
 
       api.user_edit_profile(userid, password, tel, email, name);
+      res.end();
 }
     });
+
 user_routes.post('/search', function(req, res){
     if(req.session.usertype != "user")
     {

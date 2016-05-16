@@ -1,6 +1,7 @@
 
 //所有订单每页9项：h_information() 中参数为9
 //room status 每页24项
+//myroom 每页2项
 
 $(document).ready(function(){
 
@@ -20,6 +21,12 @@ $(document).ready(function(){
       r_renderPages(page,24);
   }
 
+  window.myroom_selectPage=function(page){
+      currentPage=page;
+      console.log(page);
+      myroom_renderPages(page,2);
+  }
+
   window.scroll(0,0);
 
   function h_renderPages(start,count){
@@ -34,6 +41,13 @@ $(document).ready(function(){
     $("#page-inner").html('');
     window.scroll(0,0);
     r_information(start,self.msg,count);
+  }
+
+  function myroom_renderPages(start,count){
+    
+    $("#page-inner").html('');
+    window.scroll(0,0);
+    myroom_information(start,self.msg,count);
   }
 
   $('#h_confirm').click(function(){
@@ -55,7 +69,7 @@ $(document).ready(function(){
             console.log(self.totalPages);
             $("#page-inner").html('');
             h_information(0, self.msg, 11);
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
         }
       });
   });
@@ -77,7 +91,7 @@ $(document).ready(function(){
             self.totalPages = msg.length/11;
             $("#page-inner").html('');
             h_information(0, self.msg, 11);
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
       }
     });
   });
@@ -99,7 +113,7 @@ $(document).ready(function(){
             self.totalPages = msg.length/11;
             $("#page-inner").html('');
             h_information(0, self.msg, 11);
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
       }
     });
   });
@@ -121,7 +135,7 @@ $(document).ready(function(){
             self.totalPages = msg.length/11;
             $("#page-inner").html('');
             h_information(0, self.msg, 11);
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
       }
     });
   });
@@ -143,7 +157,7 @@ $(document).ready(function(){
             self.totalPages = msg.length/11;
             $("#page-inner").html('');
             h_information(0, self.msg, 11);
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
       }
     });
   });
@@ -167,10 +181,33 @@ $(document).ready(function(){
               console.log(self.totalPages);
               $("#page-inner").html('');
               r_information(0, self.msg, 24);
-              var i = 0;
-              $("#page-inner").css("height","1000px");
+              //var i = 0;
+              $("#page-inner-in").css("height","1200px");
         }
       });
+  });
+
+  $("#hotel_room").click(function(){
+   
+      var s = {
+        search_type : "hotel_room_type"
+      };
+      $.ajax({
+        type : "get",
+        url : "h_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){  
+                msg = JSON.parse(msg);
+                //console.log(msg);
+                self.msg=msg;
+                self.totalPages = msg.length/2;
+                console.log(self.totalPages);  
+                $("#page-inner").html('');
+                myroom_information(0, self.msg, 2);  
+                
+      }
+    });
   });
 
 
@@ -224,10 +261,54 @@ $(document).ready(function(){
     $('.u_profile_h').css("margin-left","20px");
     $('.u_profile_h').css("padding","30px");
     $('.u_id').css("margin-left","150px");
-    $("#page-inner").css("height","1000px");
+    $("#page-inner-in").css("height","1000px");
     $("#page-inner").append("<script src = '/javascripts/hotel_edit_profile.js'></script>");
 
   }
+
+  function myroom_information(page, msg, count){
+
+    var i = 0;
+    for(i = page * count ; i < count + page * count && i < msg.length; i++)
+    {
+      $("#page-inner").append("<div class = 'col-sm-6 room_info'>"+
+                      "<div class = 'r_type_r title'>"+msg[i].room_type_name +"</div>"+
+                      "<div class = 'r_type '>Room Type Id :    "+msg[i].room_type_id+
+                      "</div><div class = 'r_type '>Room Type : "+msg[i].room_type_name+
+                      "</div><div class = 'r_type '>Room Standard : "+msg[i].room_standard+
+                      "</div><div class = 'r_type '>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type '>Total Room Number : "+msg[i].room_num+
+                      "</div><div class = 'r_type '>Room Area : "+msg[i].room_area+
+                      "</div><div class = 'r_type '>Room Bed : "+msg[i].room_bed+
+                      "</div><div class = 'r_type '>Room Wifi : "+msg[i].room_wifi+
+                      "</div><div class = 'r_type '>Room Cigarette : "+msg[i].room_cigarette+
+                      "</div><div class = 'r_type '>Room Photo : </div>"+
+                      "<div><img class = 'r_type  r_type_img ' src = "+"'../upload/" + msg[i].room_img + 
+                      "'></div></div>");
+
+                    $(".r_type").css("margin","10px");
+                    $('.r_type').css("margin-left","80px");
+                    $('.r_type_r').css("margin-left","20px");
+                    $('.r_type_r').css("padding","30px");
+                    $('.title').css("font-size","25px");
+                    $('.r_type_img').css("width","350px");
+                    $('#page-inner-in').css("height","1000px");
+    }
+
+    builder="";
+    var page = 0;
+    for(page = 0; page < self.totalPages; page++){
+      pages = page + 1;
+      builder+="<button  style = 'font-size: medium; padding: 2px 5px 2px 5px;"+
+      "margin-top: 20px;' onclick='myroom_selectPage("+page+")'>"+pages+"</button>";
+
+    }
+    $("#page-inner").append("<div class = 'col-sm-12' style = 'text-align: center;'>"+builder+"</div>");
+    if(i == 1)
+    {
+
+    }
+}
 
   function r_information(page, msg, count){
     
@@ -376,59 +457,11 @@ $(document).ready(function(){
               	$('.h_profile_h').css("margin-left","20px");
               	$('.h_profile_h').css("padding","30px");
                 $('.h_profile_img').css("width","500px");
-                $('#page-inner').css("height","1000px");
+                $('#page-inner-in').css("height","1000px");
       }
   	});
   });
 
-  $("#hotel_room").click(function(){
-   
-      var s = {
-        search_type : "hotel_room_type"
-      };
-      $.ajax({
-        type : "get",
-        url : "h_backend",
-        dataType : "text",
-        data : s,
-        success: function(msg){  
-                msg = JSON.parse(msg);
-                console.log(msg);
-                self.msg=msg;
-                  
-                $("#page-inner").html('');
-                    
-                var i = 0;
-                while(i < msg.length){
-                    //console.log(msg.length);
-                    $("#page-inner").append("<div class = 'col-sm-6 room_info'>"+
-                      "<div class = 'r_type_r title'>"+msg[i].room_type_name +"</div>"+
-                      "<div class = 'r_type '>Room Type Id :    "+msg[i].room_type_id+
-                      "</div><div class = 'r_type '>Room Type : "+msg[i].room_type_name+
-                      "</div><div class = 'r_type '>Room Standard : "+msg[i].room_standard+
-                      "</div><div class = 'r_type '>Room Price : "+msg[i].room_price+
-                      "</div><div class = 'r_type '>Total Room Number : "+msg[i].room_num+
-                      "</div><div class = 'r_type '>Room Area : "+msg[i].room_area+
-                      "</div><div class = 'r_type '>Room Bed : "+msg[i].room_bed+
-                      "</div><div class = 'r_type '>Room Wifi : "+msg[i].room_wifi+
-                      "</div><div class = 'r_type '>Room Cigarette : "+msg[i].room_cigarette+
-                      "</div><div class = 'r_type '>Room Photo : </div>"+
-                      "<div><img class = 'r_type  r_type_img ' src = "+"'../upload/" + msg[i].room_img + 
-                      "'></div></div>");
-
-                    $(".r_type").css("margin","10px");
-                    $('.r_type').css("margin-left","80px");
-                    $('.r_type_r').css("margin-left","20px");
-                    $('.r_type_r').css("padding","30px");
-                    $('.title').css("font-size","25px");
-                    $('.r_type_img').css("width","350px");
-                    $('#page-inner').css("height","1600px");
-                    //$('.room_info').css("display", "inline-block");
-                    i += 1;
-        }
-      }
-    });
-  });
 
 
   $('#h_process_confirm').click(function(){
@@ -496,7 +529,7 @@ $(document).ready(function(){
             $('.reject').css("color", "#ffffff");
             $('.reject').css("margin-left", "20px");
             $('.reser_confirm').css("margin-left","0px");
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
 
             i += 1;
         
@@ -568,7 +601,7 @@ $(document).ready(function(){
             $('.reject').css("color", "#ffffff");
             $('.reject').css("margin-left", "20px");
             $('.reser_confirm').css("margin-left","0px");
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
 
             i += 1;
           }
@@ -640,7 +673,7 @@ $(document).ready(function(){
             $('.reject').css("color", "#ffffff");
             $('.reject').css("margin-left", "20px");
             $('.reser_confirm').css("margin-left","0px");
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
 
             i += 1;
         }
@@ -711,7 +744,7 @@ $(document).ready(function(){
             $('.reject').css("color", "#ffffff");
             $('.reject').css("margin-left", "20px");
             $('.reser_confirm').css("margin-left","0px");
-            $("#page-inner").css("height","1200px");
+            $("#page-inner-in").css("height","1200px");
 
             i += 1;
            

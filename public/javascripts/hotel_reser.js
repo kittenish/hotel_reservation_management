@@ -166,7 +166,7 @@ $(document).ready (function(){
      
     });
   
-    $("#h_process_check-out").click();
+    $("h_process_check-in").click();
     console.log("check-in finish");
   
   });
