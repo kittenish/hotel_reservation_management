@@ -10,10 +10,13 @@ router.get('/', function(req, res) {
 		req.session.userid = null;
     	req.session.error = null;
         req.session.username = null;
+        req.session.usertype = null;
+        req.session.hotelid = null;
+        req.session.hotelname = null;
         console.log("logout successfully.");
 	}
-    console.log(req.session);
-  res.render('index',{title : "Together"});
+    //console.log(req.session);
+    res.render('index',{title : "Together"});
 });
 
 router.get('/search',function(req, res){

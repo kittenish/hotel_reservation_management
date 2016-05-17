@@ -9,7 +9,7 @@ user_routes.get('/u_login', function(req, res, next){
     //console.log("lllll");
     if (req.session.err) {
         var msg = req.session.err;
-      console.log(req.session);
+        //console.log(req.session);
         req.session.err = null;
         res.render('user/u_login', {
             message: msg
@@ -31,7 +31,6 @@ user_routes.post('/u_login',function(req, res){
         res.locals.error = 'User id not find ! Please try again.' ;
         res.render('user/u_login', {title : "Welcome to together"});
         flag = 1;
-        //console.log('11');
         return;
     }
 
@@ -39,13 +38,13 @@ user_routes.post('/u_login',function(req, res){
         res.locals.error = 'Something wrong ! Please try again.' ;
         res.render('user/u_login', {title : "Welcome to together"});
         flag = 1;
-        //console.log("22");
         return;
       }
   });
 
     if(flag == 1)
-        return;
+        {return;
+            res.end();}
 
     api.user_login(username,password,function(err, results){
         if(results.length == 0)
@@ -53,7 +52,6 @@ user_routes.post('/u_login',function(req, res){
             res.locals.error = 'Password is wrong ! Please try again.' ;
             res.render('user/u_login', {title : "Welcome to together"});
             return;
-        //console.log("22");
         }
         else {
             req.session.userid = username;

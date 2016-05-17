@@ -353,7 +353,20 @@ hotel_routes.get('/h_backend', function(req, res) {
 
         reserid = qs.parse(url.parse(req.url).query).reser_id;
         
-        api.check_out_reservation(reserid); 
+        api.check_out_reservation_table(reserid); 
+        api.check_out_reservation(reserid, function(err, results){
+            if (err) {
+                res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+                return;
+            }
+            else {
+                var room = JSON.stringify(results);
+                    room = JSON.parse(room);
+                console.log(room);
+                api.check_out_room(room);
+                res.end();
+            }
+        });
         res.end();     
 
   }

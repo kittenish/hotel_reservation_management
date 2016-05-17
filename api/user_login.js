@@ -2,11 +2,6 @@ var pool = require('./index').pool;
 
 module.exports = function (username, password, callback) {
 		pool.getConnection(function(err, connection){
-            //console.log(username,password);
-        var ss = 'select * from customer ';
-        connection.query(ss, function(err, result){
-            console.log(result);
-        });
         var sql = 'select * from customer where customer_id = ? and customer_password = ?';
         //console.log(connection);
         connection.query(sql, [username,password],function (err, result) {

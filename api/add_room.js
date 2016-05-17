@@ -20,15 +20,15 @@ module.exports = function(type_id, price, num, info, area, bed, type, standard, 
         });
     
         var result = querystring.parse(info, '/', ':');
-        console.log(result);
+        //console.log(result);
         var i = 1;
         var s = i.toString();
         while(result[s] != undefined)
         {
             //console.log(result[s]);
 
-            var sql = 'insert into room_info(room_info_id, room_no, room_status, room_type_room_type_id, hotel_id) values(?, ?, ?, ?, ?)';
-            var room = [ type_id + result[s], result[s], "Empty", type_id, hotel_id];
+            var sql = 'insert into room_info(room_info_id, room_no, room_status, room_type_room_type_id, hotel_id, room_customer) values(?, ?, ?, ?, ?, ?)';
+            var room = [ type_id + result[s], result[s], "Empty", type_id, hotel_id, ""];
             // 0 to respresent unoccupied
             connection.query(sql, room, function (err,result) {
                 if (err) {

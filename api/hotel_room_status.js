@@ -15,7 +15,7 @@ module.exports = function (hotelid, callback) {
             }
 
             connection.release();
-           console.log(result);
+            //console.log(result);
             
             //connection.release();
             callback(err,result);  
