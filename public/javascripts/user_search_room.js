@@ -16,7 +16,8 @@ window.return_button = function(){
         var id = obj.currentTarget.id;
         var s = {
             search_type : "customer_search_room",
-            hotel_id : id
+            hotel_id : id,
+            arrival : $("#s_check_in").val()
         };
         $.ajax({
             type : "get",

@@ -50,7 +50,7 @@ $(document).ready(function(){
       					"<input type='date'  id = 'book_leave' required>"+
     					"</div>"
 						);
-          $("#page-inner").append("<div class = 'book_info'>Room Num: <input type = 'text' id = 'room_number'></div>");
+          $("#page-inner").append("<div class = 'book_info'>Room Num : <input type = 'text' id = 'room_number'></div>");
            $("#page-inner").append("<div class = 'book_info'>Other Mates:<input type = 'text' id = 'other_mates'></div>");
            $("#page-inner").append("<p style = 'margin-left: 200px;'>Please fill in ID numbers of your and your mates.</p>");
            $("#page-inner").append("<p style = 'margin-left: 200px;'>Make sure to be no:ID/', eg: 1:1000000/2:1200000 etc </p>")
@@ -138,8 +138,8 @@ $(document).ready(function(){
   			dataType : "text",
   			data : s,
   			success: function(msg){
-          console.log(msg == "1");
-        if(msg == "0"){
+          console.log(msg == "-1");
+        if(msg == "-1"){
   				$("#page-inner").html('');
     $("#page-inner").append(
       "<h4 class='' style='margin-left: 20px;padding:30px;'>Your reservation has been saved .</h4>"+
@@ -149,7 +149,7 @@ $(document).ready(function(){
     window.scroll(0,0);}
     else 
     {
-      alert("Sorry only"+msg+" rooms left! What about others?");
+      alert("Sorry only "+msg+" rooms left! What about others?");
     }
   			}
 		});

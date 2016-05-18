@@ -19,9 +19,11 @@ $(document).ready(function(){
     $('button.col-offset-3.hotel_b.btn.btn-info.btn-lg').click(function(obj){
 
         var id = obj.currentTarget.id;
+        //console.log($("#s_check_in").val());
         var s = {
             search_type : "search_room",
-            hotel_id : id
+            hotel_id : id,
+            arrival : $("#s_check_in").val()
         };
         //console.log(s);
         $.ajax({

@@ -43,13 +43,14 @@ router.get('/search',function(req, res){
     {
         var search = qs.parse(url.parse(req.url).query);
         //console.log("xxx");
-        api.hotel_room_type(search.hotel_id, function (err, results) {
+        api.hotel_room_type(search.hotel_id, search.arrival, function (err, results) {
             if (err) {
             res.render('search', {title : "Together"});
             return;
             }
             else {
                 var strJson = JSON.stringify(results);
+                //console.log(strJson);
                 res.write(strJson);
                 res.end();
             }

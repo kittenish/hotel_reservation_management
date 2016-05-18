@@ -17,8 +17,11 @@ $(document).ready(function(){
 			url : "u_backend",
 			dataType : "text",
 			data : s,
-			success:function(){
-				;
+			success:function(msg){
+			if(msg != "-1")
+    		{
+      			alert("Sorry only "+msg+" rooms left! You can't pay the order !");
+    		}
 			}
 		});
 		$("#myunpayed").click();

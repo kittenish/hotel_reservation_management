@@ -1,8 +1,6 @@
 var pool = require('./index').pool;
 var querystring = require('querystring');
 
-
-
 module.exports = function(type_id, price, num, info, area, bed, type, standard, wifi, cigarette, hotel_id, img) {
     pool.getConnection(function(err, connection){
         //console.log(img);

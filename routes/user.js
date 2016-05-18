@@ -168,7 +168,7 @@ user_routes.get('/u_backend', function(req, res) {
     else if(qs.parse(url.parse(req.url).query).search_type == "customer_search_room") {
         var search = qs.parse(url.parse(req.url).query);
         //console.log(search);
-        api.hotel_room_type(search.hotel_id, function (err, results) {
+        api.hotel_room_type(search.hotel_id, search.arrival, function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
             return;
@@ -318,7 +318,7 @@ user_routes.get('/u_backend', function(req, res) {
                 if(results >= search.num)
                 {
                     api.add_reservation(arrival, leave, roomtypeid, userid, num, other_mates);
-                    res.write("0");
+                    res.write("-1");
                     res.end();
                 }
                 else 
@@ -337,8 +337,39 @@ user_routes.get('/u_backend', function(req, res) {
 
      else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
-        api.pay_reservation(qs.parse(url.parse(req.url).query).reser_id);
-        res.end();
+        api.reservation_find_by_reserid(qs.parse(url.parse(req.url).query).reser_id, function(err,results){
+             if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                var reser = JSON.stringify(results);
+                    reser = JSON.parse(reser);
+                    console.log(reser[0]);
+                var s = reser[0];
+                 api.check_date(s.reser_begin, s.reser_end, s.room_type_room_type_id, function(err,results){
+                    if (err) {
+                    res.render('user/u_login', {title : "Welcome to together"});
+                    return;
+                    }
+                    else{
+                        console.log(results);
+                        if(results >= s.reser_num_room)
+                        {
+                            api.pay_reservation(qs.parse(url.parse(req.url).query).reser_id);
+                            res.write("-1");
+                            res.end();
+                        }
+                        else {
+                            api.delete_reservation(qs.parse(url.parse(req.url).query).reser_id);
+                            res.write(results.toString());
+                            res.end();
+                        }
+                        return;
+                    }
+                 });
+            }
+        });
     }
 
      else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund") {

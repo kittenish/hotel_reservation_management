@@ -46,6 +46,7 @@ var reservation_find_by_reserid = require('./reservation_find_by_reserid');
 var empty_room_find_by_roomtypeid = require('./empty_room_find_by_roomtypeid');
 var check_out_reservation_table = require('./check_out_reservation_table');
 var check_out_room = require('./check_out_room');
+var change_price = require('./change_price');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -77,4 +78,5 @@ exports.reservation_find_by_reserid = reservation_find_by_reserid;
 exports.empty_room_find_by_roomtypeid = empty_room_find_by_roomtypeid;
 exports.check_out_reservation_table = check_out_reservation_table;
 exports.check_out_room = check_out_room;
+exports.change_price = change_price;
 

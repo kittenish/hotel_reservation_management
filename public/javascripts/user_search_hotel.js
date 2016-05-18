@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+  function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); 
+            var r = window.location.search.substr(1).match(reg);  
+            if (r != null) return unescape(r[2]); return null; 
+        }
+     
+
+
   var msg=[];
   var totalPages;
   var self=this;
@@ -54,6 +62,19 @@ $(document).ready(function(){
             //console.log(msg.length);
 				    $("#page-inner").html(search_item_in);
             u_search_hotel(0,self.msg,6);
+
+            //var hotel_name = getUrlParam('hotelname').replace('+',' ');
+     /*for(var i = 0; i< hotel_name.length - 1; i++)
+     {
+      hotel_name = hotel_name.replace('+',' ');
+     }*/
+  $("#s_hotel_name").attr("value", s_name);
+  $("#s_check_in").attr("value", s_arrival);
+  $("#s_check_out").attr("value", s_leave);
+  $("#s_city").val(s_city);
+  $("#s_room_price_min").attr("value", s_price_min);
+  $("#s_room_price_max").attr("value", s_price_max);
+
 			}
 	 });
   });

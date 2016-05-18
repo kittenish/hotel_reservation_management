@@ -432,13 +432,54 @@ hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
 
     api.add_room(room_type_id, price, num, info, area, bed, type, standard, wifi, cigarette, req.session.hotelid, req.file.filename);
     res.locals.success = 'Add Room Successfully ! ' ;
-     res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+    res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
     return; 
     });
 
     //console.log(req.body);
     //console.log(req.file);
 });
+
+hotel_routes.get('/change_price', function(req,res){
+    if(req.session.usertype != "hotel")
+    {
+        res.redirect('/', {title : "Together"});
+        res.end();
+    }
+    else
+        res.render('hotel/change_price',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+}
+    );
+
+hotel_routes.post('/change_price', function(req, res){
+    //console.log(req.body);
+    var room_type_id = req.body.room_type_id,
+        room_price = req.body.room_price,
+        special_day =req.body.special_day,
+        hotel_id = req.session.hotelid;
+
+    api.room_type_find(room_type_id, function (err, results) {        
+    if (results.length == 0) {
+        res.locals.error = 'Roomtype not find ! Please try again.' ;
+        res.render('hotel/change_price', {title : "Welcome to together"});
+        res.end();
+        return;
+    }
+
+    else if (err) {
+        res.locals.error = 'Something wrong ! Please try again.' ;
+        res.render('hotel/change_price', {title : "Welcome to together"});
+        return;
+      }
+    else {
+        api.change_price(room_type_id, room_price, special_day, hotel_id);
+        res.locals.success = 'Change Price Successfully ! ' ;
+        res.render('hotel/change_price',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+        return; 
+    }
+  });
+});
+
 
 
 hotel_routes.get('/h_room', function(req,res){
