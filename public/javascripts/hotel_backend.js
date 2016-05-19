@@ -1,5 +1,5 @@
 
-//所有订单每页9项：h_information() 中参数为9
+//所有订单每页10项：h_information() 中参数为10
 //room status 每页24项
 //myroom 每页2项
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
   window.h_selectPage=function(page){
       currentPage=page;
       //console.log(page);
-      h_renderPages(page,11);
+      h_renderPages(page,10);
   }
 
   window.r_selectPage=function(page){
@@ -65,11 +65,11 @@ $(document).ready(function(){
 
             msg = JSON.parse(msg);
             self.msg=msg;
-            self.totalPages = msg.length/11 ;
+            self.totalPages = msg.length/10 ;
             console.log(self.totalPages);
             $("#page-inner").html('');
-            h_information(0, self.msg, 11);
-            $("#page-inner-in").css("height","1200px");
+            h_information(0, self.msg, 10);
+            $("#page-inner-in").css("height","1400px");
         }
       });
   });
@@ -88,10 +88,10 @@ $(document).ready(function(){
       success: function(msg){
             msg = JSON.parse(msg);
             self.msg=msg;
-            self.totalPages = msg.length/11;
+            self.totalPages = msg.length/10;
             $("#page-inner").html('');
-            h_information(0, self.msg, 11);
-            $("#page-inner-in").css("height","1200px");
+            h_information(0, self.msg, 10);
+            $("#page-inner-in").css("height","1400px");
       }
     });
   });
@@ -110,10 +110,10 @@ $(document).ready(function(){
       success: function(msg){
             msg = JSON.parse(msg);
             self.msg=msg;
-            self.totalPages = msg.length/11;
+            self.totalPages = msg.length/10;
             $("#page-inner").html('');
-            h_information(0, self.msg, 11);
-            $("#page-inner-in").css("height","1200px");
+            h_information(0, self.msg, 10);
+            $("#page-inner-in").css("height","1400px");
       }
     });
   });
@@ -132,10 +132,10 @@ $(document).ready(function(){
       success: function(msg){
             msg = JSON.parse(msg);
             self.msg=msg;
-            self.totalPages = msg.length/11;
+            self.totalPages = msg.length/10;
             $("#page-inner").html('');
-            h_information(0, self.msg, 11);
-            $("#page-inner-in").css("height","1200px");
+            h_information(0, self.msg, 10);
+            $("#page-inner-in").css("height","1400px");
       }
     });
   });
@@ -154,10 +154,10 @@ $(document).ready(function(){
       success: function(msg){
             msg = JSON.parse(msg);
             self.msg=msg;
-            self.totalPages = msg.length/11;
+            self.totalPages = msg.length/10;
             $("#page-inner").html('');
-            h_information(0, self.msg, 11);
-            $("#page-inner-in").css("height","1200px");
+            h_information(0, self.msg, 10);
+            $("#page-inner-in").css("height","1400px");
       }
     });
   });
@@ -376,7 +376,8 @@ $(document).ready(function(){
           "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
           "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
           "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-          "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+          "</div><div class = 'r_type col-sm-7'>Reservation Status :    "+msg[i].reser_status+
+          "</div><div class = 'r_type col-sm-5'>Total price :    "+msg[i].reser_price+
           "</div>"+
           "</div>");
       }
@@ -389,7 +390,8 @@ $(document).ready(function(){
           "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
           "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
           "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-          "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+          "</div><div class = 'r_type col-sm-7'>Reservation Status :    "+msg[i].reser_status+
+          "</div><div class = 'r_type col-sm-5'>Total price :    "+msg[i].reser_price+
           "</div>"+
           "</div>");
             
@@ -492,7 +494,7 @@ $(document).ready(function(){
                     "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                    "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                    "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                       
                       
                     "</div>"+
@@ -507,7 +509,7 @@ $(document).ready(function(){
                   "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                  "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                  "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                   "</div>"+
                   "<button class = 'col-offset-8  btn btn-success reser_confirm' value = '"+msg[i].reser_id+"'> CONFIRM </button>"+
                   "<button class = 'col-offset-8  btn  reject byconfirm' value = '"+msg[i].reser_id+"'> REFUND </button>"+
@@ -570,7 +572,7 @@ $(document).ready(function(){
                     "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                    "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                    "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                     "</div>"+
                     "<button class = 'col-offset-8  btn  btn-success byrefund' value = '"+msg[i].reser_id+"'> REFUND </button>"+
                     "<button class = 'col-offset-8  btn  reject byreject' value = '"+msg[i].reser_id+"'> REJECT </button>"+
@@ -583,7 +585,7 @@ $(document).ready(function(){
                     "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                    "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                    "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                     "</div>"+
                     "<button class = 'col-offset-8  btn btn-success byrefund' value = '"+msg[i].reser_id+"'> REFUND </button>"+
                     "<button class = 'col-offset-8  btn reject byreject' value = '"+msg[i].reser_id+"'> REJECT </button>"+
@@ -641,7 +643,7 @@ $(document).ready(function(){
                     "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                    "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                    "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                     "</div>"+
                     "<button class = 'col-offset-8  btn  btn-success bycheck-out' value = '"+msg[i].reser_id+"'> CHECK_OUT </button>"+
                     //"<button class = 'col-offset-8  btn  reject byreject' value = '"+msg[i].reser_id+"'> REJECT </button>"+
@@ -656,7 +658,7 @@ $(document).ready(function(){
                     "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                     "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                     "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                    "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+                
+                    "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+                
                     "</div>"+
                     "<button class = 'col-offset-8  btn btn-success bycheck-out' value = '"+msg[i].reser_id+"'> CHECK_OUT </button>"+
                     //"<button class = 'col-offset-8  btn reject bycheck-out' value = '"+msg[i].reser_id+"'> REJECT </button>"+
@@ -712,7 +714,7 @@ $(document).ready(function(){
                   "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                  "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                  "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                   "</div>"+
                   "<button class = 'col-offset-8  btn btn-success reser_check-in' value = '"+msg[i].reser_id+"'> CHECK-IN </button>"+
                   "<button class = 'col-offset-8  btn  reject bycheck-in' value = '"+msg[i].reser_id+"'> REFUND </button>"+
@@ -727,7 +729,7 @@ $(document).ready(function(){
                   "</div><div class = 'r_type col-sm-5'>Room Num : "+msg[i].reser_num_room+
                   "</div><div class = 'r_type col-sm-7'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                   "</div><div class = 'r_type col-sm-5'>Check-out :    "+msg[i].reser_end.substring(0,10)+
-                  "</div><div class = 'r_type col-sm-4'>Reservation Status :    "+msg[i].reser_status+
+                  "</div><div class = 'r_type col-sm-4'>Total price :    "+msg[i].reser_price+
                   "</div>"+
                   "<button class = 'col-offset-8  btn btn-success reser_check-in' value = '"+msg[i].reser_id+"'> CHECK-IN </button>"+
                   "<button class = 'col-offset-8  btn  reject bycheck-in' value = '"+msg[i].reser_id+"'> REFUND </button>"+

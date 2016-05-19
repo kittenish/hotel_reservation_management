@@ -47,6 +47,12 @@ var empty_room_find_by_roomtypeid = require('./empty_room_find_by_roomtypeid');
 var check_out_reservation_table = require('./check_out_reservation_table');
 var check_out_room = require('./check_out_room');
 var change_price = require('./change_price');
+var hotel_all = require('./hotel_all');
+var hotel_find_by_status = require('./hotel_find_by_status');
+var hotel_set_status = require('./hotel_set_status');
+var calculate_price = require('./calculate_price');
+var reservation_find_all = require('./reservation_find_all');
+var reservation_search_by_reserid_userid = require('./reservation_search_by_reserid_userid');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -79,4 +85,9 @@ exports.empty_room_find_by_roomtypeid = empty_room_find_by_roomtypeid;
 exports.check_out_reservation_table = check_out_reservation_table;
 exports.check_out_room = check_out_room;
 exports.change_price = change_price;
-
+exports.hotel_all = hotel_all;
+exports.hotel_find_by_status = hotel_find_by_status;
+exports.hotel_set_status = hotel_set_status;
+exports.calculate_price = calculate_price;
+exports.reservation_find_all = reservation_find_all;
+exports.reservation_search_by_reserid_userid = reservation_search_by_reserid_userid;

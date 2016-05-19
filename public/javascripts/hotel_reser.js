@@ -2,7 +2,7 @@ $(document).ready (function(){
 
 	$('button.col-offset-8.btn.btn-success.reser_confirm').click(function(obj){
     
-    console.log(obj.currentTarget.value);
+    //console.log(obj.currentTarget.value);
 		var value = obj.currentTarget.value;
 		var s = {
   			search_type : "confirm_reser",

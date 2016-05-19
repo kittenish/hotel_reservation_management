@@ -1,7 +1,45 @@
+
+
 $(document).ready(function(){
 
+  var self = this;
+
   window.scroll(0,0);
-	
+
+  function dateChanged(){
+      //console.log($('#book_arrive').val());
+        if(!$('#book_arrive').val()||!$('#book_leave').val()||!$('#room_number').val())
+          return;
+
+      var _arrive = $('#book_arrive').val(),
+          _leave = $('#book_leave').val(),
+          _room_type = self.room_type,
+          _num = $('#room_number').val();
+      var s = {
+          search_type : "order_price", 
+          arrival : _arrive,
+          leave : _leave,
+          room_type : _room_type
+      };
+      //console.log(s);
+      $.ajax({
+        type : "get",
+        url : "u_backend",
+        dataType : "text",
+        data : s,
+        success: function(msg){
+          //msg = JSON.parse(msg);
+          //console.log(msg);
+          msg = parseInt(msg);
+          msg = msg * _num;
+          msg = msg.toString();
+          var s = "Total : ￥" + msg; 
+          $("#order_price").html(s);
+        }
+      });
+
+  }
+
 	$('button.col-offset-8.room_type_b.btn.btn-success').click(function(obj){
 
 		//console.log(obj.currentTarget.id);
@@ -10,12 +48,22 @@ $(document).ready(function(){
   			search_type : "make_order",
   			room_type : id
   		};
+      self.room_type = id;
   		$.ajax({
   			type : "get",
   			url : "u_backend",
   			dataType : "text",
   			data : s,
   			success: function(msg){  
+
+
+                setTimeout(function(){
+                  $('#book_arrive').bind('change',dateChanged);
+                  $('#book_leave').bind('change',dateChanged);
+                  $('#room_number').bind('change',dateChanged);
+                });
+  
+
                 msg = JSON.parse(msg);
                 //console.log(msg);
                 	$("#page-inner").html('');
@@ -54,7 +102,9 @@ $(document).ready(function(){
            $("#page-inner").append("<div class = 'book_info'>Other Mates:<input type = 'text' id = 'other_mates'></div>");
            $("#page-inner").append("<p style = 'margin-left: 200px;'>Please fill in ID numbers of your and your mates.</p>");
            $("#page-inner").append("<p style = 'margin-left: 200px;'>Make sure to be no:ID/', eg: 1:1000000/2:1200000 etc </p>")
-
+           $("#page-inner").append("<div id = 'order_price' style = ' font-size: 30px;"+
+                                "margin-top: 20px;margin-left: 310px;color: #FE3E07;"+
+                                "font-weight: 500;'>Total : </div>");
 					$("#page-inner").append("<button class = 'btn btn-info btn-large book_confirm'  id = '"+msg[0].room_type_id+"'> Confirm Now </button>"+
 						"<button class = 'btn btn-info btn-large book_confirm_2' > See More </button>"
 						);
@@ -90,7 +140,7 @@ $(document).ready(function(){
 	$('button.btn.btn-info.btn-large.book_confirm_2').click(function(){
 		
 		$('#myhome').click();
-     //$("#user__search_hotel").click();
+    $("#user__search_hotel").click();
     //var back = self.back;
     //$('#page-inner').html(back);
 	});
@@ -101,8 +151,12 @@ $(document).ready(function(){
 			_leave = $("#book_leave").val(),
       _num = $("#room_number").val(),
       _other_mates = $("#other_mates").val(),
+      _price = $('#order_price').html(),
 			_roomtypeid = obj.currentTarget.id;
       var i = 0;
+      _price = _price.toString();
+      _price = _price.substring(9);
+      //console.log(_price);
       var result_1 = 0,result_2 = 0;
       while(_other_mates[i])
       {
@@ -129,6 +183,7 @@ $(document).ready(function(){
 			leave : _leave,
 			roomtypeid : _roomtypeid,
       num : _num,
+      price : _price,
       other_mates : _other_mates
 		};
 		//console.log(s);

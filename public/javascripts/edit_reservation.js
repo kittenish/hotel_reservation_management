@@ -6,6 +6,8 @@ $(document).ready(function(){
 	$('button.col-offset-8.reser_type_b_.btn.btn-success.pay').click(function(obj){
 		//console.log("pay");
 		//console.log(obj.currentTarget.value);
+		var r=confirm("Are you sure to pay for the reservation ?");
+		if(r == true){
 		var id = obj.currentTarget.value;
 
 		var s = {
@@ -22,9 +24,14 @@ $(document).ready(function(){
     		{
       			alert("Sorry only "+msg+" rooms left! You can't pay the order !");
     		}
+    		else {
+    			alert("Your reservation is payed successfully !");
+    		}
+    		$("#myunpayed").click();
 			}
 		});
-		$("#myunpayed").click();
+		console.log("pay finish");
+		
 	});
 
 	$('button.col-offset-8.reser_type_b.btn.btn-success.edit').click(function(obj){
@@ -35,7 +42,9 @@ $(document).ready(function(){
 
 	$('button.col-offset-8.reser_type_b.btn.btn-success.delete').click(function(obj){
 		//console.log("delete");
-		console.log(obj.currentTarget.value);
+		//console.log(obj.currentTarget.value);
+		var r=confirm("Are you sure to delete the reservation ?");
+		if(r == true){
 		var id = obj.currentTarget.value;
 
 		var s = {
@@ -51,7 +60,10 @@ $(document).ready(function(){
 				;
 			}
 		});
+		alert("Your reservation is payed successfully !");
 		$("#myunpayed").click();
+		console.log("delete finish");
+	}
 	});
 
 	$('button.col-offset-8.btn.apply_refund').click(function(obj){
@@ -78,7 +90,9 @@ $(document).ready(function(){
 				;
 			}
 		});
+		alert("Your refund is processing by the hotel !");
 		$("#mypayed").click();
+		console.log("refund finish");
 	}
 	});
 

@@ -2,7 +2,7 @@ var pool = require('./index').pool;
 
 module.exports = function (search, callback) {
 		pool.getConnection(function(err, connection){
-        console.log(search);
+        //console.log(search);
         search_value = [];
         var search_city = "?",
             search_hotelname = "?";

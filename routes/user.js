@@ -306,6 +306,7 @@ user_routes.get('/u_backend', function(req, res) {
             roomtypeid = search.roomtypeid,
             num = search.num,
             other_mates = search.other_mates,
+            price = search.price,
             userid = req.session.userid;
         api.check_date(arrival, leave, roomtypeid, function(err,results){
             if (err) {
@@ -317,7 +318,7 @@ user_routes.get('/u_backend', function(req, res) {
                 console.log(results);
                 if(results >= search.num)
                 {
-                    api.add_reservation(arrival, leave, roomtypeid, userid, num, other_mates);
+                    api.add_reservation(arrival, leave, roomtypeid, userid, num, other_mates, price);
                     res.write("-1");
                     res.end();
                 }
@@ -382,6 +383,25 @@ user_routes.get('/u_backend', function(req, res) {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.delete_reservation(qs.parse(url.parse(req.url).query).reser_id);
         res.end();
+    }
+
+    else if(qs.parse(url.parse(req.url).query).search_type == "order_price") {
+        var cal = qs.parse(url.parse(req.url).query);
+        //console.log("-----");
+        api.calculate_price(cal.arrival, cal.leave, cal.room_type, function(err, result){
+             if (err) {
+            res.render('user/u_login', {title : "Welcome to together"});
+            return;
+            }
+            else {
+                //console.log("---------");
+                console.log(result);
+            //res.send(result);
+            res.write(result.toString());
+            res.end();
+            }
+        });
+        
     }
 
     

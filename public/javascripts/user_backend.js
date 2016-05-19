@@ -255,7 +255,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -279,7 +279,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -355,7 +355,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -378,7 +378,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -448,7 +448,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -471,7 +471,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -540,7 +540,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -563,7 +563,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -632,7 +632,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -655,7 +655,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -724,7 +724,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+
@@ -747,7 +747,7 @@ function unpayed_information(page, msg, count){
                       "</div><div class = 'r_type col-sm-3'>Room Type :    "+msg[i].room_type_name+
                       
                       
-                      "</div><div class = 'r_type col-sm-6'>Room Price : "+msg[i].room_price+
+                      "</div><div class = 'r_type col-sm-6'>Total Price : "+msg[i].reser_price+
                       "</div><div class = 'r_type col-sm-3'>Check-in :    "+msg[i].reser_begin.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Check-out :    "+msg[i].reser_end.substring(0,10)+
                       "</div><div class = 'r_type col-sm-6'>Reservation Status :    "+msg[i].reser_status+

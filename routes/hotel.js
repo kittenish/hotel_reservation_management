@@ -34,7 +34,7 @@ hotel_routes.post('/h_login',function(req, res){
         res.locals.error = 'Username not find ! Please try again.' ;
         res.render('hotel/h_login', {title : "Welcome to together"});
         flag = 1;
-        console.log('11');
+        //console.log('11');
         return;
     }
 
@@ -63,6 +63,12 @@ hotel_routes.post('/h_login',function(req, res){
             return;
         }
         else {
+            if(results[0].hotel_status == 0){
+                res.locals.error = 'Your hotel status is invalid, please contact us. '+
+                ' (If you just signup, please wait for a minute, our administrator is confirmming it.)' ;
+                res.render('hotel/h_login', {title : "Welcome to together"});
+                return; 
+            }
             req.session.hotelid = hotelid;
             req.session.hotelname = results[0].hotel_name;
             req.session.usertype = "hotel";
@@ -85,7 +91,7 @@ hotel_routes.post('/h_signup', upload.single('image'),function(req, res) {
       addr = req.body['addr'],
       city = req.body['city'],
       price = req.body['price'],
-      status = 1,
+      status = 0,
       name = req.body['name'];
       //img = req.body['image']; 
       console.log(req.body);
