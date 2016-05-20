@@ -11,7 +11,6 @@ var upload = multer({ dest: 'public/upload/' });
 hotel_routes.get('/h_login', function(req, res, next){
     if (req.session.err) {
         var msg = req.session.err;
-      console.log(req.session);
         req.session.err = null;
         res.render('hotel/h_login', {
             message: msg
@@ -20,8 +19,8 @@ hotel_routes.get('/h_login', function(req, res, next){
     } else {
         res.render('hotel/h_login',{title : "Welcome to together"});
     }
-}
-    );
+    return ;
+});
 
 hotel_routes.post('/h_login',function(req, res){
     var hotelid = req.body['hotelid'],
@@ -34,7 +33,6 @@ hotel_routes.post('/h_login',function(req, res){
         res.locals.error = 'Username not find ! Please try again.' ;
         res.render('hotel/h_login', {title : "Welcome to together"});
         flag = 1;
-        //console.log('11');
         return;
     }
 
@@ -42,10 +40,9 @@ hotel_routes.post('/h_login',function(req, res){
         res.locals.error = 'Something wrong ! Please try again.' ;
         res.render('hotel/h_login', {title : "Welcome to together"});
         flag = 1;
-        //console.log("222");
         return;
       }
-  });
+    });
 
 
     api.hotel_login(hotelid,password,function(err, results){
@@ -54,7 +51,6 @@ hotel_routes.post('/h_login',function(req, res){
             res.locals.error = 'Password is wrong ! Please try again.' ;
             res.render('hotel/h_login', {title : "Welcome to together"});
             return;
-        //console.log("22");
         }
         if(results[0].status == 0)
         {
@@ -75,7 +71,8 @@ hotel_routes.post('/h_login',function(req, res){
             console.log(req.session);
             res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname,username : req.session.hotelname});
         }
-});
+    });
+    return ;
 });
 
 hotel_routes.get('/h_signup',  function(req, res) {
@@ -93,33 +90,27 @@ hotel_routes.post('/h_signup', upload.single('image'),function(req, res) {
       price = req.body['price'],
       status = 0,
       name = req.body['name'];
-      //img = req.body['image']; 
       console.log(req.body);
       console.log(req.file);
 
    if(password!=password_c)
     {
-        //res.redirect('/user/u_signup', {title : "Sign up for together"});
         res.locals.error = 'Please keep the passwords the same ! ' ;
-        //res.redirect('user/u_signup', {title : "Sign up for together"});
         res.render('hotel/h_signup', {title : "Sign up for together"});
         return;
     }
 
   //检查用户名是否已经存在
     api.hotel_find(hotelid, function (err, results) {        
-             //console.log(results.length===0);
     if (results.length != 0) {
         res.locals.error = 'Hotel id already be used !' ;
         res.render('hotel/h_signup', {title : "Sign up for together"});
-        //console.log('11');
         return;
     }
 
     else if (err) {
         res.locals.error = 'Hotel id already be used !' ;
         res.render('hotel/h_signup', {title : "Sign up for together"});
-        //console.log("22");
         return;
       }
       
@@ -149,11 +140,13 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return ;
         }
-  });}
+        });
+    }
    
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel_room_type") {
-        api.hotel_room_type(req.session.hotelid, function (err, results) {        
+        api.hotel_room_type(req.session.hotelid, 0, function (err, results) {        
 
         if (err) {
             res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
@@ -163,8 +156,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "room_status") {
         
@@ -178,8 +173,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return ;
         }
-  });}
+        });
+    }
     
 
     else if(qs.parse(url.parse(req.url).query).search_type == "processed_confirm_reservation") {
@@ -194,10 +191,12 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return ;
         }
-  });}
+        });
+    }
 
-         else if(qs.parse(url.parse(req.url).query).search_type == "processed_check_out_reservation") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "processed_check_out_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "Check-in", function (err, results) {        
 
@@ -209,11 +208,13 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return ;
         }
-  });}
+        });
+    }
         
 
-        else if(qs.parse(url.parse(req.url).query).search_type == "processed_refund_reservation") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "processed_refund_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "Applying Refund", function (err, results) {        
 
@@ -225,13 +226,12 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });
-        
-        
+        });
     }
 
-     else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_reservation") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_reservation") {
         
         api.reservation_find_by_hotelid(req.session.hotelid, "Confirmed", function (err, results) {        
 
@@ -243,8 +243,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "refunded_reservation") {
         
@@ -258,8 +260,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
         
 
      else if(qs.parse(url.parse(req.url).query).search_type == "check_in_ed_reservation") {
@@ -274,8 +278,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "completed_reservation") {
         
@@ -289,8 +295,10 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
         
 
     else if(qs.parse(url.parse(req.url).query).search_type == "all_reservation") {
@@ -305,25 +313,23 @@ hotel_routes.get('/h_backend', function(req, res) {
             var strJson = JSON.stringify(results);
             res.write(strJson);
             res.end();
+            return;
         }
-  });}
+        });
+    }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "confirm_reser") {
-        //console.log("----------");
 
         reserid = qs.parse(url.parse(req.url).query).reser_id;
         
         api.confirm_reservation(reserid); 
         res.end();     
+        return;
+    }
 
-  }
-
-   else if(qs.parse(url.parse(req.url).query).search_type == "check-in_reser") {
-        //console.log("----------");
+    else if(qs.parse(url.parse(req.url).query).search_type == "check-in_reser") {
 
         reserid = qs.parse(url.parse(req.url).query).reser_id;
-        
-        //api.check_in_reservation(reserid); 
         api.reservation_find_by_reserid(reserid, function(err, results){
             if (err) {
                 res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
@@ -345,6 +351,7 @@ hotel_routes.get('/h_backend', function(req, res) {
                         console.log(room_info);
                         api.check_in_reservation(reservation[0], room_info, req.session.hotelid);
                         res.end();
+                        return;
                     }
                 });
 
@@ -352,13 +359,11 @@ hotel_routes.get('/h_backend', function(req, res) {
 
         });     
 
-  }
+    }
 
-   else if(qs.parse(url.parse(req.url).query).search_type == "check-out_reser") {
-        //console.log("----------");
+    else if(qs.parse(url.parse(req.url).query).search_type == "check-out_reser") {
 
-        reserid = qs.parse(url.parse(req.url).query).reser_id;
-        
+        reserid = qs.parse(url.parse(req.url).query).reser_id;   
         api.check_out_reservation_table(reserid); 
         api.check_out_reservation(reserid, function(err, results){
             if (err) {
@@ -371,26 +376,22 @@ hotel_routes.get('/h_backend', function(req, res) {
                 console.log(room);
                 api.check_out_room(room);
                 res.end();
+                return;
             }
         });
-        res.end();     
 
-  }
+    }
 
-  else if(qs.parse(url.parse(req.url).query).search_type == "refund_reser") {
-        //console.log("----------");
-
-        reserid = qs.parse(url.parse(req.url).query).reser_id;
-        
+    else if(qs.parse(url.parse(req.url).query).search_type == "refund_reser") {
+        reserid = qs.parse(url.parse(req.url).query).reser_id;    
         api.refund_reservation(reserid); 
-        res.end();     
-
-  }
+        res.end(); 
+        return;    
+    }
     
-
-
     else 
         res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
+
 });
 
 
@@ -400,11 +401,11 @@ hotel_routes.get('/add_room', function(req,res){
     {
         res.redirect('/', {title : "Together"});
         res.end();
+        return;
     }
     else
         res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-}
-    );
+});
 
 
 hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
@@ -420,30 +421,25 @@ hotel_routes.post('/add_room', upload.single('room_image'),function(req, res){
     var cigarette = req.body.room_cigarette;
 
     api.room_type_find(room_type_id, function (err, results) {        
-             //console.log(results.length===0);
-    if (results.length != 0) {
-        res.locals.error = 'Room Type Id already be used !' ;
-         res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-        //console.log('11');
-        return;
-    }
+        
+        if (results.length != 0) {
+            res.locals.error = 'Room Type Id already be used !' ;
+            res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+            return;
+        }
 
-    else if (err) {
-        res.locals.error = 'Room Type Id already be used !' ;
-         res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-        //console.log("22");
-        return;
-      }
+        else if (err) {
+            res.locals.error = 'Room Type Id already be used !' ;
+            res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+            return;
+        }
       
 
-    api.add_room(room_type_id, price, num, info, area, bed, type, standard, wifi, cigarette, req.session.hotelid, req.file.filename);
-    res.locals.success = 'Add Room Successfully ! ' ;
-    res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-    return; 
+        api.add_room(room_type_id, price, num, info, area, bed, type, standard, wifi, cigarette, req.session.hotelid, req.file.filename);
+        res.locals.success = 'Add Room Successfully ! ' ;
+        res.render('hotel/add_room',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+        return; 
     });
-
-    //console.log(req.body);
-    //console.log(req.file);
 });
 
 hotel_routes.get('/change_price', function(req,res){
@@ -454,36 +450,35 @@ hotel_routes.get('/change_price', function(req,res){
     }
     else
         res.render('hotel/change_price',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-}
-    );
+});
 
 hotel_routes.post('/change_price', function(req, res){
-    //console.log(req.body);
+    
     var room_type_id = req.body.room_type_id,
         room_price = req.body.room_price,
         special_day =req.body.special_day,
         hotel_id = req.session.hotelid;
 
     api.room_type_find(room_type_id, function (err, results) {        
-    if (results.length == 0) {
-        res.locals.error = 'Roomtype not find ! Please try again.' ;
-        res.render('hotel/change_price', {title : "Welcome to together"});
-        res.end();
-        return;
-    }
+        if (results.length == 0) {
+            res.locals.error = 'Roomtype not find ! Please try again.' ;
+            res.render('hotel/change_price', {title : "Welcome to together"});
+            res.end();
+            return;
+        }
 
-    else if (err) {
-        res.locals.error = 'Something wrong ! Please try again.' ;
-        res.render('hotel/change_price', {title : "Welcome to together"});
-        return;
-      }
-    else {
-        api.change_price(room_type_id, room_price, special_day, hotel_id);
-        res.locals.success = 'Change Price Successfully ! ' ;
-        res.render('hotel/change_price',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
-        return; 
-    }
-  });
+        else if (err) {
+            res.locals.error = 'Something wrong ! Please try again.' ;
+            res.render('hotel/change_price', {title : "Welcome to together"});
+            return;
+        }
+        else {
+            api.change_price(room_type_id, room_price, special_day, hotel_id);
+            res.locals.success = 'Change Price Successfully ! ' ;
+            res.render('hotel/change_price',{title: "Hi "+ req.session.hotelname, username : req.session.hotelname});
+            return; 
+        }
+    });
 });
 
 
@@ -493,12 +488,12 @@ hotel_routes.get('/h_room', function(req,res){
     {
         res.redirect('/', {title : "Together"});
         res.end();
+        return;
     }
     
     else 
     res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname , username : req.session.hotelname});
-}
-    );
+});
 
 hotel_routes.get('/h_edit_profile', function(req, res) {
 
@@ -509,17 +504,15 @@ if(req.session.usertype != "hotel")
     }
 else {
     var info = qs.parse(url.parse(req.url).query);
-  var hotelid = req.session.hotelid,
-      password = info.password,
-      tel = info.tel, 
-      email = info.email;
-      console.log(info);
+    var hotelid = req.session.hotelid,
+        password = info.password,
+        tel = info.tel, 
+        email = info.email;
+        console.log(info);
 
-      api.hotel_edit_profile(hotelid, password, tel, email);
-      res.end();
-}
-    });
-
-
+        api.hotel_edit_profile(hotelid, password, tel, email);
+        res.end();
+    }
+});
 
 module.exports = hotel_routes;

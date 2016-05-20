@@ -3,31 +3,28 @@
 <link href="/stylesheet/user_main.css" rel="stylesheet">
 <body>
     
-        <% include h_side.html %>
-        <div id="page-wrapper"  >
-            <div id = "page-inner-in">
-            <div id="page-inner">
-            	<% if (locals.success) { %> 
-          <div id="alt_sucess" class="alert alert-success"> 
-            <%- success %> 
-          </div> 
-       <% } %> 
+    <% include h_side.html %>
+    <div id="page-wrapper"  >
+      <div id = "page-inner-in">
+        <div id="page-inner">
+            	
+    <% if (locals.success) { %> 
+      <div id="alt_sucess" class="alert alert-success"> 
+        <%- success %> 
+      </div> 
+    <% } %> 
 
-      <% if (locals.error) { %> 
-        <div id="alt_warning" class="alert alert-warning"> 
-          <%= error %> 
-        </div> 
-      <% } %> 
-            <form class="form-horizontal" role="form" method="post" action="change_price"  style="
-    padding: 20px;
-">
-            <h3 style="
-    margin-left: 30px;
-">Change Price for Special Days</h3>
-            <br>
-            <div class="form-group" style = "
-    margin-top: 30px;
-">
+    <% if (locals.error) { %> 
+      <div id="alt_warning" class="alert alert-warning"> 
+        <%= error %> 
+      </div> 
+    <% } %> 
+            
+  <form class="form-horizontal" role="form" method="post" action="change_price"  style="
+    padding: 20px;">
+  <h3 style="margin-left: 30px;">Change Price for Special Days</h3>
+  <br>
+  <div class="form-group" style = "margin-top: 30px;">
     <label for="room_type_id" class="col-sm-3 control-label" >Room Type Id *</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" name="room_type_id" placeholder="Enter room type id" required>
@@ -58,12 +55,11 @@
 </form>
             		
 			</div>
-         <!-- /. PAGE WRAPPER  -->
-        </div>
     </div>
+  </div>
         
-     <script src = "/javascripts/user_main.js"></script>
-    <script>
+  <script src = "/javascripts/user_main.js"></script>
+  <script>
         
         $('#main-menu').metisMenu();
 
@@ -74,6 +70,6 @@
                 $('div.sidebar-collapse').removeClass('collapse')
             }
         });
-    </script>
+  </script>
     
 <% include ../footer.html %>

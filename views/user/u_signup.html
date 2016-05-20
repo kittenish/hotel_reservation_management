@@ -2,17 +2,17 @@
 
 <div class="container">
 
-<% if (locals.success) { %> 
-          <div id="alt_sucess" class="alert alert-success" style = "margin-top:70px"> 
-            <%- success %> 
-          </div> 
-       <% } %> 
+  <% if (locals.success) { %> 
+      <div id="alt_sucess" class="alert alert-success" style = "margin-top:70px"> 
+      <%- success %> 
+      </div> 
+  <% } %> 
 
-      <% if (locals.error) { %> 
-        <div id="alt_warning" class="alert alert-warning" style = "margin-top:70px"> 
-          <%= error %> 
-        </div> 
-      <% } %> 
+  <% if (locals.error) { %> 
+      <div id="alt_warning" class="alert alert-warning" style = "margin-top:70px"> 
+      <%= error %> 
+      </div> 
+  <% } %> 
 
 
 <form class="form-horizontal col-offset-8 col-sm-8" style = "margin-top:70px"role="form" method="post" action = "u_signup" >

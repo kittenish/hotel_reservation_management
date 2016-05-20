@@ -1,9 +1,10 @@
 $(document).ready(function(){
 
 	$("button.btn.btn-info.col-sm-offset-3").click(function(){
+		
 		var password = $("#password").val();
 		var password_c = $("#password_confirm").val();
-		//var name = $("#name").val();
+		
 		var tel = $("#tel").val();
 		var email = $("#email").val();
 
@@ -12,11 +13,9 @@ $(document).ready(function(){
 
 		var s = {
 			password : password,
-			//name : name,
 			tel : tel,
 			email : email
 		};
-		console.log(s);
 
 		$.ajax({
 			type : "get",

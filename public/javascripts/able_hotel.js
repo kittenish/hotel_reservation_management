@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$("button.col-offset-8.hotel_b.btn.btn-success.disable").click(function(obj){
-		//alert(obj.currentTarget.id);
+		
 		var id = obj.currentTarget.id;
 		var s = {
 			search_type : "a_hotel_disable",
@@ -14,14 +14,13 @@ $(document).ready(function(){
         	dataType : "text",
         	data : s,
         	success:function(msg){
-        		//console.log("------");
         		;
         	}
-	});
+		});
 		$("#hotel_disable").click();
 		console.log("hotel disable finish");
 
-});
+	});
 
 	$("button.col-offset-8.hotel_b.btn.btn-success.enable").click(function(obj){
 		var id = obj.currentTarget.id;
@@ -36,10 +35,9 @@ $(document).ready(function(){
         	dataType : "text",
         	data : s,
         	success:function(msg){
-        		//console.log("------");
         		;
         	}
-	});
+		});
 		$("#hotel_enable").click();
 		console.log("hotel enable finish");
 	});

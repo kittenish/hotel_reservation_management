@@ -3,16 +3,15 @@ var pool = require('./index').pool;
 
 module.exports = function (arrival, leave, roomtypeid, callback) {
 
-		var self = this;
-		self.total = 0, self.used = 0;
-        console.log(arrival,leave,roomtypeid);
+	var self = this;
+	self.total = 0, self.used = 0;
 
-		pool.getConnection(function(err, connection){
+	pool.getConnection(function(err, connection){
 
         var sql = "select sum(reser_num_room) as usedroom from reservation where room_type_room_type_id = ?"+
-        " and (reser_status = 'Payed' or reser_status = 'Check-in' or reser_status = 'Confirmed')"+
-        " and ((reser_begin >= ? and reser_begin <= ?) or (reser_end <= ? and reser_end >= ?) "+
-        " or (reser_begin <= ? and reser_end >= ?))";
+            " and (reser_status = 'Payed' or reser_status = 'Check-in' or reser_status = 'Confirmed')"+
+            " and ((reser_begin >= ? and reser_begin <= ?) or (reser_end <= ? and reser_end >= ?) "+
+            " or (reser_begin <= ? and reser_end >= ?))";
         
          
         connection.query(sql, [roomtypeid, arrival, leave, leave, arrival, arrival, leave],function (err, result) {
@@ -20,9 +19,6 @@ module.exports = function (arrival, leave, roomtypeid, callback) {
                 console.log("check_date Error: " + err.message);
                 return;
             }
-
-            //connection.release();
-            console.log('check_date : ',result); 
          
             self.used = result[0].usedroom;                  
         });
@@ -36,14 +32,9 @@ module.exports = function (arrival, leave, roomtypeid, callback) {
             }
 
             connection.release();
-            console.log('Total_toom : ',result); 
             self.total = result[0].room_num; 
             callback(err, (self.total - self.used));                     
         });
 
-        
-
-        });
-		
-               
-    };
+    });
+};

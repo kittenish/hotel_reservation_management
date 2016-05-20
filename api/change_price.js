@@ -13,5 +13,5 @@ module.exports = function(room_type_id, room_price, special_day, hotel_id) {
             console.log('Change price : ' , result);
             //connection.release();                  
         });
-        });       
+    });       
 }

@@ -2,24 +2,24 @@
 <link href="/stylesheet/user_main.css" rel="stylesheet">
 <body>
     
-     <% include h_side.html %>
-         <div id="page-wrapper" >
-           <div id = "page-inner-in">
-         	<div id="page-inner">
-         		<% if (locals.success) { %> 
-          <div id="alt_sucess" class="alert alert-success"> 
-            <%- success %> 
-          </div> 
-       <% } %> 
+  <% include h_side.html %>
+  <div id="page-wrapper" >
+    <div id = "page-inner-in">
+     	<div id="page-inner">
+    
+  <% if (locals.success) { %> 
+      <div id="alt_sucess" class="alert alert-success"> 
+      <%- success %> 
+      </div> 
+  <% } %> 
 
-      <% if (locals.error) { %> 
-        <div id="alt_warning" class="alert alert-warning"> 
-          <%= error %> 
-        </div> 
-      <% } %> 
-   <form class="form-horizontal" role="form" method="post" action="add_room" enctype="multipart/form-data" style="
-    padding: 20px;
-">
+  <% if (locals.error) { %> 
+      <div id="alt_warning" class="alert alert-warning"> 
+      <%= error %> 
+      </div> 
+  <% } %> 
+  
+  <form class="form-horizontal" role="form" method="post" action="add_room" enctype="multipart/form-data" style="padding: 20px;">
   <h3>Add Room</h3>
   <br>
   
@@ -131,9 +131,9 @@
     </div>
   </div>
 
-            </div>
-          </div>
-        </div>
+  </div>
+  </div>
+</div>
 <script src = "/javascripts/user_main.js"></script>
     <script>
         
@@ -146,9 +146,7 @@
                 $('div.sidebar-collapse').removeClass('collapse')
             }
         });
-        //$('#roominfo').children('ul').addClass('collapse');
-        //$('#roominfo').not('.active').has('ul').children('ul').addClass('collapse');
-        //$("#hotel_room").toggleClass('active').children('ul').collapse('true');
+        
     </script>
     
 <% include ../footer.html %>

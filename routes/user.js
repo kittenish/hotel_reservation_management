@@ -1,15 +1,13 @@
 var express = require('express');
 var user_routes = express.Router();
-//var auth = require('../midlewares/auth.js');
 var api = require('../api');
 var qs = require('querystring');
 var url = require('url');
 
 user_routes.get('/u_login', function(req, res, next){
-    //console.log("lllll");
+    
     if (req.session.err) {
         var msg = req.session.err;
-        //console.log(req.session);
         req.session.err = null;
         res.render('user/u_login', {
             message: msg
@@ -18,13 +16,11 @@ user_routes.get('/u_login', function(req, res, next){
     } else {
         res.render('user/u_login',{title : "Welcome to together"});
     }
-}
-    );
+});
 
 user_routes.post('/u_login',function(req, res){
     var username = req.body['username'],
         password = req.body['password'];
-        //console.log(req.body);
     var flag = 0;
     api.user_find(username, function (err, results) {        
     if (results.length == 0) {
@@ -40,7 +36,7 @@ user_routes.post('/u_login',function(req, res){
         flag = 1;
         return;
       }
-  });
+    });
 
     if(flag == 1)
         {return;
@@ -57,10 +53,9 @@ user_routes.post('/u_login',function(req, res){
             req.session.userid = username;
             req.session.username = results[0].customer_name;
             req.session.usertype = "user";
-            //console.log(req.session);
             res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !",username:req.session.username});
         }
-});
+    });
 });
 
 user_routes.get('/u_signup', function(req, res) {
@@ -78,27 +73,22 @@ user_routes.post('/u_signup', function(req, res) {
 
    if(password!=password_c)
     {
-        //res.redirect('/user/u_signup', {title : "Sign up for together"});
         res.locals.error = 'Please keep the passwords the same ! ' ;
-        //res.redirect('user/u_signup', {title : "Sign up for together"});
         res.render('user/u_signup', {title : "Sign up for together"});
         return;
     }
 
   //检查用户名是否已经存在
     api.user_find(username, function (err, results) {        
-             //console.log(results.length===0);
     if (results.length != 0) {
         res.locals.error = 'User id already be used !' ;
         res.render('user/u_signup', {title : "Sign up for together"});
-        //console.log('11');
         return;
     }
 
     else if (err) {
         res.locals.error = 'User id already be used !' ;
         res.render('user/u_signup', {title : "Sign up for together"});
-        //console.log("22");
         return;
       }
 
@@ -110,7 +100,6 @@ user_routes.post('/u_signup', function(req, res) {
 });
 
 user_routes.get('/u_backend', function(req, res) {
-    //console.log("_______");
     if(req.session.usertype != "user")
     {
         res.redirect('/', {title : "Together"});
@@ -128,29 +117,11 @@ user_routes.get('/u_backend', function(req, res) {
             res.write(strJson);
             res.end();
         }
-  });
-
+    });
     }
-    /*else if(qs.parse(url.parse(req.url).query).search_type == "customer_findhotel") {
-        api.hotel_all_room_type(function (err, results) {        
-
-        if (err) {
-            res.render('user/u_login', {title : "Welcome to together"});
-            return;
-        }
-        else {
-            
-            var strJson = JSON.stringify(results);
-            res.write(strJson);
-            res.end();
-        }
-  });
-
-    }*/
 
     else if(qs.parse(url.parse(req.url).query).search_type == "customer_search_hotel") {
         var search = qs.parse(url.parse(req.url).query);
-        //console.log(search);
         api.user_search_hotel(search, function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
@@ -161,13 +132,11 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "customer_search_room") {
         var search = qs.parse(url.parse(req.url).query);
-        //console.log(search);
         api.hotel_room_type(search.hotel_id, search.arrival, function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
@@ -178,13 +147,11 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "make_order") {
         var search = qs.parse(url.parse(req.url).query);
-        //console.log(search);
         api.room_type_find (search.room_type, function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
@@ -195,12 +162,10 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "unpayed_order") {
-        //console.log("unpayed_order");
         
         api.reservation_find_by_userid (req.session.userid, 'Unpayed',function (err, results) {
             if (err) {
@@ -212,8 +177,7 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "payed_order") {
@@ -228,8 +192,7 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
      else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund_order") {
@@ -244,11 +207,8 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
-
-    
 
     else if(qs.parse(url.parse(req.url).query).search_type == "confirmed_order") {
         
@@ -262,11 +222,10 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
-     else if(qs.parse(url.parse(req.url).query).search_type == "completed_order") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "completed_order") {
         
         api.reservation_find_by_userid (req.session.userid, 'Complete',function (err, results) {
             if (err) {
@@ -278,8 +237,7 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "refund_reservation") {
@@ -294,8 +252,7 @@ user_routes.get('/u_backend', function(req, res) {
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else if(qs.parse(url.parse(req.url).query).search_type == "make_reser") {
@@ -331,15 +288,12 @@ user_routes.get('/u_backend', function(req, res) {
             }
         
         });
-        //console.log("dsad");
-        //console.log(value);
-        
     }
 
-     else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "pay_money") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.reservation_find_by_reserid(qs.parse(url.parse(req.url).query).reser_id, function(err,results){
-             if (err) {
+            if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
             return;
             }
@@ -373,7 +327,7 @@ user_routes.get('/u_backend', function(req, res) {
         });
     }
 
-     else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund") {
+    else if(qs.parse(url.parse(req.url).query).search_type == "apply_refund") {
         console.log(qs.parse(url.parse(req.url).query).reser_id);
         api.apply_refund_reservation(qs.parse(url.parse(req.url).query).reser_id);
         res.end();
@@ -387,55 +341,50 @@ user_routes.get('/u_backend', function(req, res) {
 
     else if(qs.parse(url.parse(req.url).query).search_type == "order_price") {
         var cal = qs.parse(url.parse(req.url).query);
-        //console.log("-----");
         api.calculate_price(cal.arrival, cal.leave, cal.room_type, function(err, result){
-             if (err) {
-            res.render('user/u_login', {title : "Welcome to together"});
-            return;
+            if (err) {
+                res.render('user/u_login', {title : "Welcome to together"});
+                return;
             }
             else {
-                //console.log("---------");
-                console.log(result);
-            //res.send(result);
-            res.write(result.toString());
-            res.end();
+                res.write(result.toString());
+                res.end();
+                return;
             }
         });
         
     }
 
-    
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
-        //res.locals.u_search = false;
-        //console.log("ohem");
+    
         res.render('user/u_backend' , 
         {title : "Welcome to Together", username: req.session.username});
 
     }
-    //console.log(req.session);
 
 });
 
 user_routes.get('/u_edit_profile', function(req, res) {
 
-if(req.session.usertype != "user")
+    if(req.session.usertype != "user")
     {
         res.redirect('/', {title : "Together"});
         res.end();
+        return;
     }
-else {
-    var info = qs.parse(url.parse(req.url).query);
-  var userid = req.session.userid,
-      password = info.password,
-      tel = info.tel, 
-      email = info.email,
-      name = info.name; 
-      console.log(info);
+    else {
+        var info = qs.parse(url.parse(req.url).query);
+        var userid = req.session.userid,
+            password = info.password,
+            tel = info.tel, 
+            email = info.email,
+            name = info.name; 
 
-      api.user_edit_profile(userid, password, tel, email, name);
-      res.end();
-}
-    });
+        api.user_edit_profile(userid, password, tel, email, name);
+        res.end();
+        return;
+    }
+});
 
 user_routes.post('/search', function(req, res){
     if(req.session.usertype != "user")

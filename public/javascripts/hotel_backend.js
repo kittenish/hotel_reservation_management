@@ -181,8 +181,7 @@ $(document).ready(function(){
               console.log(self.totalPages);
               $("#page-inner").html('');
               r_information(0, self.msg, 24);
-              //var i = 0;
-              $("#page-inner-in").css("height","1200px");
+              $("#page-inner-in").css("height","1220px");
         }
       });
   });
@@ -198,13 +197,13 @@ $(document).ready(function(){
         dataType : "text",
         data : s,
         success: function(msg){  
-                msg = JSON.parse(msg);
-                //console.log(msg);
-                self.msg=msg;
-                self.totalPages = msg.length/2;
-                console.log(self.totalPages);  
-                $("#page-inner").html('');
-                myroom_information(0, self.msg, 2);  
+            
+            msg = JSON.parse(msg); 
+            self.msg=msg;
+            self.totalPages = msg.length/2;
+            console.log(self.totalPages);  
+            $("#page-inner").html('');
+            myroom_information(0, self.msg, 2);  
                 
       }
     });
@@ -516,11 +515,6 @@ $(document).ready(function(){
                   "</div>");
         
             }
-
-                  //$(".room_info").css("margin-bottom","10px");
-                  //$('.r_type').css("margin-left","80px");
-                  //$('.r_type_r').css("margin-left","20px");
-                  //$('.r_type_r').css("padding","30px");
                   
             $('.reser_info').css("padding","10px");
             $('.reser_info').css("line-height","2");            

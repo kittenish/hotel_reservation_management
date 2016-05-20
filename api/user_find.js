@@ -1,7 +1,8 @@
 var pool = require('./index').pool;
 
 module.exports = function (username, callback) {
-		pool.getConnection(function(err, connection){
+	
+    pool.getConnection(function(err, connection){
 
         var sql = 'select * from customer where customer_id = ?';
         connection.query(sql, [username],function (err, result) {
@@ -11,10 +12,7 @@ module.exports = function (username, callback) {
             }
 
             connection.release();
-            //console.log(result);
-            
-            //connection.release();
             callback(err,result);                     
         });
-        });        
-    };
+    });        
+};

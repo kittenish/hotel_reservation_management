@@ -53,6 +53,7 @@ var hotel_set_status = require('./hotel_set_status');
 var calculate_price = require('./calculate_price');
 var reservation_find_all = require('./reservation_find_all');
 var reservation_search_by_reserid_userid = require('./reservation_search_by_reserid_userid');
+var room_type_in_hotel = require('./room_type_in_hotel');
 
 exports.user_signup = user_signup;
 exports.user_find = user_find;
@@ -91,3 +92,4 @@ exports.hotel_set_status = hotel_set_status;
 exports.calculate_price = calculate_price;
 exports.reservation_find_all = reservation_find_all;
 exports.reservation_search_by_reserid_userid = reservation_search_by_reserid_userid;
+exports.room_type_in_hotel = room_type_in_hotel;

@@ -29,7 +29,7 @@ $(document).ready(function(){
 		});
 
 		alert("Change Profile Successfully!");
-				$("#myprofile").click();
+		$("#myprofile").click();
 	});
 
 });

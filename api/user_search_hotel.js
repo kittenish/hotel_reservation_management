@@ -1,8 +1,8 @@
 var pool = require('./index').pool;
 
 module.exports = function (search, callback) {
-		pool.getConnection(function(err, connection){
-        //console.log(search);
+	
+    pool.getConnection(function(err, connection){
         search_value = [];
         var search_city = "?",
             search_hotelname = "?";
@@ -43,7 +43,6 @@ module.exports = function (search, callback) {
             ' and hotel_price >= ? and hotel_price <= ?'+
             ';';
         
-        //console.log(search.city);
         connection.query(sql, search_value,function (err, result) {
             if (err) {
                 console.log("user_search_hotel Error: " + err.message);
@@ -51,10 +50,7 @@ module.exports = function (search, callback) {
             }
 
             connection.release();
-            //console.log(result);
-            
-            //connection.release();
             callback(err,result);                     
         });
-        });        
-    };
+    });        
+};

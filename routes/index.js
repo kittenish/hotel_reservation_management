@@ -15,16 +15,14 @@ router.get('/', function(req, res) {
         req.session.hotelname = null;
         console.log("logout successfully.");
 	}
-    //console.log(req.session);
     res.render('index',{title : "Together"});
 });
 
 router.get('/search',function(req, res){
-	//console.log("aaaa");
+	
 	if(qs.parse(url.parse(req.url).query).search_type == "search_hotel") 
 	{
 		var search = qs.parse(url.parse(req.url).query);
-		//console.log("xxx");
 		api.user_search_hotel(search, function (err, results) {
             if (err) {
             res.render('search', {title : "Together"});
@@ -35,14 +33,12 @@ router.get('/search',function(req, res){
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
 	}
 
     else if(qs.parse(url.parse(req.url).query).search_type == "search_room") 
     {
         var search = qs.parse(url.parse(req.url).query);
-        //console.log("xxx");
         api.hotel_room_type(search.hotel_id, search.arrival, function (err, results) {
             if (err) {
             res.render('search', {title : "Together"});
@@ -50,12 +46,10 @@ router.get('/search',function(req, res){
             }
             else {
                 var strJson = JSON.stringify(results);
-                //console.log(strJson);
                 res.write(strJson);
                 res.end();
             }
-        }
-            );
+        });
     }
 
     else

@@ -1,18 +1,19 @@
 <% include h_header.html %>
 <body >
-<% if (locals.success) { %> 
-  <br>
-          <div id="alt_sucess" class="alert alert-success" style = "margin-top:70px"> 
-            <%- success %> 
-          </div> 
-       <% } %> 
 
-      <% if (locals.error) { %> 
-      <br>
-        <div id="alt_warning" class="alert alert-warning" style = "margin-top:70px"> 
-          <%= error %> 
-        </div> 
-      <% } %> 
+  <% if (locals.success) { %> 
+    <br>
+    <div id="alt_sucess" class="alert alert-success" style = "margin-top:70px"> 
+      <%- success %> 
+    </div> 
+  <% } %> 
+
+  <% if (locals.error) { %> 
+    <br>
+    <div id="alt_warning" class="alert alert-warning" style = "margin-top:70px"> 
+      <%= error %> 
+    </div> 
+  <% } %> 
 
 <div class="container push-footer-to-position" style = "margin-top:70px">
 <form class="form-horizontal col-offset-8 col-sm-8" role="form" method="post" action = "h_login">

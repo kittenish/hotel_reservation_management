@@ -5,10 +5,8 @@ var qs = require('querystring');
 var url = require('url');
 
 admin_routes.get('/a_login', function(req, res, next){
-    //console.log("lllll");
     if (req.session.err) {
         var msg = req.session.err;
-        //console.log(req.session);
         req.session.err = null;
         res.render('admin/a_login', {
             message: msg
@@ -17,8 +15,7 @@ admin_routes.get('/a_login', function(req, res, next){
     } else {
         res.render('admin/a_login',{title : "Welcome to together"});
     }
-}
-    );
+});
 
 admin_routes.post('/a_login',function(req, res){
     var adminid = req.body['adminid'],
@@ -31,7 +28,6 @@ admin_routes.post('/a_login',function(req, res){
             res.locals.error = 'Please try again.' ;
             res.render('admin/a_login', {title : "Welcome to together"});
             return;
-        //console.log("22");
         }
         if(results[0].status == 0)
         {
@@ -46,7 +42,7 @@ admin_routes.post('/a_login',function(req, res){
             console.log(req.session);
             res.render('admin/a_backend' , {title : "Hi "+ req.session.adminname,username : req.session.adminname});
         }
-});
+    });
 });
 
 admin_routes.get('/a_backend', function(req, res){
@@ -57,7 +53,6 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel_search")
     {
-        //console.log("------");
         api.hotel_all(function (err, results) {        
 
         if (err) {
@@ -74,7 +69,6 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel_enable")
     {
-        //console.log("------");
         api.hotel_find_by_status(0, function (err, results) {        
 
         if (err) {
@@ -83,7 +77,6 @@ admin_routes.get('/a_backend', function(req, res){
         }
         else {
             var strJson = JSON.stringify(results);
-            //console.log(results);
             res.write(strJson);
             res.end();
             return;
@@ -92,7 +85,6 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "hotel_disable")
     {
-        //console.log("------");
         api.hotel_find_by_status(1, function (err, results) {        
 
         if (err) {
@@ -101,7 +93,6 @@ admin_routes.get('/a_backend', function(req, res){
         }
         else {
             var strJson = JSON.stringify(results);
-            //console.log(results);
             res.write(strJson);
             res.end();
             return;
@@ -111,7 +102,6 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "order_search")
     {
-        //console.log("9-0");
         var search = qs.parse(url.parse(req.url).query);
         
         api.reservation_search_by_reserid_userid(search.reser_id, search.customer_id, function (err, results) {        
@@ -122,7 +112,6 @@ admin_routes.get('/a_backend', function(req, res){
         }
         else {
             var strJson = JSON.stringify(results);
-            //console.log(results);
             res.write(strJson);
             res.end();
             return;
@@ -131,7 +120,6 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "order_all")
     {
-        //console.log("------");
         api.reservation_find_all(function (err, results) {        
 
         if (err) {
@@ -140,7 +128,6 @@ admin_routes.get('/a_backend', function(req, res){
         }
         else {
             var strJson = JSON.stringify(results);
-            //console.log(results);
             res.write(strJson);
             res.end();
             return;
@@ -149,14 +136,12 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "a_hotel_disable")
     {
-        //console.log("------");
         api.hotel_set_status(0, qs.parse(url.parse(req.url).query).hotel_id);
         res.end();
         return;
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "a_hotel_enable")
     {
-        //console.log("------");
         api.hotel_set_status(1, qs.parse(url.parse(req.url).query).hotel_id);
         res.end();
         return;

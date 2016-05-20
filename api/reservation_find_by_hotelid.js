@@ -1,7 +1,8 @@
 var pool = require('./index').pool;
 
 module.exports = function (hotelid, status, callback) {
-		pool.getConnection(function(err, connection){
+	
+    pool.getConnection(function(err, connection){
 
         var sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+
@@ -26,12 +27,7 @@ module.exports = function (hotelid, status, callback) {
                 return;
             }
             connection.release();
-            //console.log(hotelid);
-            //console.log(ans);
-            
-            //connection.release();
-            //console.log(result);
             callback(err,result);                     
         });
-        });        
-    };
+    });        
+};
