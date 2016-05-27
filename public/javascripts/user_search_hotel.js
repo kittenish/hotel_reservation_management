@@ -88,6 +88,8 @@ $(document).ready(function(){
            
             "</div><div class = 'r_type col-sm-3'>Hotel City :    "+msg[i].hotel_city+
             "</div><div class = 'r_type col-sm-6'>Hotel Tel : "+msg[i].hotel_tel+
+            "</div><div class = 'r_type col-sm-2' style = 'font-size: 30px;    color: #F9480B; margin-left: 350px;'"+
+            ">"+msg[i].hotel_price+"/day"+
             "</div>"+
             "<button class = 'col-offset-8 hotel_b btn btn-success' id = '"+msg[i].hotel_id+"'>MORE INFO</button>"+
             "</div>");
@@ -103,6 +105,8 @@ $(document).ready(function(){
             
             "</div><div class = 'r_type col-sm-3'>Hotel City :    "+msg[i].hotel_city+
             "</div><div class = 'r_type col-sm-6'>Hotel Tel : "+msg[i].hotel_tel+
+            "</div><div class = 'r_type col-sm-2' style = 'font-size: 30px;    color: #F9480B; margin-left: 350px;'"+
+            ">"+msg[i].hotel_price+"/day"+
             "</div>"+
             "<button class = 'col-offset-8 hotel_b btn btn-success' id = '"+msg[i].hotel_id+"'>MORE INFO</button>"+
             "</div>");
@@ -114,7 +118,7 @@ $(document).ready(function(){
       $('.room_info').css("line-height","2.5");
       $('.hotel_b').css("margin-top","20px");
       $('.hotel_b').css("background-color", "#087CF3");
-      $('.hotel_b').css("margin-left","600px");
+      $('.hotel_b').css("margin-left","70px");
       $('.hotel_b').css("font-size","16px");
       $('.color_white').css("background-color", "#F3F3F3");
       $('.color_grey').css("background-color", "#ffffff");
