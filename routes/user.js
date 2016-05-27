@@ -39,8 +39,10 @@ user_routes.post('/u_login',function(req, res){
     });
 
     if(flag == 1)
-        {return;
-            res.end();}
+    {
+        res.end();
+        return;
+    }
 
     api.user_login(username,password,function(err, results){
         if(results.length == 0)

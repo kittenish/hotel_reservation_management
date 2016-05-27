@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	var a = $("#mainfont").html();
   $('#main_search').click(function(){
-    alert("5678");
+    ;
   })
 	
 	$('button.col-offset-8.room_type_b.btn.btn-success').click(function(obj){

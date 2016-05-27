@@ -17,8 +17,9 @@ $(document).ready(function(){
         		;
         	}
 		});
-		$("#hotel_disable").click();
-		console.log("hotel disable finish");
+		setTimeout(function(){
+			$("#hotel_disable").click();
+		});
 
 	});
 
@@ -38,8 +39,10 @@ $(document).ready(function(){
         		;
         	}
 		});
-		$("#hotel_enable").click();
-		console.log("hotel enable finish");
+		setTimeout(function(){
+			$("#hotel_enable").click();
+		});
+
 	});
 
 });

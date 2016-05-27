@@ -25,7 +25,7 @@ hotel_routes.get('/h_login', function(req, res, next){
 hotel_routes.post('/h_login',function(req, res){
     var hotelid = req.body['hotelid'],
         password = req.body['password'];
-        console.log(req.body);
+        //console.log(req.body);
     var flag = 0;
     
     api.hotel_find(hotelid, function (err, results) {        
@@ -348,7 +348,7 @@ hotel_routes.get('/h_backend', function(req, res) {
                     else {
                         var room_info = JSON.stringify(results);
                         room_info = JSON.parse(room_info);
-                        console.log(room_info);
+                        //console.log(room_info);
                         api.check_in_reservation(reservation[0], room_info, req.session.hotelid);
                         res.end();
                         return;
@@ -373,7 +373,7 @@ hotel_routes.get('/h_backend', function(req, res) {
             else {
                 var room = JSON.stringify(results);
                     room = JSON.parse(room);
-                console.log(room);
+                //console.log(room);
                 api.check_out_room(room);
                 res.end();
                 return;
@@ -459,7 +459,7 @@ hotel_routes.post('/change_price', function(req, res){
         special_day =req.body.special_day,
         hotel_id = req.session.hotelid;
 
-    api.room_type_find(room_type_id, function (err, results) {        
+    api.room_type_in_hotel(room_type_id, req.session.hotelid, function (err, results) {        
         if (results.length == 0) {
             res.locals.error = 'Roomtype not find ! Please try again.' ;
             res.render('hotel/change_price', {title : "Welcome to together"});

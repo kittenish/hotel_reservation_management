@@ -21,6 +21,12 @@ $(document).ready(function(req, res){
 	$("#s_check_out").attr("value", getUrlParam('check_out'));
 	$("#s_city").val(getUrlParam('city'));
 	
+  
+  setTimeout(function(){
+      $("#search_hotel").click();
+  });
+  
+
 	if(getUrlParam('city') != "Beijing" && getUrlParam('city') != "Shanghai" && getUrlParam('city') != "Changchun")
       $("#s_city").val("All");
 
@@ -45,40 +51,43 @@ $(document).ready(function(req, res){
 		  alert("Please sign in first! ");
 	}
 
-	$("#search_hotel").click(function(){
-
-		var s_city = $("#s_city").val(),
-  			s_name = $("#s_hotel_name").val(),
-  			s_arrival = $("#s_check_in").val(),
-  			s_leave = $("#s_check_out").val(),
-  			s_price_min = $("#s_room_price_min").val(),
-  			s_price_max = $("#s_room_price_max").val();
-  			
-  		var s = {
-  			search_type : "search_hotel",
-  			city : s_city,
-  			hotelname : s_name,
-  			arrival: s_arrival,
-  			leave : s_leave,
-  			price_min : s_price_min,
-  			price_max : s_price_max
-  		};
-  		
-  		$.ajax({
-			type : "get",
-			url : "search",
-			dataType : "text",
-			data : s,
-			success:function(msg){
-				  msg = JSON.parse(msg);
-        	self.msg = msg;
-      		self.totalPages = msg.length/8;
-			   	$("#search-content").html("");
-        	search_information(0,self.msg,8);
+  function doSearch()
+  {    
+    var s_city = $("#s_city").val(),
+        s_name = $("#s_hotel_name").val(),
+        s_arrival = $("#s_check_in").val(),
+        s_leave = $("#s_check_out").val(),
+        s_price_min = $("#s_room_price_min").val(),
+        s_price_max = $("#s_room_price_max").val();
+        
+      var s = {
+        search_type : "search_hotel",
+        city : s_city,
+        hotelname : s_name,
+        arrival: s_arrival,
+        leave : s_leave,
+        price_min : s_price_min,
+        price_max : s_price_max
+      };
+      
+      $.ajax({
+      type : "get",
+      url : "search",
+      dataType : "text",
+      data : s,
+      success:function(msg){
+          msg = JSON.parse(msg);
+          self.msg = msg;
+          self.totalPages = msg.length/8;
+          $("#search-content").html("");
+          search_information(0,self.msg,8);
       }
       });
 
-  });
+  
+  }
+	
+  $("#search_hotel").click(doSearch);
 
 	function search_information(page, msg, count){
   		

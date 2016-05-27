@@ -10,7 +10,7 @@ module.exports = function (reserid, callback) {
                 console.log("check_out_check_in_table Error: " + err.message);
                 return;
             }
-            console.log(result);
+            //console.log(result);
                       
         });
 

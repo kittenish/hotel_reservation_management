@@ -18,8 +18,9 @@ $(document).ready (function(){
      
     });
   
+  setTimeout(function(){
     $("#h_process_confirm").click();
-    console.log("confirm finish");
+  });
   
   });
 
@@ -41,8 +42,9 @@ $(document).ready (function(){
      
     });
   
+  setTimeout(function(){
     $("#h_process_confirm").click();
-    console.log("refund finish");
+  });
   
   });
 
@@ -63,9 +65,9 @@ $(document).ready (function(){
 			}
      
     });
-  
+  setTimeout(function(){
     $("#h_process_check-in").click();
-    console.log("not check-in finish");
+  });
   
   });
 
@@ -87,8 +89,9 @@ $(document).ready (function(){
      
     });
   
+  setTimeout(function(){
     $("#h_process_refund").click();
-    console.log("refund finish");
+  });
   
   });
 	
@@ -110,8 +113,9 @@ $(document).ready (function(){
      
     });
   
+  setTimeout(function(){
     $("#h_process_refund").click();
-    console.log("reject finish");
+  });
   
   });
 
@@ -134,8 +138,9 @@ $(document).ready (function(){
      
     });
   
+  setTimeout(function(){
     $("#h_process_check-in").click();
-    console.log("check-in finish");
+  }, 100);
   
   });
 
@@ -156,10 +161,10 @@ $(document).ready (function(){
 			}
      
     });
-  
-    $("h_process_check-in").click();
-    console.log("check-in finish");
-  
+  setTimeout(function(){
+    $("#h_process_check-out").click();
+  });
+
   });
 
 });

@@ -14,6 +14,8 @@ $(document).ready(function(){
 	function a_search_order_renderPages(start,count){
       
       $("#page-inner").html(search_item_in);
+      $("#reser_id").attr("value", self.reser_id),
+      $("#customer_id").attr("value", self.customer_id);
       window.scroll(0,0);
       a_search_order(start,self.msg,count);
   }
@@ -101,12 +103,12 @@ $(document).ready(function(){
 
 	$("#a_search_order_by").click(function(){
 
-		var reser_id = $("#reser_id").val(),
-			customer_id = $("#customer_id").val();
+		  self.reser_id = $("#reser_id").val(),
+			self.customer_id = $("#customer_id").val();
 		var s = {
 			search_type : "order_search",
-			reser_id : reser_id,
-			customer_id : customer_id
+			reser_id : self.reser_id,
+			customer_id : self.customer_id
 
 		};
 
@@ -122,8 +124,8 @@ $(document).ready(function(){
         	$("#page-inner").html(search_item_in);
         	$("#page-inner-in").css("height","1300px");
         	a_search_order(0,self.msg,8);
-        	$("#reser_id").val(reser_id);
-				  $('#customer_id').val(customer_id);
+        	$("#reser_id").val(self.reser_id);
+				  $('#customer_id').val(self.customer_id);
         		
         }
 		});

@@ -20,9 +20,9 @@ module.exports = function (room) {
                     console.log("check_out_room Error: " + err.message);
                     return;
                 }
-                console.log('check_out_room : ',s);                   
+                console.log('check_out_room : ',s);   
+                i = i + 1;                
             });
-            i = i + 1;
         }
         connection.release();
     });       

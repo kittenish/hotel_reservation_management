@@ -20,7 +20,7 @@ admin_routes.get('/a_login', function(req, res, next){
 admin_routes.post('/a_login',function(req, res){
     var adminid = req.body['adminid'],
         password = req.body['password'];
-        console.log(req.body);
+        //console.log(req.body);
   
     api.admin_login(adminid,password,function(err, results){
         if(results.length == 0)
@@ -39,7 +39,7 @@ admin_routes.post('/a_login',function(req, res){
             req.session.adminid = adminid;
             req.session.adminname = results[0].admin_name;
             req.session.usertype = "admin";
-            console.log(req.session);
+            //console.log(req.session);
             res.render('admin/a_backend' , {title : "Hi "+ req.session.adminname,username : req.session.adminname});
         }
     });
@@ -102,6 +102,7 @@ admin_routes.get('/a_backend', function(req, res){
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "order_search")
     {
+        //console.log("-------");
         var search = qs.parse(url.parse(req.url).query);
         
         api.reservation_search_by_reserid_userid(search.reser_id, search.customer_id, function (err, results) {        
@@ -116,6 +117,7 @@ admin_routes.get('/a_backend', function(req, res){
             res.end();
             return;
         }
+        return;
         });
     }
     else if(qs.parse(url.parse(req.url).query).search_type == "order_all")
