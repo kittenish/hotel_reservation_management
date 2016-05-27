@@ -11,7 +11,7 @@ $(document).ready(function(){
   window.search_selectPage=function(page){
     currentPage=page;
     console.log(page);
-    search_renderPages(page,6);
+    search_renderPages(page,7);
   }
 
   function search_renderPages(start,count){
@@ -23,7 +23,7 @@ $(document).ready(function(){
   window.enable_selectPage=function(page){
       currentPage=page;
       console.log(page);
-      enable_renderPages(page,6);
+      enable_renderPages(page,7);
   }
 
   function enable_renderPages(start,count){
@@ -35,7 +35,7 @@ $(document).ready(function(){
   window.disable_selectPage=function(page){
     currentPage=page;
     console.log(page);
-    disable_renderPages(page,6);
+    disable_renderPages(page,7);
   }
 
   function disable_renderPages(start,count){
@@ -336,11 +336,11 @@ $(document).ready(function(){
         	success: function(msg){
         		msg = JSON.parse(msg);
         		self.msg = msg;
-        		self.totalPages = msg.length/6;
+        		self.totalPages = msg.length/7;
         		console.log(msg);
         		$("#page-inner").html("");
-        		$("#page-inner-in").css("height","1200px");
-        		a_search_hotel(0,self.msg,6);
+        		$("#page-inner-in").css("height","1280px");
+        		a_search_hotel(0,self.msg,7);
         		
         	}
 		});
@@ -358,11 +358,11 @@ $(document).ready(function(){
         	success: function(msg){
         		msg = JSON.parse(msg);
         		self.msg = msg;
-        		self.totalPages = msg.length/6;
+        		self.totalPages = msg.length/7;
         		console.log(msg);
         		$("#page-inner").html("");
-        		$("#page-inner-in").css("height","1200px");
-        		a_enable_hotel(0,self.msg,6);
+        		$("#page-inner-in").css("height","1280px");
+        		a_enable_hotel(0,self.msg,7);
         		
         	}
 		});
@@ -380,10 +380,10 @@ $(document).ready(function(){
         	success: function(msg){
         		msg = JSON.parse(msg);
         		self.msg = msg;
-        		self.totalPages = msg.length/6;
+        		self.totalPages = msg.length/7;
         		$("#page-inner").html("");
-        		$("#page-inner-in").css("height","1200px");
-        		a_disable_hotel(0,self.msg,6);
+        		$("#page-inner-in").css("height","1280px");
+        		a_disable_hotel(0,self.msg,7);
         		
         	}
 		});
