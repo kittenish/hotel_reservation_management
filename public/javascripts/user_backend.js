@@ -143,7 +143,7 @@ $(document).ready(function(){
         self.totalPages = msg.length/7;
         $("#page-inner").html('');
         u_completed_information(0,self.msg,7);
-        $("#page-inner-in").css("height","1250px");
+        $("#page-inner-in").css("height","1260px");
       }
     });
     });
@@ -184,7 +184,7 @@ $(document).ready(function(){
         self.totalPages = msg.length/7;
         $("#page-inner").html('');
         u_refund_information(0,self.msg,7);
-        $("#page-inner-in").css("height","1250px");    
+        $("#page-inner-in").css("height","1260px");    
       }
     });
     });
@@ -204,7 +204,7 @@ $(document).ready(function(){
         self.totalPages = msg.length/7;
         $("#page-inner").html('');
         u_refund_information(0,self.msg,7);
-        $("#page-inner-in").css("height","1250px");   
+        $("#page-inner-in").css("height","1260px");   
         
       }
     });

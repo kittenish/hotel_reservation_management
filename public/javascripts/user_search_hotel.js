@@ -60,6 +60,7 @@ $(document).ready(function(){
             self.totalPages = msg.length/6;
 				    $("#page-inner").html(search_item_in);
             u_search_hotel(0,self.msg,6);
+            $("#page-inner-in").css("height","1190px");
 
             $("#s_hotel_name").attr("value", s_name);
             $("#s_check_in").attr("value", s_arrival);
