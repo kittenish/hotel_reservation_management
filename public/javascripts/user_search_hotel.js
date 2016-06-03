@@ -15,7 +15,8 @@ $(document).ready(function(){
 
   window.selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
+      self.page = page;
       renderPages(page,6);
   }
 
@@ -60,7 +61,8 @@ $(document).ready(function(){
             self.totalPages = msg.length/6;
 				    $("#page-inner").html(search_item_in);
             u_search_hotel(0,self.msg,6);
-            $("#page-inner-in").css("height","1190px");
+            self.page = 0;
+            $("#page-inner-in").css("height","1240px");
 
             $("#s_hotel_name").attr("value", s_name);
             $("#s_check_in").attr("value", s_arrival);
@@ -74,6 +76,9 @@ $(document).ready(function(){
   });
   
   function u_search_hotel(page, msg, count){
+
+      $("#page-inner").append("<p id = 'total' style = 'margin-top:15px;'"+
+        ">"+"Total hotel: "+self.msg.length+"</p>");
 
       var i = 0;
       for(i = page * count ; i < count + page * count && i < msg.length; i++){

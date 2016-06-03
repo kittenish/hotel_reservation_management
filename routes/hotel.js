@@ -68,7 +68,7 @@ hotel_routes.post('/h_login',function(req, res){
             req.session.hotelid = hotelid;
             req.session.hotelname = results[0].hotel_name;
             req.session.usertype = "hotel";
-            console.log(req.session);
+            //console.log(req.session);
             res.render('hotel/h_backend' , {title : "Hi "+ req.session.hotelname,username : req.session.hotelname});
         }
     });

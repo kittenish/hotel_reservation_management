@@ -56,6 +56,7 @@ user_routes.post('/u_login',function(req, res){
             req.session.username = results[0].customer_name;
             req.session.usertype = "user";
             res.render('user/u_backend' , {title : "Hi "+ req.session.username + " !",username:req.session.username});
+            res.end();
         }
     });
 });
@@ -139,6 +140,7 @@ user_routes.get('/u_backend', function(req, res) {
 
     else if(qs.parse(url.parse(req.url).query).search_type == "customer_search_room") {
         var search = qs.parse(url.parse(req.url).query);
+        //console.log(search);
         api.hotel_room_type(search.hotel_id, search.arrival, function (err, results) {
             if (err) {
             res.render('user/u_login', {title : "Welcome to together"});
@@ -259,7 +261,7 @@ user_routes.get('/u_backend', function(req, res) {
 
     else if(qs.parse(url.parse(req.url).query).search_type == "make_reser") {
         var search = qs.parse(url.parse(req.url).query);
-        console.log(search);
+        //console.log(search);
         var arrival = search.arrival,
             leave = search.leave,
             roomtypeid = search.roomtypeid,
@@ -274,7 +276,7 @@ user_routes.get('/u_backend', function(req, res) {
         }
             
             else {
-                console.log(results);
+                //console.log(results);
                 if(results >= search.num)
                 {
                     api.add_reservation(arrival, leave, roomtypeid, userid, num, other_mates, price);
@@ -358,10 +360,18 @@ user_routes.get('/u_backend', function(req, res) {
     }
 
     else if (qs.parse(url.parse(req.url).query).search_type == "home"){
-    
+        console.log("before");
         res.render('user/u_backend' , 
         {title : "Welcome to Together", username: req.session.username});
-
+        res.end();
+        console.log("after");
+        return;
+    }
+    else {
+        console.log("---");
+        res.render('user/u_backend' , 
+        {title : "Welcome to Together", username: req.session.username});
+        res.end();   
     }
 
 });

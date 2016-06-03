@@ -3,10 +3,13 @@ $(document).ready(function(){
     var self = this; 
     var search_item_in = "<div id = 'search_item_in'>"+$('#search_item_in').html()+"</div>";
     self.back = "<div id = 'search-content'>"+$('#search-content').html()+"</div>";
+    
 
     window.return_button = function(){
         var back = self.back;
         $('#search-content').html(back);
+        $('#search-content').css("height","auto");
+        self.msg = window.msg;
     }
 
     window.scroll(0,0);
@@ -34,6 +37,7 @@ $(document).ready(function(){
                 msg = JSON.parse(msg);
                 self.msg = msg;
                 $("#search-content").html('');
+                window.scroll(0,0);
                 $("#search-content").append("<div><div class = 'col-sm-6' style = 'display: inline-block;'>"+
                     "<h1 style = 'margin-left:20px;margin-top:30px;'>"+msg[0].hotel_name+"</h1>"+
                     "<div class = 'hotel_info style = 'margin-top:30px;'>Addr&nbsp; :    "+msg[0].hotel_addr+

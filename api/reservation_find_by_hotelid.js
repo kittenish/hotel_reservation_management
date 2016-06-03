@@ -10,7 +10,7 @@ module.exports = function (hotelid, status, callback) {
         if(status == "all")
             sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+
-            ' and hotel_hotel_id = ? order by reser_begin';
+            ' and hotel_hotel_id = ? and reser_status != "Unpayed" order by reser_begin';
         else if(status == 'Confirmed')
             sql = 'select * from(room_type natural join reservation natural join hotel)'+
             ' where room_type_id = room_type_room_type_id and hotel_id = hotel_hotel_id'+

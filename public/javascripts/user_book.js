@@ -167,6 +167,10 @@ $(document).ready(function(){
     {
       alert("Please fullfill your ID numbers!");
     }
+    else if (_arrival >= _leave) 
+    {
+      alert("Please check your reservation date!")
+    }
 		else {
 		var s = {
 			search_type : "make_reser",

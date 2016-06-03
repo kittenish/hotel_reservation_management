@@ -5,6 +5,7 @@ var pool  = mysql.createPool({
     user     : 'root',
     password : '1126',
     database : 'hotel',
+    timezone: 'Asia/Shanghai',
 });
 
 pool.on('connection', function(connection) {  

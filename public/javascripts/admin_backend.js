@@ -10,7 +10,7 @@ $(document).ready(function(){
 
   window.search_selectPage=function(page){
     currentPage=page;
-    console.log(page);
+    //console.log(page);
     search_renderPages(page,7);
   }
 
@@ -22,7 +22,7 @@ $(document).ready(function(){
 
   window.enable_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       enable_renderPages(page,7);
   }
 
@@ -34,7 +34,7 @@ $(document).ready(function(){
 
   window.disable_selectPage=function(page){
     currentPage=page;
-    console.log(page);
+    //console.log(page);
     disable_renderPages(page,7);
   }
 
@@ -46,7 +46,7 @@ $(document).ready(function(){
 
   window.a_search_order_selectPage=function(page){
     currentPage=page;
-    console.log(page);
+    //console.log(page);
     a_search_order_renderPages(page,8);
   }
 
@@ -337,7 +337,7 @@ $(document).ready(function(){
         		msg = JSON.parse(msg);
         		self.msg = msg;
         		self.totalPages = msg.length/7;
-        		console.log(msg);
+        		//console.log(msg);
         		$("#page-inner").html("");
         		$("#page-inner-in").css("height","1280px");
         		a_search_hotel(0,self.msg,7);
@@ -359,7 +359,7 @@ $(document).ready(function(){
         		msg = JSON.parse(msg);
         		self.msg = msg;
         		self.totalPages = msg.length/7;
-        		console.log(msg);
+        		//console.log(msg);
         		$("#page-inner").html("");
         		$("#page-inner-in").css("height","1280px");
         		a_enable_hotel(0,self.msg,7);
@@ -428,7 +428,7 @@ $(document).ready(function(){
             self.search_item_in = "<div id = 'search_item_in'>"+$('#search_item_in').html()+"</div>";
         		self.totalPages = msg.length/8;
         		a_search_order(0,self.msg,8);
-        		
+        		$("#page-inner-in").css("height","1260px");
         	}
 		  });
         	

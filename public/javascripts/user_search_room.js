@@ -5,14 +5,45 @@ $(document).ready(function(){
     self.back = "<div id = 'page-inner'>"+$('#page-inner').html()+"</div>";
 
     window.return_button = function(){
-        var back = self.back;
-        $('#page-inner').html(back);
+
+        var s_city = $("#s_city").val(),
+        s_name = $("#s_hotel_name").val(),
+        s_arrival = $("#s_check_in").val(),
+        s_leave = $("#s_check_out").val(),
+        s_price_min = $("#s_room_price_min").val(),
+        s_price_max = $("#s_room_price_max").val();
+        
+        selectPage(self.page);
+
+        $("#s_hotel_name").attr("value", s_name);
+        $("#s_check_in").attr("value", s_arrival);
+        $("#s_check_out").attr("value", s_leave);
+        $("#s_city").val(s_city);
+        $("#s_room_price_min").attr("value", s_price_min);
+        $("#s_room_price_max").attr("value", s_price_max);
     }
 
     window.scroll(0,0);
 
     $('button.col-offset-8.hotel_b.btn.btn-success').click(function(obj){
+        
         var id = obj.currentTarget.id;
+        //console.log(id);
+        var s_city = $("#s_city").val(),
+        s_name = $("#s_hotel_name").val(),
+        s_arrival = $("#s_check_in").val(),
+        s_leave = $("#s_check_out").val(),
+        s_price_min = $("#s_room_price_min").val(),
+        s_price_max = $("#s_room_price_max").val();
+        
+        $("#page-inner").html(search_item_in);
+        $("#s_hotel_name").attr("value", s_name);
+        $("#s_check_in").attr("value", s_arrival);
+        $("#s_check_out").attr("value", s_leave);
+        $("#s_city").val(s_city);
+        $("#s_room_price_min").attr("value", s_price_min);
+        $("#s_room_price_max").attr("value", s_price_max);
+
         var s = {
             search_type : "customer_search_room",
             hotel_id : id,
@@ -27,8 +58,8 @@ $(document).ready(function(){
         success:function(msg){
             
             msg = JSON.parse(msg);
-            self.msg = msg;
-            $("#page-inner").html('');
+            //self.msg = msg;
+            //$("#page-inner").html('');
             $("#page-inner").append("<div class = 'col-sm-6' style = 'display: inline-block;'>"+
                 "<h1 style = 'margin-left:20px;margin-top:30px;'>"+msg[0].hotel_name+"</h1>"+   
                 "<div class = 'hotel_info style = 'margin-top:30px;'>Addr&nbsp; :    "+
@@ -47,7 +78,7 @@ $(document).ready(function(){
             );
 
             $("#page-inner").append("<img class = 'r_type  r_type_img ' style = 'max-height: 300px;"+
-                " padding-left: 15px; max-width: 45%; display:inline-block; margin-bottom: 15px;' "+
+                " padding-left: 15px; max-width: 45%; display:inline-block; margin-bottom: 15px;margin-top: 20px;' "+
                 "src = "+"'../upload/"+ 
                 msg[0].hotel_img + "'>"
             );

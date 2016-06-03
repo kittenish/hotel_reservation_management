@@ -2,6 +2,7 @@ $(document).ready(function(){
 
 	$("button.btn.btn-info.col-sm-offset-3").click(function(){
 		
+		window.scroll(0,0);
 		var password = $("#password").val();
 		var password_c = $("#password_confirm").val();
 		

@@ -28,14 +28,14 @@ $(document).ready(function(){
     		$("#myunpayed").click();
 			}
 		});
-		console.log("pay finish");
+		//console.log("pay finish");
 	}
 		
 	});
 
 	$('button.col-offset-8.reser_type_b.btn.btn-success.edit').click(function(obj){
 		
-		console.log(obj.currentTarget.value);
+		//console.log(obj.currentTarget.value);
 
 	});
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		});
 		alert("Your reservation is deleted successfully !");
 		$("#myunpayed").click();
-		console.log("delete finish");
+		//console.log("delete finish");
 	}
 	});
 
@@ -72,7 +72,7 @@ $(document).ready(function(){
     	}
     	else
     	{
-		console.log(obj.currentTarget.value);
+		//console.log(obj.currentTarget.value);
 		var id = obj.currentTarget.value;
 
 		var s = {
@@ -90,7 +90,7 @@ $(document).ready(function(){
 		});
 		alert("Your refund is processing by the hotel !");
 		$("#mypayed").click();
-		console.log("refund finish");
+		//console.log("refund finish");
 	}
 	});
 

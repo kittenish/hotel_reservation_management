@@ -7,6 +7,7 @@ module.exports = function (hotelid, arrival, callback) {
         var self = this;
         self.room = [];
         self.price = [];
+        
         var sql = 'select * from room_type join hotel where hotel_hotel_id = ? '+
             ' and hotel_id = hotel_hotel_id';
         connection.query(sql, [hotelid],function (err, result) {
@@ -17,8 +18,9 @@ module.exports = function (hotelid, arrival, callback) {
             result = JSON.stringify(result);
             result = JSON.parse(result);
             self.room = result;                    
+        
         });
-
+        
         sql = 'select * from price where date = ? and hotel_id = ?';
         connection.query(sql, [arrival, hotelid], function(err, result){
             if (err) {

@@ -8,31 +8,31 @@ $(document).ready(function(){
     
     window.u_unpayed_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       u_unpayed_renderPages(page,6);
     }
 
     window.u_completed_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       u_completed_renderPages(page,7);
     }
 
     window.u_payed_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       u_payed_renderPages(page,6);
     }
 
     window.u_confirmed_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       u_confirmed_renderPages(page,6);
     }
 
     window.u_refund_selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       u_refund_renderPages(page,7);
     }
   
@@ -213,6 +213,7 @@ $(document).ready(function(){
     window.edit_profile = function(){
       
       //console.log(self.msg[0].customer_id);
+      window.scroll(0,0);
       $("#page-inner").html('');
       $("#page-inner").append("<h3 class = 'u_profile_h'>Edit Profile </h3>");
       $("#page-inner").append("<p class = 'u_profile u_id' >My_id :    "+self.msg[0].customer_id+"</p>");

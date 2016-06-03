@@ -142,3 +142,10 @@ color:#000;
 #user_main_head{
     margin-top: 20px;
 }
+
+#total {
+    text-align: center;
+    color: rgba(92, 49, 143, 0.87);
+    font-weight: bolder;
+    font-size: 20px;
+}

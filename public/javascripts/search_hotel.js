@@ -36,7 +36,7 @@ $(document).ready(function(req, res){
 
   window.selectPage=function(page){
       currentPage=page;
-      console.log(page);
+      //console.log(page);
       renderPages(page,8);
   }
 
@@ -81,6 +81,7 @@ $(document).ready(function(req, res){
           self.totalPages = msg.length/8;
           $("#search-content").html("");
           search_information(0,self.msg,8);
+          window.msg = msg;
       }
       });
 
@@ -90,6 +91,7 @@ $(document).ready(function(req, res){
   $("#search_hotel").click(doSearch);
 
 	function search_information(page, msg, count){
+      $("#search-content").append("<p id = 'total'>"+"Total hotel: "+self.msg.length+"</p>");
   		
       var i = 0;
   		for(i = page * count ; i < count + page * count && i < msg.length; i++){
